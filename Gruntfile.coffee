@@ -33,20 +33,17 @@ module.exports = (grunt) ->
         ext: '.js'
 
     concat:
-      css:
-        src: "public/css/**/*.css"
-        dest: "public/dist/appcss.css"
       js:
         src: "public/compiled-js/**/*.js"
         dest: "public/dist/app.js"
 
-    # sass:
-    #   dist:
-    #     options:
-    #       trace: true
-    #       style: 'expanded'
-    #     files:
-    #       'public/dist/appsass.css': 'public/sass/app.sass'
+    less:
+      dist:
+        files:
+          'public/dist/appcss.css': 'public/less/**/*.less'
+        options:
+          paths: ['app/less', 'components/bootstrap/less']
+          yuicompress: true
 
     # ember_templates:
     #   compile:
@@ -64,13 +61,8 @@ module.exports = (grunt) ->
       # handlebars:
       #   files: 'public/handlebars/**/*.{handlebars, hbs}'
       #   tasks: ['ember_templates', 'livereload', 'regarde']
-      # sass:
-      #   files: 'public/sass/**/*.sass'
-      #   tasks: ['sass', 'livereload', 'regarde']
-        
 
   grunt.loadNpmTasks('grunt-contrib-livereload')
-  # grunt.loadNpmTasks('grunt-contrib-sass')
   grunt.loadNpmTasks('grunt-contrib-less')
   grunt.loadNpmTasks('grunt-contrib-copy')
   grunt.loadNpmTasks('grunt-contrib-coffee')
@@ -91,7 +83,7 @@ module.exports = (grunt) ->
                                         'livereload-start',
                                         # 'ember_templates',
                                         'clean',
-                                        # 'sass',
+                                        'less'
                                         'coffee',
                                         # 'minispade'
                                         'concat'
@@ -100,6 +92,6 @@ module.exports = (grunt) ->
   grunt.registerTask('noreload', [
                                         # 'ember_templates',
                                         'clean',
-                                        # 'sass',
+                                        'less'
                                         'coffee'              ])
                                         # 'minispade'           ])
