@@ -1,0 +1,12 @@
+[submodule "components/ember-data"]
+	path = components/ember-data
+	url = https://github.com/emberjs/data.git
+[submodule "components/ember.js"]
+	path = components/ember.js
+	url = https://github.com/emberjs/ember.js.git
+[submodule "components/bootstrap"]
+	path = components/bootstrap
+	url = https://github.com/twitter/bootstrap.git
+[submodule "components/handlebars"]
+	path = components/handlebars
+	url = https://github.com/wycats/handlebars.js.git

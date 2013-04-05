@@ -1,3 +1,5 @@
 window.App = Ember.Application.create();
 
-require('controllers/ApplicationController.js');
+App.ApplicationController = Ember.Controller.extend({
+  sampleText: "hey this application controller is sure neat"
+});
