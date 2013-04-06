@@ -11,56 +11,60 @@ module.exports = (grunt) ->
     pkg: grunt.file.readJSON('package.json')
   
     clean:
-      src: ['public/compiled-js/']
+      src: ['src/compiled-js/']
 
     # minispade:
     #   options:
     #     renameRequire: true
     #     useStrict: false
-    #     prefixToRemove: 'public/compiled-js/'
+    #     prefixToRemove: 'src/compiled-js/'
     #   files:
-    #     src: ['public/compiled-js/**/*.js']
-    #     dest: 'public/dist/app.js'
+    #     src: ['src/compiled-js/**/*.js']
+    #     dest: 'src/dist/app.js'
 
     coffee:
       options:
-        bare: true
+        bare: true    # Going to be wrapping in define calls anyway
       glob_to_multiple:
         expand: true
-        cwd: 'public/coffee/'
+        cwd: 'src/coffee/'
         src: ['**/*.coffee']
-        dest: 'public/compiled-js'
+        dest: 'src/compiled-js'
         ext: '.js'
 
+    # Concat is just filling-in for requirejs
     concat:
       js:
-        src: "public/compiled-js/**/*.js"
-        dest: "public/dist/app.js"
+        src: ['src/compiled-js/**/*.js']
+        dest: 'js/dist/app.js'
 
     less:
       dist:
         files:
-          'public/dist/appcss.css': 'public/less/**/*.less'
+          'css/app.css': 'src/less/app.less'
         options:
-          paths: ['app/less', 'components/bootstrap/less']
+          paths: ['src/less/**', 'components/bootstrap/less']
           yuicompress: true
 
-    # ember_templates:
-    #   compile:
-    #     options:
-    #       templateName: (sourceFile) ->
-    #         return sourceFile.replace(/public\/handlebars\//,'')
-    #     files:
-    #       "public/dist/apptemplates.js": "public/handlebars/**/*.{handlebars, hbs}"
+    ember_templates:
+      compile:
+        options:
+          templateName: (sourceFile) ->
+            return sourceFile.replace(/src\/handlebars\//,'')
+        files:
+          "src/compiled-js/apptemplates.js": "src/handlebars/**/*.{handlebars,hbs}"
     
     regarde:
       coffee:
-        files: 'public/coffee/**/*.coffee'
+        files: 'src/coffee/**/*.coffee'
         # tasks: ['clean', 'coffee', 'minispade', 'livereload', 'regarde']
         tasks: ['clean', 'coffee', 'concat:js', 'livereload', 'regarde']
-      # handlebars:
-      #   files: 'public/handlebars/**/*.{handlebars, hbs}'
-      #   tasks: ['ember_templates', 'livereload', 'regarde']
+      handlebars:
+        files: 'src/handlebars/**/*.{handlebars,hbs}'
+        tasks: ['ember_templates', 'concat:js', 'livereload', 'regarde']
+      less:
+        files: ['src/less/**/app.less']
+        tasks: ['less', 'livereload', 'regarde']
 
   grunt.loadNpmTasks('grunt-contrib-livereload')
   grunt.loadNpmTasks('grunt-contrib-less')
@@ -71,22 +75,15 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-ember-templates')
   grunt.loadNpmTasks('grunt-regarde')
   # grunt.loadNpmTasks('grunt-minispade')
-
-  grunt.registerTask('vanilla', [
-                                        'livereload-start',
-                                        # 'ember_templates',
-                                        'concat:css',
-                                        # 'minispade'
-                                        'regarde'             ])
   
   grunt.registerTask('4south', [
                                         'livereload-start',
-                                        # 'ember_templates',
-                                        'clean',
                                         'less'
+                                        'clean',
                                         'coffee',
+                                        'ember_templates',
                                         # 'minispade'
-                                        'concat'
+                                        'concat:js'
                                         'regarde'             ])
 
   grunt.registerTask('noreload', [
