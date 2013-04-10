@@ -1,0 +1,25 @@
+<h3>Application Information</h3> 
+<table class="table">
+  <tr>
+    <th>Namespace</th>
+    <td>{{controller.namespace}}</td>
+    <td></td>
+  </tr>
+    <th>Controller</th>
+    <td>{{controller._debugContainerKey}}</td>
+    <td>{{controller}}</td>
+  <tr>
+    <th>View</th>
+    <td>
+      {{view.renderedName}}
+    </td>
+    <td>
+      {{#with view}}{{this}}{{/with}}
+    </td>
+  </tr>
+  <tr>
+    <th>Route</th>
+    <td>{{currentPath}}</td>
+    <td></td>
+  </tr>
+</table>

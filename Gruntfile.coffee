@@ -13,15 +13,6 @@ module.exports = (grunt) ->
     clean:
       src: ['src/compiled-js/']
 
-    # minispade:
-    #   options:
-    #     renameRequire: true
-    #     useStrict: false
-    #     prefixToRemove: 'src/compiled-js/'
-    #   files:
-    #     src: ['src/compiled-js/**/*.js']
-    #     dest: 'src/dist/app.js'
-
     coffee:
       options:
         bare: true    # Going to be wrapping in define calls anyway
@@ -29,18 +20,20 @@ module.exports = (grunt) ->
         expand: true
         cwd: 'src/coffee/'
         src: ['**/*.coffee']
-        dest: 'src/compiled-js'
+        # dest: 'src/compiled-js'
+        dest: 'js/dist'
         ext: '.js'
 
     # Concat is just filling-in for requirejs
-    concat:
-      js:
-        src: ['src/compiled-js/**/*.js']
-        dest: 'js/dist/app.js'
+    # concat:
+    #   js:
+    #     src: ['src/compiled-js/**/*.js']
+    #     dest: 'js/dist/app.js'
 
     less:
       dist:
         files:
+          # 'css/bootstrap.css': 'src/less/bootstrap.less'
           'css/app.css': 'src/less/app.less'
         options:
           paths: ['src/less/**', 'components/bootstrap/less']
@@ -52,16 +45,18 @@ module.exports = (grunt) ->
           templateName: (sourceFile) ->
             return sourceFile.replace(/src\/handlebars\//,'')
         files:
-          "src/compiled-js/apptemplates.js": "src/handlebars/**/*.{handlebars,hbs}"
+          # "src/compiled-js/apptemplates.js": "src/handlebars/**/*.{handlebars,hbs}"
+          'js/dist/templates.js': 'src/handlebars/**/*.{handlebars,hbs}'
     
     regarde:
       coffee:
         files: 'src/coffee/**/*.coffee'
         # tasks: ['clean', 'coffee', 'minispade', 'livereload', 'regarde']
-        tasks: ['clean', 'coffee', 'concat:js', 'livereload', 'regarde']
+        tasks: ['clean', 'coffee', 'livereload', 'regarde']
+        # tasks: ['clean', 'coffee', 'concat:js', 'livereload', 'regarde']
       handlebars:
         files: 'src/handlebars/**/*.{handlebars,hbs}'
-        tasks: ['ember_templates', 'concat:js', 'livereload', 'regarde']
+        tasks: ['ember_templates', 'livereload', 'regarde']
       less:
         files: ['src/less/**/app.less']
         tasks: ['less', 'livereload', 'regarde']
@@ -82,8 +77,7 @@ module.exports = (grunt) ->
                                         'clean',
                                         'coffee',
                                         'ember_templates',
-                                        # 'minispade'
-                                        'concat:js'
+                                        # 'concat:js'
                                         'regarde'             ])
 
   grunt.registerTask('noreload', [

@@ -1,7 +1,6 @@
 // Version: v1.0.0-rc.2-60-g0622f35
 // Last commit: 0622f35 (2013-04-05 05:57:06 -0700)
 
-
 (function() {
 /*global __fail__*/
 

@@ -10,3 +10,9 @@
 [submodule "components/handlebars"]
 	path = components/handlebars
 	url = https://github.com/wycats/handlebars.js.git
+[submodule "components/requirejs"]
+	path = components/requirejs
+	url = https://github.com/jrburke/requirejs.git
+[submodule "components/moment"]
+	path = components/moment
+	url = https://github.com/timrwood/moment.git

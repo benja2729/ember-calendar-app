@@ -1,0 +1,18 @@
+<article class="event-data">
+  <div class="page-header">
+    <h4>{{title}} <br />
+    <small>
+    {{date start}}
+    {{#if isMultiDay}} - {{date end}}{{/if}}
+    <br />
+    {{time start}} - {{time end}}</small>
+    </h4>
+  </div>
+  <section>
+    <p><b>Location: </b>{{location}}</p>
+    <p><b>description: </b>{{{description}}}</p>
+    {{#if url}}
+    <p><a {{bindAttr href="url"}}>More Information</a></p>
+    {{/if}}
+  </section>
+</article>

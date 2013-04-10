@@ -1,0 +1,12 @@
+<div class="row-fluid">
+  <div class="span4">
+    <ul class="nav nav-list">
+    {{#each model}}
+      <li>{{#linkTo "event" this}}{{title}}{{/linkTo}}</li>
+    {{/each}}
+    </ul>
+  </div>
+  <div class="span8">
+    {{outlet}}
+  </div>
+</div>
