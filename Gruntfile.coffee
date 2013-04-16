@@ -33,8 +33,8 @@ module.exports = (grunt) ->
     less:
       dist:
         files:
-          # 'css/bootstrap.css': 'src/less/bootstrap.less'
-          'css/app.css': 'src/less/app.less'
+          'css/bootstrap.css': 'src/less/bootstrap.less'
+          'css/calendar.css': 'src/less/calendar.less'
         options:
           paths: ['src/less/**', 'components/bootstrap/less']
           yuicompress: true
@@ -49,6 +49,9 @@ module.exports = (grunt) ->
           'js/dist/templates.js': 'src/handlebars/**/*.{handlebars,hbs}'
     
     regarde:
+      html:
+        files: 'index.html'
+        tasks: ['livereload', 'regarde']
       coffee:
         files: 'src/coffee/**/*.coffee'
         # tasks: ['clean', 'coffee', 'minispade', 'livereload', 'regarde']
@@ -58,7 +61,7 @@ module.exports = (grunt) ->
         files: 'src/handlebars/**/*.{handlebars,hbs}'
         tasks: ['ember_templates', 'livereload', 'regarde']
       less:
-        files: ['src/less/**/app.less']
+        files: ['src/less/**/*.less']
         tasks: ['less', 'livereload', 'regarde']
 
   grunt.loadNpmTasks('grunt-contrib-livereload')

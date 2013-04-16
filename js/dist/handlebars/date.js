@@ -1,4 +1,4 @@
-define(['ember', 'moment'], function(Em, moment) {
+define(['ember', 'libs/moment'], function(Em, moment) {
   Em.Handlebars.registerBoundHelper('date', function(date) {
     var time;
 

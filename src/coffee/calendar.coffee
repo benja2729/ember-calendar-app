@@ -2,15 +2,14 @@
 define [
 
   # Modules passed to the defined function
-  'ember', 'App', 'moment'
+  'ember', 'App'
 
   # Ember MVC modules
   'models/Event'
+  'controllers/EventController'
+  'views/EventView'
 
-  # Handlebars helpers
-  'handlebars/date', 'handlebars/time'
-
-], (Em, App, moment) ->
+], (Em, App) ->
 
   App.Router.map ->
     @resource 'events', ->
@@ -20,19 +19,8 @@ define [
     model: (params) ->
       App.Event.find()
 
-  App.EventController = Em.ObjectController.extend
-    startDate: Em.computed( ->
-      moment @get('start')
-    ).property 'start'
-
-    endDate: Em.computed( ->
-      moment @get('end')
-    ).property 'end'
-
-    isMultiDay: Em.computed( ->
-      start = @get('startDate').clone().startOf 'day'
-      end = @get('endDate').clone().startOf 'day'
-      if start.diff(end) < 0 then true else false
-    ).property 'startDate', 'endDate'
-
-  # App.EventsController = Em.ArrayController.extend
+  App.EventsController = Em.ArrayController.extend
+    content: null
+    filteredEvents: Em.computed( ->
+      Em.A(@get('content').slice 0, 10)
+    ).property 'content@each'

@@ -1,6 +1,9 @@
 <div class="row-fluid">
   <div class="span4">
     <ul class="nav nav-list">
+    {{log model.length}}
+    {{log content.length}}
+    {{log filteredEvents.length}}
     {{#each model}}
       <li>{{#linkTo "event" this}}{{title}}{{/linkTo}}</li>
     {{/each}}

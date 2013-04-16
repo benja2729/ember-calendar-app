@@ -3,6 +3,7 @@ define ['ember', 'ember-data', 'templates'], (Em, DS) ->
 
   App = Em.Application.create
     LOG_TRANSITIONS: true
+    isReady: false
 
   DS.FixtureAdapter.reopen
     queryFixtures: (fixtures, query, type) ->
@@ -18,5 +19,7 @@ define ['ember', 'ember-data', 'templates'], (Em, DS) ->
   App.Store = DS.Store.extend
     revision: 12
     adapter: 'DS.FixtureAdapter'
+
+  App.ready = -> App.set 'isReady', true
 
   window.App = App

@@ -4,7 +4,8 @@ define(['ember', 'ember-data', 'templates'], function(Em, DS) {
   var App;
 
   App = Em.Application.create({
-    LOG_TRANSITIONS: true
+    LOG_TRANSITIONS: true,
+    isReady: false
   });
   DS.FixtureAdapter.reopen({
     queryFixtures: function(fixtures, query, type) {
@@ -30,5 +31,8 @@ define(['ember', 'ember-data', 'templates'], function(Em, DS) {
     revision: 12,
     adapter: 'DS.FixtureAdapter'
   });
+  App.ready = function() {
+    return App.set('isReady', true);
+  };
   return window.App = App;
 });

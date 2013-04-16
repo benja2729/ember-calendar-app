@@ -1,5 +1,5 @@
 
-define ['ember', 'moment'], (Em, moment) ->
+define ['ember', 'libs/moment'], (Em, moment) ->
 
   Em.Handlebars.registerBoundHelper 'time', (date) ->
     date = moment date

@@ -1,4 +1,4 @@
-define(['ember', 'App', 'moment', 'models/Event', 'handlebars/date', 'handlebars/time'], function(Em, App, moment) {
+define(['ember', 'App', 'models/Event', 'controllers/EventController', 'views/EventView'], function(Em, App) {
   App.Router.map(function() {
     return this.resource('events', function() {
       return this.resource('event', {
@@ -11,23 +11,10 @@ define(['ember', 'App', 'moment', 'models/Event', 'handlebars/date', 'handlebars
       return App.Event.find();
     }
   });
-  return App.EventController = Em.ObjectController.extend({
-    startDate: Em.computed(function() {
-      return moment(this.get('start'));
-    }).property('start'),
-    endDate: Em.computed(function() {
-      return moment(this.get('end'));
-    }).property('end'),
-    isMultiDay: Em.computed(function() {
-      var end, start;
-
-      start = this.get('startDate').clone().startOf('day');
-      end = this.get('endDate').clone().startOf('day');
-      if (start.diff(end) < 0) {
-        return true;
-      } else {
-        return false;
-      }
-    }).property('startDate', 'endDate')
+  return App.EventsController = Em.ArrayController.extend({
+    content: null,
+    filteredEvents: Em.computed(function() {
+      return Em.A(this.get('content').slice(0, 10));
+    }).property('content@each')
   });
 });
