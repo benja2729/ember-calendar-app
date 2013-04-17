@@ -1,8 +1,8 @@
 
 define [
-  'App', 'ember-data'
-], (App, DS) ->
+  'App', 'ember-data', 'adapters/VUAdapter'
+], (App, DS, VUAdapter) ->
 
   App.Store = DS.Store.extend
     revision: 12
-    adapter: DS.BasicAdapter
+    adapter: VUAdapter

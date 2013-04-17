@@ -104,26 +104,23 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-regarde')
   # grunt.loadNpmTasks('grunt-minispade')
 
-  grunt.registerTask('4south', [
-                                        'livereload-start',
-                                        'less'
-                                        'clean',
-                                        'coffee:dev',
-                                        'ember_templates:dev',
-                                        # 'concat:js'
-                                        'regarde'             ])
-
-  grunt.registerTask('build', [
+  grunt.registerTask 'build', [
     'less'
     'clean'
     'coffee:build'
     'ember_templates:build'
     'requirejs:build'
-  ])
+  ]
 
-  grunt.registerTask('noreload', [
-                                        # 'ember_templates',
-                                        'clean',
-                                        'less'
-                                        'coffee'              ])
-                                        # 'minispade'           ])
+  grunt.registerTask 'dev', [
+    'less'
+    'clean'
+    'coffee:dev'
+    'ember_templates:dev'
+  ]
+
+  grunt.registerTask '4south', [
+    'livereload-start'
+    'dev'
+    'regarde'
+  ]
