@@ -1,8 +1,8 @@
 
 define [
   'App', 'ember-data'
-  '../../fixtures', './Category'
-], (App, DS, fixtures) ->
+  './Category'
+], (App, DS) ->
 
   Event = DS.Model.extend
     start: DS.attr 'date'
@@ -13,7 +13,5 @@ define [
     description: DS.attr 'string'
     url: DS.attr 'string'
     categories: DS.hasMany 'App.Category'
-
-  Event.FIXTURES = fixtures
 
   App.Event = Event

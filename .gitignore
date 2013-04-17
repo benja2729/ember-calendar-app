@@ -1,6 +1,8 @@
 node_modules/
 tmp/
 .sass-cache/
+js/dist/
+src/compiled-js
 *.swp
 *.swo
 *.orig

@@ -1,0 +1,7 @@
+<h1>MonthView</h1>
+<ul class="nav nav-list">
+{{#each eventsInMonth}}
+  <li>{{#linkTo "events"}}{{title}}{{/linkTo}}</li>
+{{/each}}
+</ul>
+{{outlet}}

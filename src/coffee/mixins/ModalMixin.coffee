@@ -51,7 +51,7 @@ define ['ember', 'libs/bootstrap-transition'], (Em) ->
         @set 'isFadedOut', true
 
     afterFadeOut: Em.observer ->
-      @get('controller').closeModal this
+      if @get('isFadedOut') then @get('controller').closeModal this
     , 'isFadedOut'
 
     didInsertElement: ->

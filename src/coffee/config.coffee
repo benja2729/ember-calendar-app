@@ -10,6 +10,7 @@ require =
     'libs': '../libs'
     'ember': '../libs/ember'
     'ember-data': '../libs/ember-data'
+    'moment': '../libs/moment'
 
   shim:
     'ember':
@@ -39,10 +40,7 @@ require =
       deps: ['jquery']
       exports: 'jQuery.support.transition'
 
-    'libs/moment':
-      exports: 'moment'
-
-    'showdown':
+    'libs/showdown':
       exports: 'Showdown'
 
 # Disable Emberjs Prototype Extensions

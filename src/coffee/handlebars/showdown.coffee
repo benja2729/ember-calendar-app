@@ -7,6 +7,7 @@ define ['ember', 'libs/showdown'], (Em, showdown) ->
       new Em.Handlebars.SafeString result
       
     catch e
+      console.log 'Something went horribly wrong with the Showdown plugin in the showdown Handlebars helper.'
       'Invalid input text'
 
   Em

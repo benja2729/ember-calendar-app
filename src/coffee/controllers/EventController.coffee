@@ -1,5 +1,5 @@
 
-define ['App', 'ember', 'libs/moment'], (App, Em, moment) ->
+define ['App', 'ember', 'moment'], (App, Em, moment) ->
 
   Controller = Em.ObjectController.extend
     closeModal: -> @transitionToRoute 'events'

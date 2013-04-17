@@ -19,3 +19,6 @@
 [submodule "components/showdown"]
 	path = components/showdown
 	url = https://github.com/coreyti/showdown.git
+[submodule "components/almond"]
+	path = components/almond
+	url = https://github.com/jrburke/almond.git
