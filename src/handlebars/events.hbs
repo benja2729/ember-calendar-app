@@ -1,7 +1,3 @@
 <h3>Events View</h3>
-<ul>
-{{#each controller}}
-  <li>{{#view VU.ButtonView action="showEventDetailPane" actionContext="context"}}ButtonView {{id}}{{/view}}</li>
-{{/each}}
-</ul>
+{{view App.EventsListView}}
 {{outlet}}

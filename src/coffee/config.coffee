@@ -38,6 +38,9 @@ require =
       ]
       exports: 'Ember.TEMPLATES'
 
+    'libs/list-view':
+      deps: ['ember']
+
     'libs/bootstrap-transition':
       deps: ['jquery']
       exports: 'jQuery.support.transition'

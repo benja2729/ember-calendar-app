@@ -4,6 +4,20 @@
 @import "mixins.less";
 
 /**
+ * ListView required CSS
+ */
+.ember-list-view {
+  overflow: auto;
+  overflow-x: auto !important;
+  position: relative;
+}
+.ember-list-item-view {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+/**
  * IMPORTANT: The app's container must have poisitioning
  * to render properly
  */

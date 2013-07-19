@@ -22,3 +22,6 @@
 [submodule "components/almond"]
 	path = components/almond
 	url = https://github.com/jrburke/almond.git
+[submodule "components/list-view"]
+	path = components/list-view
+	url = https://github.com/emberjs/list-view.git

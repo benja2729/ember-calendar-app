@@ -23,6 +23,9 @@ require [
   'views/FilterPaneView'
   'views/ActiveFiltersView'
   'views/EventsView'
+
+  'views/EventsListView'    # Want to get this into
+  
   'views/EventView'
 
 ], (Em, App, VU, moment) ->
