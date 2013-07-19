@@ -12,7 +12,7 @@
     "grunt-docco": "~0.2.0",
     "connect": "~2.7.3",
     "grunt-regarde": "~0.1.1",
-    "grunt-ember-templates": "~0.4.3",
+    "grunt-ember-templates": "~0.4.8",
     "grunt-contrib-livereload": "~0.1.2",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-coffee": "~0.6.4",

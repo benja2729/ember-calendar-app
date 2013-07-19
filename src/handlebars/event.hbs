@@ -1,9 +1,8 @@
-{{#view view.modalClass}}
-<header class="modal-header">
-  <button class="close" type="button" {{action "closeModal" target="view.parentView"}}>&times;</button>
-  <h3>{{title}}</h3>
+<header class="pane-header">
+  {{#view VU.ButtonView action="closePane" actionContext="parentView"}}Close{{/view}}
 </header>
-<section class="modal-body">
+<section class="pane-body">
+  <h3>{{title}}</h3>
   <p>
     {{date startDate}}
     {{#if isMultiDay}} - {{date endDate}}{{/if}}
@@ -11,10 +10,11 @@
     {{time start}} - {{time end}}
   </p>
   <p><b>Location: </b>{{location}}</p>
-  <p><b>Description: </b>{{showdown description}}</p>
-  {{#if url}}
-  <p><a {{bindAttr href="url"}}>More Information</a></p>
-  {{/if}}
+  {{#if description}}{{showdown description}}{{/if}}
 </section>
-{{/view}}
-{{view view.modalBackdropClass}}
+{{outlet}}
+<footer class="pane-footer">
+{{#if url}}
+  <a {{bindAttr href="url"}}>More Information &nbsp;&gt;&gt;</a>
+{{/if}}
+</footer>

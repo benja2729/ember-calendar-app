@@ -1,0 +1,20 @@
+<div class="row-fluid">
+  <div class="btn-group pull-right">
+    {{#linkTo "day" classNames="btn"}}Day{{/linkTo}}
+    {{#linkTo "week" classNames="btn"}}Week{{/linkTo}}
+    {{#linkTo "month" classNames="btn"}}Month{{/linkTo}}
+  </div>
+
+  {{#if "App.isMobile"}}
+  <div class="btn-group">
+    <button type="button" class="btn" {{action "showFilters"}}>Filters</button>
+  </div>
+  {{/if}}
+
+</div>
+
+{{#if "App.isMobile"}}
+<div class="row-fluid">
+  {{render "filters.update"}}
+</div>
+{{/if}}

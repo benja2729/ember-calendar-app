@@ -1,0 +1,8 @@
+<header class="page-header">
+  <h1>{{moment "_date.content" format="MM DD, YYYY"}}</h1>
+</header>
+<ul>
+{{#each filteredEvents}}
+  <li>{{moment "start.content" format="hh:mm"}} | {{title}}</li>
+{{/each}}
+</ul>

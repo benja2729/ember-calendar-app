@@ -1,9 +1,9 @@
 
-define ['ember', 'libs/showdown'], (Em, showdown) ->
+define ['ember', 'libs/showdown'], (Em, Showdown) ->
 
   Em.Handlebars.registerBoundHelper 'showdown', (text) ->
     try
-      result = (new showdown.converter()).makeHtml text
+      result = (new Showdown.converter()).makeHtml text.replace(/\\n|\\r/g, '\n')
       new Em.Handlebars.SafeString result
       
     catch e

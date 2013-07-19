@@ -1,6 +1,15 @@
-<div class="container">
-  <div class="row-fluid">
-    {{partial "app-meta"}}
-  </div>
-  {{outlet}}
-</div>
+
+{{outlet "filterPane"}}
+
+<section class="pane main-pane">
+  <header class="pane-header row-fluid">
+    {{#view view.FilterToggle}}Filters{{/view}}
+    {{outlet "activeFilters"}}
+  </header>
+  <section class="pane-body">
+    {{outlet}}
+  </section>
+</section>
+
+{{outlet "sidePane"}}
+{{outlet "eventDetailPane"}}

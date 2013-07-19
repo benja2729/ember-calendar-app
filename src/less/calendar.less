@@ -3,4 +3,121 @@
 @import "variables.less"; // Modify this for custom colors, font-sizes, etc
 @import "mixins.less";
 
+/**
+ * IMPORTANT: The app's container must have poisitioning
+ * to render properly
+ */
+.app-container {
+  overflow-x: hidden;
+  z-index: -100;
+}
+
+/**
+ * Fills height of a block element given its
+ * parent has set positioning
+ * 
+ * Should probably add this to vu-utilities.less
+ */
+.pane, .pane-body {
+  display: block;
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: auto;
+}
+
+.pane-body {
+  left: 0;
+  right: 0;
+  margin: 15px;
+}
+
+.pane-header, .pane-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  min-height: 42px;
+
+  background-color: #61564f;
+  border-style: solid;
+  border-color: #444;
+  border-width: 0;
+}
+
+.pane-header {
+  top: 0;
+  border-bottom-width: 1px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.4), -1px -1px 2px rgba(255,255,255,0.3) inset;
+}
+
+.pane-footer {
+  bottom: 0;
+  border-top-width: 1px;
+  box-shadow: -3px 0 10px rgba(0,0,0,0.4), 1px 1px 2px rgba(255,255,255,0.3) inset;
+}
+
+.pane-header > .btn, .pane-footer > .btn {
+  margin: 5px;
+}
+
+.pane-header + .pane-body {
+  margin-top: 45px;
+}
+
+.main-pane {
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-shadow: -4px 0 15px rgba(0,0,0,0.5), 1px 0 5px rgba(255,255,255,0.5) inset;
+  border-left: 1px solid #444;
+  background-color: #c2b9b3;
+  overflow-x: hidden;
+}
+
+.side-pane {
+  max-width: 385px;
+  min-width: 25%;
+  left: 100%; /* Trying this out, might not work */
+
+  /**
+   * From #global-footer
+   */
+  color: #d7d2cb;
+  /*font-family: "Avenir LT W01 65 Medium","Helvetica Neue",Helvetica,Arial,sans-serif;*/
+  border-top: 1px solid #887d75;
+  background-color: #7d736c;
+  background-image: -moz-linear-gradient(top,#8d827a,#645c56);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#8d827a),to(#645c56));
+  background-image: -webkit-linear-gradient(top,#8d827a,#645c56);
+  background-image: -o-linear-gradient(top,#8d827a,#645c56);
+  background-image: linear-gradient(to bottom,#8d827a,#645c56);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8d827a',endColorstr='#ff645c56',GradientType=0);
+}
+
+.filter-pane {
+  left: 0;
+  // padding-right: 20px;
+  z-index: -1;
+}
+
+.event-detail-pane {
+  min-width: 33%;
+  box-shadow: -4px 0 15px rgba(0,0,0,0.5), 1px 0 2px rgba(255,255,255,0.3) inset;
+  border-left: 1px solid #444;
+}
+
+/**
+ * Piggy-backs off of .pane
+ */
+#VUCalendar {
+  /*overflow-x: hidden;*/
+  left: 0;
+  right: 0;
+
+  /* Needs to be behind .app-container */
+  z-index: -101;
+}
+
 @import "responsive.less";

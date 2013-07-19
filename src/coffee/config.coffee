@@ -1,4 +1,7 @@
 
+# Unfortunately, configurations here must be duplicated in the Gruntfile
+# Or figure out a way to use path and shim along with mainGonfigFile in grunt
+
 require =
   baseUrl: 'js/dist'
 
@@ -12,15 +15,13 @@ require =
     'ember-data': '../libs/ember-data'
     'moment': '../libs/moment'
 
+    # QUnit only necessary on dev build (non-optimized)
+    'test': '../test'
+    'qunit': 'http://code.jquery.com/qunit/qunit-1.11.0'
+
   shim:
     'ember':
-      deps: [
-        'jquery', 'libs/handlebars.runtime'   #'libs/handlebars'
-
-        # jQuery plugins need to be included here so they are attached
-        # to the Ember namespace
-        'libs/bootstrap-transition'
-      ]
+      deps: ['jquery', 'libs/handlebars'] #.runtime']
       exports: 'Ember'
 
     'ember-data':
@@ -32,7 +33,8 @@ require =
         'ember'
 
         # Handlebars helpers
-        'handlebars/date', 'handlebars/time', 'handlebars/showdown'
+        'handlebars/date', 'handlebars/time'
+        'handlebars/showdown', 'handlebars/moment'
       ]
       exports: 'Ember.TEMPLATES'
 
@@ -42,6 +44,17 @@ require =
 
     'libs/showdown':
       exports: 'Showdown'
+
+    'qunit':
+      deps: ['jquery']
+      exports: 'QUnit'
+      init: ($) ->
+        q = @QUnit
+        q.config.autostart = false
+        q.config.autorun = false
+        q.begin -> console.log 'QUnit begin'
+        q.done -> console.log 'QUnit done'
+        q.load()
 
 # Disable Emberjs Prototype Extensions
 # This may cause the r.js optimizer to fail

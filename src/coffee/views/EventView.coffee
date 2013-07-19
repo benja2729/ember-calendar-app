@@ -1,6 +1,7 @@
 
-define ['App', 'ember', 'mixins/ModalMixin'], (App, Em, ModalMixin) ->
+define ['ember', 'ValpoUtils', 'App'], (Em, VU, App) ->
 
-  View = Em.View.extend ModalMixin
+  View = VU.SidePaneView.extend
+    classNames: ['event-detail-pane']
 
   App.EventView = View

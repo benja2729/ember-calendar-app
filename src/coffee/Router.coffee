@@ -13,8 +13,13 @@
 ###
 
 define [], ->
-  
-  () ->
-    @resource 'month', ->
+
+  RouterMap = ->
+    # Leave the implementation of tags for later
+    # @resource 'filters', path: '/:categories/:tags', ->
+
+    @resource 'filters', path: '/:categories/start/:start/end/:end', ->
       @resource 'events', ->
-        @resource 'event', path: ':event_id'
+        @resource 'event', path: '/:event_id', ->
+
+  RouterMap

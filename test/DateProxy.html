@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Ember Calendar</title>
+    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../css/calendar.css" rel="stylesheet" type="text/css">
+    <link href="http://code.jquery.com/qunit/qunit-1.11.0.css" rel="stylesheet" type="text/css">
+  </head>
+  
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="../js/dist/config.js"></script>
+    <script>
+      if(require.baseUrl) require.baseUrl = '../js/dist';
+    </script>
+    <script data-main="test/DateProxy" src="../js/libs/require.js"></script>
+
+    <!-- needed to embed livereload in your actual server -->
+    <script src="http://localhost:35729/livereload.js?snipver=1"></script>
+
+  </body>
+</html>

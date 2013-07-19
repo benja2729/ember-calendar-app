@@ -16,6 +16,12 @@ module.exports = (grunt) ->
     coffee:
       options:
         bare: true    # Going to be wrapping in define calls anyway
+      test:
+        expand: true
+        cwd: 'test/src/coffee'
+        src: ['**/*.coffee']
+        dest: 'js/test'
+        ext: '.js'
       dev:
         expand: true
         cwd: 'src/coffee/'
@@ -42,22 +48,45 @@ module.exports = (grunt) ->
           'ember': '../../js/libs/ember'
           'ember-data': '../../js/libs/ember-data'
           'moment': '../../js/libs/moment'
+        shim:
+          'ember':
+            deps: ['jquery', 'libs/handlebars']   # .runtime']
+            exports: 'Ember'
+
+          'ember-data':
+            deps: ['ember']
+            exports: 'DS'
+
+          'templates':
+            deps: [
+              'ember'
+
+              # Handlebars helpers
+              'handlebars/date', 'handlebars/time'
+              'handlebars/showdown', 'handlebars/moment'
+            ]
+            exports: 'Ember.TEMPLATES'
+
+          'libs/bootstrap-transition':
+            deps: ['jquery']
+            exports: 'jQuery.support.transition'
+
+          'libs/showdown':
+            exports: 'Showdown'
+
+        name: 'calendar'
+        include: ['libs/almond']
+        insertRequire: ['calendar']
+        out: 'js/calendar.js'
       dev:
         options:
           optimize: 'none'
           generateSourceMaps: true
           preserveLicenseComments: false
-          name: 'libs/almond'
-          include: ['calendar']
-          insertRequire: ['calendar']
-          out: 'js/dist/calendar.js'
       build:
         options:
           optimize: 'uglify'
-          name: 'libs/almond'
-          include: ['calendar']
-          insertRequire: ['calendar']
-          out: 'js/dist/calendar.js'
+          uglify: toplevel: false
 
     less:
       dist:
@@ -68,10 +97,10 @@ module.exports = (grunt) ->
           paths: ['src/less/**', 'components/bootstrap/less']
           yuicompress: true
 
-    ember_templates:
+    emberTemplates:
       options:
         templateName: (sourceFile) ->
-          return sourceFile.replace(/src\/handlebars\//,'')
+          sourceFile.replace(/src\/handlebars\//,'').replace '.', '/'
       dev:
         files:
           'js/dist/templates.js': 'src/handlebars/**/*.{handlebars,hbs}'
@@ -81,14 +110,14 @@ module.exports = (grunt) ->
 
     regarde:
       html:
-        files: '*.html'
+        files: '**/*.html'
         tasks: ['livereload', 'regarde']
       coffee:
-        files: 'src/coffee/**/*.coffee'
-        tasks: ['clean', 'coffee:dev', 'ember_templates:dev', 'livereload', 'regarde']
+        files: ['src/coffee/**/*.coffee', 'test/src/coffee/**/*.coffee']
+        tasks: ['clean', 'coffee:dev', 'coffee:test', 'emberTemplates:dev', 'livereload', 'regarde']
       handlebars:
         files: 'src/handlebars/**/*.{handlebars,hbs}'
-        tasks: ['ember_templates:dev', 'livereload', 'regarde']
+        tasks: ['emberTemplates:dev', 'livereload', 'regarde']
       less:
         files: ['src/less/**/*.less']
         tasks: ['less', 'livereload', 'regarde']
@@ -107,19 +136,39 @@ module.exports = (grunt) ->
     'less'
     'clean'
     'coffee:build'
-    'ember_templates:build'
+    'emberTemplates:build'
     'requirejs:build'
+  ]
+
+  grunt.registerTask 'build:dev', [
+    'less'
+    'clean'
+    'coffee:build'
+    'emberTemplates:build'
+    'requirejs:dev'
   ]
 
   grunt.registerTask 'dev', [
     'less'
     'clean'
     'coffee:dev'
-    'ember_templates:dev'
+    'emberTemplates:dev'
+  ]
+
+  grunt.registerTask 'dev:regarde',[
+    'dev'
+    'regarde'
   ]
 
   grunt.registerTask '4south', [
     'livereload-start'
-    'dev'
-    'regarde'
+    'dev:regarde'
+  ]
+
+  grunt.registerTask 'test', [
+    'livereload-start'
+    'clean'
+    'coffee:dev'
+    'coffee:test'
+    'regarde:coffee'
   ]

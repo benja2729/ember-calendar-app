@@ -1,7 +1,7 @@
-<h1>Events View</h1>
-<ul class="nav nav-list">
-{{#each filteredEvents}}
-  <li>{{#linkTo "event" this}}{{title}}{{/linkTo}}</li>
+<h3>Events View</h3>
+<ul>
+{{#each controller}}
+  <li>{{#view VU.ButtonView action="showEventDetailPane" actionContext="context"}}ButtonView {{id}}{{/view}}</li>
 {{/each}}
 </ul>
 {{outlet}}

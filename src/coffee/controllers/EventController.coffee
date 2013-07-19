@@ -1,21 +1,23 @@
 
-define ['App', 'ember', 'moment'], (App, Em, moment) ->
+define ['App', 'ember', 'ValpoUtils', 'moment'], (App, Em, VU, moment) ->
 
   Controller = Em.ObjectController.extend
-    closeModal: -> @transitionToRoute 'events'
+    closePane: (view) ->
+      view.closePane().done =>
+        @send 'popAppState'
 
     startDate: Em.computed( ->
-      moment @get('start')
+      VU.D @get('start')
     ).property 'start'
 
     endDate: Em.computed( ->
-      moment @get('end')
+      VU.D @get('end')
     ).property 'end'
 
     isMultiDay: Em.computed( ->
-      start = @get('startDate').clone().startOf 'day'
-      end = @get('endDate').clone().startOf 'day'
-      if start.diff(end) < 0 then true else false
-    ).property 'startDate', 'endDate'
+      start = @get('startDate.date')
+      end = @get('endDate.date')
+      start is end
+    ).property 'endDate'
 
   App.EventController = Controller
