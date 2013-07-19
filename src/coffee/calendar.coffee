@@ -40,33 +40,25 @@ require [
       controller.setProperties
         categories: App.Category.find()
     events:
-      updateFilters: (filters) ->
-        eventsController = @controllerFor 'events'
-        {start, end} = filters.getProperties 'start', 'end'
-
-        model = App.Event.find {start, end}
-        model.one 'isLoaded', =>
-          eventsController.set 'model', model
-          @transitionTo 'filters'
-
       popAppState: ->
         path = @get 'controller.lastRoute'
         console.log path
         @transitionTo path
 
-  App.IndexRoute = Em.Route.extend
-    redirect: ->
-      # Manually calling the Route's model via prototype might
-      # not be the safest thing to do, so keep an eye on it
-      model = @modelFor('filters')
-      if model?
-        m = moment()
-        model = App.FiltersRoute.prototype.model {
-          categories: '0'   # 0 stands for 'all' category
-          start: m.startOf('month').unix()
-          end: m.endOf('month').unix()
-        }
-      @transitionTo 'filters', model
+  # App.IndexRoute = Em.Route.extend
+  #   redirect: ->
+  #     # Manually calling the Route's model via prototype might
+  #     # not be the safest thing to do, so keep an eye on it
+
+  #     model = @modelFor('filters')
+  #     if model?
+  #       m = moment()
+  #       model = App.FiltersRoute.prototype.model {
+  #         categories: '0'   # 0 stands for 'all' category
+  #         start: m.startOf('month').unix()
+  #         end: m.endOf('month').unix()
+  #       }
+  #     @transitionTo 'filters', model
 
   App.FiltersRoute = Em.Route.extend
     serialize: (model, params) ->
@@ -85,15 +77,16 @@ require [
           # 0 being 'all' and 1-30 the remaining categories
           # If more need be added a manual implimentation would
           # need to be create to maintain url persistence
-          when 'categories', 'start', 'end' then property.toString()
+          when 'categories' then property.toString()
+          # when 'categories', 'start', 'end' then property.toString()
       ret
 
     model: (params) ->
       categories = VU.BitObject.create params.categories, true
       App.Filters.create {
         categories
-        start: params.start
-        end: params.end
+        # start: params.start
+        # end: params.end
       }
 
     renderTemplate: (controller, model) ->
@@ -109,22 +102,27 @@ require [
         controller
       }
 
-  App.FiltersIndexRoute = Em.Route.extend
-    redirect: -> @transitionTo 'events'
+  # App.FiltersIndexRoute = Em.Route.extend
+  #   redirect: -> @transitionTo 'events'
 
   App.EventsRoute = Em.Route.extend
-    # serialize: (model, params) ->
-    #   ret = {}
+    serialize: (model, params) ->
+      ret = {}
 
-    #   for key in params
-    #     ret[key] = switch key
-    #       when 'start' then model.get('firstObject.start.unix')
-    #       when 'end' then model.get('lastObject.end.unix')
-    #   ret
+      for key in params
+        ret[key] = switch key
+          when 'start' then model.get('firstObject.start.unix')
+          when 'end' then model.get('lastObject.end.unix')
+      ret
 
     model: (params) ->
-      params = @modelFor('filters').getProperties 'start', 'end'
       App.Event.find params
+
+    setupController: (controller, model) ->
+      window.EventsController = controller
+      controller.setProperties
+        model: model
+        content: model
 
     renderTemplate: (controller, model) ->
       @render 'events', {

@@ -18,8 +18,8 @@ define [], ->
     # Leave the implementation of tags for later
     # @resource 'filters', path: '/:categories/:tags', ->
 
-    @resource 'filters', path: '/:categories/start/:start/end/:end', ->
-      @resource 'events', ->
+    @resource 'filters', path: '/:categories', ->
+      @resource 'events', path: 'start/:start/end/:end', ->
         @resource 'event', path: '/:event_id', ->
 
   RouterMap
