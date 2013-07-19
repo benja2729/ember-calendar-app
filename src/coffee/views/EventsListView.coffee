@@ -5,7 +5,8 @@ define ['ember', 'ValpoUtils', 'App', './ListView'], (Em, VU, App) ->
 
     # Configurable Properties
     rowTemplateName: 'events/list-row'
-    height: 300
+    heightBinding: 'parentView.height'
+    # height: 300
     rowHeight: 50
 
   App.EventsListView = EventsListView

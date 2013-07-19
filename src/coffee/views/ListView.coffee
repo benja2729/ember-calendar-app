@@ -12,7 +12,7 @@ define ['ember', 'ValpoUtils', 'App', 'libs/list-view'], (Em, VU, App) ->
 
     # Computed Properties
     isMobileBinding: 'App.isMobile'
-    content: Em.computed.alias 'controller'
+    contentBinding: 'controller'
 
     # heightBinding: Em.computed( (property, value) ->
     #   $el = $(@get 'parentView.element')
@@ -26,6 +26,9 @@ define ['ember', 'ValpoUtils', 'App', 'libs/list-view'], (Em, VU, App) ->
     #   if stretch then height / count
     #   else @get 'baseRowHeight'
     # ).property 'height', 'rowCount', 'stretchToFill'
+
+    willInsertElement: ->
+      debugger
 
     itemViewClass: Em.ListItemView.extend
       templateName: Em.computed.alias 'parentView.rowTemplateName'
