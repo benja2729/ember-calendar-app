@@ -14,11 +14,15 @@ require [
   'models/Event-REST'
   'models/Filters'
 
-  'controllers/MonthController'
-  'controllers/DateController'
-  'views/MonthView'
-
+  'controllers/ApplicationController'
+  'controllers/FiltersController'
+  'controllers/EventsController'
   'controllers/EventController'
+
+  'views/ApplicationView'
+  'views/FilterPaneView'
+  'views/ActiveFiltersView'
+  'views/EventsView'
   'views/EventView'
 
 ], (Em, App, VU, moment) ->
@@ -50,68 +54,17 @@ require [
         console.log path
         @transitionTo path
 
-  App.ApplicationController = Em.Controller.extend
-    categories: Em.A()
-
-    lastRoute: null
-    currentRoute: null
-    lastPath: null
-
-    _routeChangeObserver: Em.beforeObserver( (controller, property) ->
-      @set 'lastRoute', @get(property)
-      console.log @get(property)
-    , 'currentRoute')
-
-    _pathChangeObserver: Em.beforeObserver( (controller, property) ->
-      @set 'lastPath', @get(property)
-      console.log @get(property)
-    , 'currentPath')
-
-    # Fore dev purposes only
-    _propertyChangeObserver: Em.observer( (controller, property) ->
-      console.log "- Property #{property} has changed to #{@get(property)}"
-    , 'lastPath', 'lastRoute', 'currentPath', 'currentRoute')
-
-  App.ApplicationView = Em.View.extend
-    classNames: ['row-fluid', 'pane', 'app-container']
-    bodyClassName: 'main-pane'
-    filtersClassName: 'filter-pane'
-
-    FilterToggle: VU.ButtonView.extend
-      classNames: ['filter-toggle']
-      action: 'showFilters'
-      target: 'parentView'
-      actionContext: Em.computed.alias 'element'
-
-    showFilters: (buttonElement) ->
-      # TODO: Add functionality for when the browser resizes
-      $this = $(@get 'element')
-      $body = $this.find('.' + @get 'bodyClassName')
-      $filters = $this.find('.' + @get 'filtersClassName')
-      $button = $(buttonElement)
-
-      buttonWidth = $button.outerWidth true
-      filtersWidth = $filters.outerWidth true
-      windowWidth = $(window).width()
-
-      left = if parseInt($body.css('left'), 10) > 0 then 0
-      else
-        if buttonWidth + filtersWidth > windowWidth
-          windowWidth - buttonWidth
-        else filtersWidth / $this.width() * 100 + '%'
-      $body.animate {left}
-
   App.IndexRoute = Em.Route.extend
     redirect: ->
       # Manually calling the Route's model via prototype might
       # not be the safest thing to do, so keep an eye on it
       model = @modelFor('filters')
       if model?
-        {start, end} = VU.D().getRange('month', 'unix')
+        m = moment()
         model = App.FiltersRoute.prototype.model {
           categories: '0'   # 0 stands for 'all' category
-          start
-          end
+          start: m.startOf('month').unix()
+          end: m.endOf('month').unix()
         }
       @transitionTo 'filters', model
 
@@ -156,26 +109,6 @@ require [
         controller
       }
 
-  App.FiltersController = Em.ObjectController.extend
-    needs: ['application']
-    toggleCategory: (category) ->
-      categories = @get 'categories'
-      id = category.get 'id'
-      @set 'categories', categories.toggle(id)
-
-  App.FilterPaneView = Em.View.extend
-    CategoryButton: VU.ButtonView.extend
-      action: 'toggleCategory'
-      actionContext: Em.computed.alias 'context'
-      classNameBindings: ['active']
-      active: Em.computed( (key, value) ->
-        id = @get 'context.id'
-        categories = @get 'controller.categories'
-        categories.has id
-      ).property 'controller.categories.mask'
-
-  App.ActiveFiltersView = Em.View.extend()
-
   App.FiltersIndexRoute = Em.Route.extend
     redirect: -> @transitionTo 'events'
 
@@ -204,10 +137,6 @@ require [
       showEventDetailPane: (context) ->
         @transitionTo 'event', context
 
-  App.EventsController = Em.ArrayController.extend()
-
-  App.EventsView = Em.View.extend()
-
   App.EventRoute = Em.Route.extend
     renderTemplate: (controller, model) ->
       @render 'event', {
@@ -215,3 +144,5 @@ require [
         outlet: 'eventDetailPane'
         controller
       }
+
+  App
