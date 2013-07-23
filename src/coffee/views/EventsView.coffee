@@ -6,9 +6,9 @@ define ['ember', 'ValpoUtils', 'App'], (Em, VU, App) ->
     # Used for EventsListView to fill container (this)
     height: Em.computed( (property, value) ->
       if value? then value
-      else 300
+      else 300    # Default height for if none set
     )
     didInsertElement: ->
-      # Do something with height
+      @set 'height', $(@get 'parentView.element').height()
 
   App.EventsView = EventsView

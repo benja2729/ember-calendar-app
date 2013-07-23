@@ -28,7 +28,7 @@ define ['ember', 'ValpoUtils', 'App', 'libs/list-view'], (Em, VU, App) ->
     # ).property 'height', 'rowCount', 'stretchToFill'
 
     willInsertElement: ->
-      debugger
+      # debugger
 
     itemViewClass: Em.ListItemView.extend
       templateName: Em.computed.alias 'parentView.rowTemplateName'

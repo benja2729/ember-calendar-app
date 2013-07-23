@@ -48,20 +48,18 @@ require [
         console.log path
         @transitionTo path
 
-  # App.IndexRoute = Em.Route.extend
-  #   redirect: ->
-  #     # Manually calling the Route's model via prototype might
-  #     # not be the safest thing to do, so keep an eye on it
+  App.IndexRoute = Em.Route.extend
+    redirect: ->
+      model = @modelFor('filters')
 
-  #     model = @modelFor('filters')
-  #     if model?
-  #       m = moment()
-  #       model = App.FiltersRoute.prototype.model {
-  #         categories: '0'   # 0 stands for 'all' category
-  #         start: m.startOf('month').unix()
-  #         end: m.endOf('month').unix()
-  #       }
-  #     @transitionTo 'filters', model
+      if model is undefined
+
+        # Manually calling the Route's model via prototype might
+        # not be the safest thing to do, so keep an eye on it
+        model = App.FiltersRoute.prototype.model
+          categories: '0'   # 0 stands for 'all' category
+
+      @transitionTo 'filters', model
 
   App.FiltersRoute = Em.Route.extend
     serialize: (model, params) ->
@@ -88,8 +86,6 @@ require [
       categories = VU.BitObject.create params.categories, true
       App.Filters.create {
         categories
-        # start: params.start
-        # end: params.end
       }
 
     renderTemplate: (controller, model) ->
@@ -105,17 +101,39 @@ require [
         controller
       }
 
-  # App.FiltersIndexRoute = Em.Route.extend
-  #   redirect: -> @transitionTo 'events'
+  App.FiltersIndexRoute = Em.Route.extend
+    redirect: ->
+      model = @modelFor 'events'
+
+      if model is undefined
+        # m = moment().startOf 'day'
+        # start = m.unix()
+        # end = m.endOf('day').unix()
+
+        filters = @controllerFor 'filters'
+        # filters.setProperties {start, end}
+        params = filters.getProperties 'start', 'end'
+
+        # Manually calling the Route's model via prototype might
+        # not be the safest thing to do, so keep an eye on it
+        # model = App.EventsRoute.prototype.model {start, end}
+        model = App.EventsRoute.prototype.model params
+
+      @transitionTo 'events', model
 
   App.EventsRoute = Em.Route.extend
     serialize: (model, params) ->
       ret = {}
 
-      for key in params
-        ret[key] = switch key
-          when 'start' then model.get('firstObject.start.unix')
-          when 'end' then model.get('lastObject.end.unix')
+      if model.get('length') < 1
+        filters = @controllerFor 'filters'
+        ret[key] = filters.get key for key in params
+
+      else
+        for key in params
+          ret[key] = switch key
+            when 'start' then model.get('firstObject.start.unix')
+            when 'end' then model.get('lastObject.end.unix')
       ret
 
     model: (params) ->
