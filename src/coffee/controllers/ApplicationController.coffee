@@ -1,12 +1,13 @@
 
-define ['App', 'ember', 'ValpoUtils'], (App, Em, VU) ->
+define ['App', 'ember', 'ValpoUtils', 'models/Category'], (App, Em, VU) ->
 
   ApplicationController = Em.Controller.extend
-    categories: Em.A()
+    categories: Em.required Array
 
     lastRoute: null
     currentRoute: null
     lastPath: null
+    isReady: false
 
     _routeChangeObserver: Em.beforeObserver( (controller, property) ->
       @set 'lastRoute', @get(property)
