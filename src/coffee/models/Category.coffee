@@ -1,9 +1,11 @@
 
-define ['ember-data', 'App'], (DS, App) ->
+define ['ember-data', 'App', 'Store-REST'], (DS, App) ->
 
   DS.RESTAdapter.configure 'plurals',
     category: 'categories'
 
-  App.Category = DS.Model.extend
+  Category = DS.Model.extend
     # event: DS.belongsTo 'App.Event'
     name: DS.attr 'string'
+
+  App.Category = Category

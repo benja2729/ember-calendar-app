@@ -12,7 +12,6 @@ require [
 
   # Ember MVC modules
   'models/Event-REST'
-  'models/Filters'
 
   'controllers/ApplicationController'
   'controllers/FiltersController'
@@ -40,8 +39,10 @@ require [
 
   App.ApplicationRoute = Em.Route.extend
     setupController: (controller, model) ->
-      controller.setProperties
-        categories: App.Category.find()
+      categories = App.Category.find().one 'didLoad', categories, ->
+        controller.set 'isReady', true
+
+      controller.set 'categories', categories
     events:
       popAppState: ->
         path = @get 'controller.lastRoute'
@@ -79,8 +80,11 @@ require [
           # If more need be added a manual implimentation would
           # need to be create to maintain url persistence
           when 'categories' then property.toString()
-          # when 'categories', 'start', 'end' then property.toString()
       ret
+
+    setupController: (controller, model) ->
+      window.FiltersController = controller
+      @_super.apply this, arguments
 
     model: (params) ->
       categories = VU.BitObject.create params.categories, true
@@ -141,9 +145,7 @@ require [
 
     setupController: (controller, model) ->
       window.EventsController = controller
-      controller.setProperties
-        model: model
-        content: model
+      @_super.apply this, arguments
 
     renderTemplate: (controller, model) ->
       @render 'events', {
