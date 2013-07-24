@@ -20,6 +20,6 @@ define [], ->
 
     @resource 'filters', path: '/:categories', ->
       @resource 'events', path: 'start/:start/end/:end', ->
-        @resource 'event', path: '/:event_id', ->
+        @resource 'event', path: 'event/:event_id', ->
 
   RouterMap
