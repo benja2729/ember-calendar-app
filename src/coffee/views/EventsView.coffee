@@ -9,6 +9,6 @@ define ['ember', 'ValpoUtils', 'App'], (Em, VU, App) ->
       else 300    # Default height for if none set
     )
     didInsertElement: ->
-      @set 'height', $(@get 'parentView.element').height()
+      @set 'height', $(@get 'element').height()
 
   App.EventsView = EventsView

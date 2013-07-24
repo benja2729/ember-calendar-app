@@ -2,7 +2,7 @@
 define ['ember', 'ValpoUtils', 'App', './ListView'], (Em, VU, App) ->
 
   EventsListView = App.ListView.extend
-    layout: Ember.Handlebars.compile("<div class='events-list-layout'>{{yield}}</div>")
+    # layout: Ember.Handlebars.compile("<div class='events-list-layout'>{{yield}}</div>")
 
     # Configurable Properties
     rowTemplateName: 'events/list-row'
