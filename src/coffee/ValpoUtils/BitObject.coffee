@@ -1,8 +1,15 @@
 
 define ['ember', './Core'], (Em, VU) ->
 
-  BitObject = Em.ObjectProxy.extend
+  BitObject = Em.ArrayProxy.extend
     mask: 0
+
+    content: Em.computed( ->
+      ret = Em.A()
+      @bitwiseFn (term, mask) ->
+        ret.push term
+      ret
+    ).property 'mask'
 
     add: (id) ->
       id = +id
@@ -34,7 +41,7 @@ define ['ember', './Core'], (Em, VU) ->
       this
 
     has: (id) ->
-      (@get('mask') & 1<<id) isnt 0
+      (@get('mask') & 1<<+id) isnt 0
 
     bitwiseFn: (callback) ->
       mask = @get 'mask'
@@ -46,12 +53,6 @@ define ['ember', './Core'], (Em, VU) ->
         mask >>= 1
         term++
       this
-
-    toArray: ->
-      ret = []
-      @bitwiseFn (term, mask) ->
-        ret.push term
-      ret
 
     toString: ->
       mask = @get 'mask'
