@@ -59,6 +59,6 @@ require =
         q.done -> console.log 'QUnit done'
         q.load()
 
-# Disable Emberjs Prototype Extensions
-# This may cause the r.js optimizer to fail
-(window.ENV = {}).EXTEND_PROTOTYPES = false
+# # Disable Emberjs Prototype Extensions
+# # This may cause the r.js optimizer to fail
+# (window.ENV = {}).EXTEND_PROTOTYPES = false
