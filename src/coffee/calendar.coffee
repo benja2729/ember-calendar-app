@@ -46,15 +46,16 @@ require [
 
       controller.set 'categories', categories
     events:
-      loadState: (path) ->
+      loadState: (path, model) ->
         console.log path
-        @transitionTo path
-      reloadState: ->
+        if model? then @transitionTo path, model
+        else @transitionTo path
+      reloadState: (model) ->
         path = @get 'controller.currentRoute'
-        @send 'loadState', path
-      popAppState: ->
+        @send 'loadState', path, model
+      popAppState: (model) ->
         path = @get 'controller.lastRoute'
-        @send 'loadState', path
+        @send 'loadState', path, model
 
   App.IndexRoute = Em.Route.extend
     redirect: ->
