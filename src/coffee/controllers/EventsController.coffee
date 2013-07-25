@@ -17,9 +17,17 @@ define ['ember', 'ValpoUtils', 'App'], (Em, VU, App) ->
       events
     ).property 'isFiltering'
 
+    reloadEvents: (range) ->
+      model = App.Event.find range
+
+      model.one 'didLoad', =>
+        @send 'filterEvents'
+
+      @set 'model', model
+
     filterEvents: -> @toggleProperty 'isFiltering'
 
-    willFilterEvents: Em.K
+    willFilterEvents: -> this
 
     didFilterEvents: () ->
       @toggleProperty 'isFiltering'
