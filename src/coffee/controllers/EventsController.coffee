@@ -15,7 +15,7 @@ define ['ember', 'ValpoUtils', 'App'], (Em, VU, App) ->
 
       @send 'didFilterEvents'
       events
-    ).property 'isFiltering', 'content'
+    ).property 'isFiltering'
 
     filterEvents: -> @toggleProperty 'isFiltering'
 
@@ -23,5 +23,6 @@ define ['ember', 'ValpoUtils', 'App'], (Em, VU, App) ->
 
     didFilterEvents: () ->
       @toggleProperty 'isFiltering'
+      @send 'reloadState'    # Updates the url
 
   App.EventsController = EventsController
