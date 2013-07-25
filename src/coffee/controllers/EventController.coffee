@@ -2,6 +2,7 @@
 define ['App', 'ember', 'ValpoUtils', 'moment'], (App, Em, VU, moment) ->
 
   Controller = Em.ObjectController.extend
+    needs: ['filters']
     closePane: (view) ->
       view.closePane().done =>
         @send 'popAppState'

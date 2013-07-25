@@ -7,8 +7,8 @@ define [
   'ValpoUtils/closestBinarySearch', 'ValpoUtils/DateProxy'
   'ValpoUtils/Tile'
 
-  'ValpoUtils/ButtonView', 'ValpoUtils/BackButtonView', 'ValpoUtils/SidePaneView',
-  'ValpoUtils/BitObject'
+  'ValpoUtils/ButtonView', 'ValpoUtils/BackButtonView', 'ValpoUtils/CategoryButtonView'
+  'ValpoUtils/SidePaneView', 'ValpoUtils/BitObject'
 ], (VU) ->
 
    window.ValpoUtils = window.VU = VU

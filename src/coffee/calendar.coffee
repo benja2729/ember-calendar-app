@@ -39,15 +39,22 @@ require [
 
   App.ApplicationRoute = Em.Route.extend
     setupController: (controller, model) ->
-      categories = App.Category.find().one 'didLoad', categories, ->
+
+      # Send an empty object into find to trigger 'didLoad' for some reason... >_<
+      categories = App.Category.find({}).one 'didLoad', categories, ->
         controller.set 'isReady', true
 
       controller.set 'categories', categories
     events:
-      popAppState: ->
-        path = @get 'controller.lastRoute'
+      loadState: (path) ->
         console.log path
         @transitionTo path
+      reloadState: ->
+        path = @get 'controller.currentRoute'
+        @send 'loadState', path
+      popAppState: ->
+        path = @get 'controller.lastRoute'
+        @send 'loadState', path
 
   App.IndexRoute = Em.Route.extend
     redirect: ->

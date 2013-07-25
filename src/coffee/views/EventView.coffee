@@ -1,5 +1,5 @@
 
-define ['ember', 'ValpoUtils', 'App'], (Em, VU, App) ->
+define ['ember', 'ValpoUtils', 'App', './FilterPaneView'], (Em, VU, App) ->
 
   View = VU.SidePaneView.extend
     classNames: ['event-detail-pane']
