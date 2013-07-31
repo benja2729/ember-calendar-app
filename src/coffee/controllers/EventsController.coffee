@@ -3,34 +3,39 @@ define ['ember', 'ValpoUtils', 'App'], (Em, VU, App) ->
 
   EventsController = Em.ArrayController.extend
     needs: ['filters']
+    displayModes: ['day', 'week', 'month']
+    activeDisplayMode: 1    # Set to display events by week by default
     isFiltering: false
     filteredEvents: Em.computed( (property, value) ->
-      @send 'willFilterEvents'
-      content = @get 'content'
+      console.log 'filtering content'
+      filters = @get 'controllers.filters'
 
       events = if value? then value
       else
-        filters = @get 'controllers.filters'
-        content.filter filters.matchEvent, filters
-
-      @send 'didFilterEvents'
+        if filters.get('isReady') then @filterEvents filters
+        else @get('content')
       events
-    ).property 'isFiltering'
+    ).property 'content'
 
     reloadEvents: (range) ->
       model = App.Event.find range
-
       model.one 'didLoad', =>
-        @send 'filterEvents'
+        @set 'model', model
 
-      @set 'model', model
+    filterEvents: (filters) -> 
+      content = @get 'content'
+      events = content.filter filters.matchEvent, filters
+      @set 'filteredEvents', events
 
-    filterEvents: -> @toggleProperty 'isFiltering'
-
-    willFilterEvents: -> this
-
-    didFilterEvents: () ->
+    willFilterEvents: Em.beforeObserver( ->
+      console.log 'willFilterEvents'
       @toggleProperty 'isFiltering'
-      @send 'reloadState'    # Updates the url
+    , 'filteredEvents')
+
+    didFilterEvents: Em.observer( ->
+      console.log 'didFilterEvents'
+      @toggleProperty 'isFiltering'
+      @send 'reloadState'    # Updates the url with current model
+    , 'filteredEvents')
 
   App.EventsController = EventsController

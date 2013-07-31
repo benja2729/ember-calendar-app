@@ -9,8 +9,8 @@ define ['ember', 'ValpoUtils', 'App', 'moment', 'models/Filters'], (Em, VU, App,
     _filterPropertyObserver: Em.observer( (controller, property) ->
       if not @get('isReady') then return
       params = property: @get(property)
-      console.log params
-      @get('controllers.events').send 'filterEvents', params
+      # console.log params
+      @get('controllers.events').send 'filterEvents', this
     , 'isReady', 'categories.mask')
 
     start: Em.computed( (property, value) ->

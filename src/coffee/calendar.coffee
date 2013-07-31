@@ -10,6 +10,8 @@ require [
   # Modules passed to the defined function
   'ember', 'App', 'ValpoUtils', 'moment'
 
+  'libs/daterangepicker'
+
   # Ember MVC modules
   'models/Event-REST'
 
@@ -33,7 +35,7 @@ require [
     enter: ->
       # To add 'popAppState' funcitonality
       routeName = @get 'routeName'
-      console.log "-----\nEntered #{routeName}\n-----"
+      # console.log "-----\nEntered #{routeName}\n-----"
       if /\.[^.]+$/.test routeName
         @controllerFor('application').set 'currentRoute', routeName
 
@@ -42,12 +44,17 @@ require [
 
       # Send an empty object into find to trigger 'didLoad' for some reason... >_<
       categories = App.Category.find({}).one 'didLoad', categories, ->
-        controller.set 'isReady', true
+
+        # Wrap setting of ready state to be scheduled after
+        # bindings have been resolved to force category calls
+        # while filtering to be fetched from the Store
+        Em.run.scheduleOnce 'sync', this, ->
+          controller.set 'isReady', true
 
       controller.set 'categories', categories
     events:
       loadState: (path, model) ->
-        console.log path
+        # console.log path
         if model? then @transitionTo path, model
         else @transitionTo path
       reloadState: (model) ->
@@ -72,7 +79,6 @@ require [
 
   App.FiltersRoute = Em.Route.extend
     serialize: (model, params) ->
-      console.log 'FiltersRoute#serialize'
       ret = {}
 
       # Keys correspond to the dynamic segments on this route.
