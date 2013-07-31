@@ -25,3 +25,6 @@
 [submodule "components/list-view"]
 	path = components/list-view
 	url = https://github.com/emberjs/list-view.git
+[submodule "components/bootstrap-daterangepicker"]
+	path = components/bootstrap-daterangepicker
+	url = git@github.com:benja2729/bootstrap-daterangepicker.git

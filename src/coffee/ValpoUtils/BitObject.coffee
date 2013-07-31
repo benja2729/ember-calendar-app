@@ -49,7 +49,7 @@ define ['ember', './Core'], (Em, VU) ->
       while mask > 0 and term < 31
         if mask % 2 isnt 0
           callback.call this, term, mask
-          console.log mask, term
+          # console.log mask, term
         mask >>= 1
         term++
       this

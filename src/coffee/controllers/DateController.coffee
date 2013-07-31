@@ -18,7 +18,7 @@ define ['ember', 'ValpoUtils', 'App', './MonthController'], (Em, VU, App, MonthC
     selectedDate: null
     selectedEvents: null
     selectDay: (selected) ->
-      console.log selected
+      # console.log selected
       @set 'selectedDate', selected.get('_date')
       @set 'selectedEvents', selected.get('content')
 
