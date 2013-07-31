@@ -7,11 +7,8 @@ define ['ember', 'ValpoUtils', 'App', 'moment', 'models/Filters'], (Em, VU, App,
     isReadyBinding: 'controllers.application.isReady'
 
     _filterPropertyObserver: Em.observer( (controller, property) ->
-      if not @get('isReady') then return
-      params = property: @get(property)
-      # console.log params
-      @get('controllers.events').send 'filterEvents', this
-    , 'isReady', 'categories.mask')
+      @get('controllers.events').send 'filterEvents'
+    , 'categories.mask')
 
     start: Em.computed( (property, value) ->
       ret = if value? then value    # Allows setting the value
