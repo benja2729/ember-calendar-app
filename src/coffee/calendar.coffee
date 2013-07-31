@@ -48,7 +48,7 @@ require [
         # Wrap setting of ready state to be scheduled after
         # bindings have been resolved to force category calls
         # while filtering to be fetched from the Store
-        Em.run.scheduleOnce 'sync', this, ->
+        Em.run.scheduleOnce 'actions', this, ->
           controller.set 'isReady', true
 
       controller.set 'categories', categories
