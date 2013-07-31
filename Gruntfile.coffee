@@ -94,10 +94,10 @@ module.exports = (grunt) ->
     less:
       dist:
         files:
-          'css/bootstrap.css': 'src/less/bootstrap.less'
+          # 'css/bootstrap.css': 'src/less/bootstrap.less'
           'css/calendar.css': 'src/less/calendar.less'
         options:
-          paths: ['src/less/**', 'components/bootstrap/less']
+          paths: ['src/less', 'components/bootstrap/less']
           yuicompress: true
 
     emberTemplates:

@@ -38,6 +38,9 @@ require =
       ]
       exports: 'Ember.TEMPLATES'
 
+    'libs/daterangepicker':
+      deps:['moment']
+
     'libs/list-view':
       deps: ['ember']
 

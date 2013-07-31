@@ -8,8 +8,9 @@ define ['ember', 'ValpoUtils', 'App', 'moment', 'models/Filters'], (Em, VU, App,
 
     _filterPropertyObserver: Em.observer( (controller, property) ->
       if not @get('isReady') then return
-      console.log property, @get(property)
-      @get('controllers.events').send 'filterEvents', property
+      params = property: @get(property)
+      console.log params
+      @get('controllers.events').send 'filterEvents', params
     , 'isReady', 'categories.mask')
 
     start: Em.computed( (property, value) ->
@@ -37,12 +38,9 @@ define ['ember', 'ValpoUtils', 'App', 'moment', 'models/Filters'], (Em, VU, App,
         if categories.has(id) then return true
       false
 
-    updateFilters: ->
+    updateRange: ->
       params = @getProperties 'start', 'end'
-      model = App.Event.find params
-
-      model.one 'didLoad', =>
-        @transitionToRoute 'events', model
+      @get('controllers.events').send 'reloadEvents', params
 
     toggleCategory: (category) ->
       categories = @get 'categories'
