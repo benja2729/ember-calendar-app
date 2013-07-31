@@ -1,15 +1,16 @@
 <aside class="pane side-pane filter-pane">
   <section class="pane-body">
     <h3>Date Range</h3>
-    <label>Start: </label> {{view Em.TextField valueBinding="controller.start"}}
-    <br />
-    <label>End: </label> {{view Em.TextField valueBinding="controller.end"}}
+    <div class="daterangepicker-report-range">
+      <i class="icon-calendar icon-large"></i>
+      <span>{{moment "view.start" format="MMMM D, YYYY"}} - {{moment "view.end" format="MMMM D, YYYY"}}</span>
+      <b class="caret"></b>
+    </div>
     <h3>Categories</h3>
     <div class="btn-group btn-group-vertical">
     {{#each controllers.application.categories}}
       {{#view VU.CategoryButtonView}}{{name}}{{/view}}
     {{/each}}
     </div>
-    {{#view VU.ButtonView action="updateFilters" actionContext="controller"}}Update{{/view}}
   </section>
 </aside>

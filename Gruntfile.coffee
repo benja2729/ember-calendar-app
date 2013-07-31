@@ -70,6 +70,9 @@ module.exports = (grunt) ->
           'libs/list-view':
             deps: ['ember']
 
+          'libs/daterangepicker':
+            deps:['moment']
+
           'libs/bootstrap-transition':
             deps: ['jquery']
             exports: 'jQuery.support.transition'
