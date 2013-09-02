@@ -3,6 +3,8 @@ require 'models/Category'
 require 'controllers/ApplicationController'
 require 'views/ApplicationView'
 
+format = 'MM-DD-YYYY'
+
 Em.Route.reopen
   enter: ->
     # To add 'popAppState' funcitonality
@@ -15,7 +17,7 @@ App.ApplicationRoute = Em.Route.extend
   setupController: (controller, model) ->
 
     # Send an empty object into find to trigger 'didLoad' for some reason... >_<
-    categories = App.Category.find({}).one 'didLoad', categories, ->
+    allCategories = App.Category.find({}).one 'didLoad', categories, ->
 
       # Wrap setting of ready state to be scheduled after
       # bindings have been resolved to force category calls
@@ -23,7 +25,7 @@ App.ApplicationRoute = Em.Route.extend
       Em.run.scheduleOnce 'actions', this, ->
         controller.set 'isReady', true
 
-    controller.set 'categories', categories
+    controller.set 'allCategories', allCategories
   actions:
     loadState: (path, model) ->
       # console.log path

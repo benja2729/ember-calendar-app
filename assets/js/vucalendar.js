@@ -220,7 +220,7 @@ function program3(depth0,data) {
   data.buffer.push("\n    <h3>Categories</h3>\n    <div class=\"sidebar-nav\">\n    <ul class=\"nav nav-list\">\n    ");
   hashTypes = {};
   hashContexts = {};
-  stack2 = helpers.each.call(depth0, "categories", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack2 = helpers.each.call(depth0, "allCategories", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n    </ul>\n    </div>\n  </section>\n</aside>\n\n<section class=\"pane main-pane\">\n  <header class=\"pane-header row-fluid\">\n    ");
   hashTypes = {};
@@ -303,6 +303,31 @@ function program2(depth0,data) {
   stack1 = helpers.each.call(depth0, "controllers.application.categories", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n</div>\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["date-range-picker"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("\n<h3>Date Range</h3>\n<div class=\"daterangepicker-report-range\">\n  <i class=\"icon-calendar icon-large\"></i>\n  <span>");
+  hashContexts = {'format': depth0};
+  hashTypes = {'format': "STRING"};
+  options = {hash:{
+    'format': ("MMM D, YY")
+  },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "start", options) : helperMissing.call(depth0, "moment", "start", options))));
+  data.buffer.push(" - ");
+  hashContexts = {'format': depth0};
+  hashTypes = {'format': "STRING"};
+  options = {hash:{
+    'format': ("MMM D, YY")
+  },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "end", options) : helperMissing.call(depth0, "moment", "end", options))));
+  data.buffer.push("</span>\n  <b class=\"caret\"></b>\n</div>\n");
   return buffer;
   
 });
@@ -499,7 +524,7 @@ function program7(depth0,data) {
   hashContexts = {'contentBinding': depth0};
   hashTypes = {'contentBinding': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "App.EventsListView", {hash:{
-    'contentBinding': ("controller.content")
+    'contentBinding': ("controller.arrangedContent")
   },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n</div>");
   return buffer;
@@ -989,6 +1014,13 @@ App.Store = DS.Store.extend({
 
 (function() {
 
+var format;
+
+
+})();
+
+(function() {
+
 DS.RESTAdapter.configure('plurals', {
   category: 'categories'
 });
@@ -1003,11 +1035,9 @@ App.Category = DS.Model.extend({
 (function() {
 
 App.ApplicationController = Em.Controller.extend({
-  categories: Em.required(Array),
   lastRoute: null,
   currentRoute: null,
   lastPath: null,
-  isReady: false,
   _routeChangeObserver: Em.beforeObserver(function(controller, property) {
     return this.set('lastRoute', this.get(property));
   }, 'currentRoute'),
@@ -1054,6 +1084,8 @@ App.ApplicationView = Em.View.extend({
 
 (function() {
 
+format = 'MM-DD-YYYY';
+
 Em.Route.reopen({
   enter: function() {
     var routeName;
@@ -1066,13 +1098,13 @@ Em.Route.reopen({
 
 App.ApplicationRoute = Em.Route.extend({
   setupController: function(controller, model) {
-    var categories;
-    categories = App.Category.find({}).one('didLoad', categories, function() {
+    var allCategories;
+    allCategories = App.Category.find({}).one('didLoad', categories, function() {
       return Em.run.scheduleOnce('actions', this, function() {
         return controller.set('isReady', true);
       });
     });
-    return controller.set('categories', categories);
+    return controller.set('allCategories', allCategories);
   },
   actions: {
     loadState: function(path, model) {
@@ -1100,7 +1132,7 @@ App.ApplicationRoute = Em.Route.extend({
 
 (function() {
 
-var format;
+var format, get, set;
 
 
 })();
@@ -1160,6 +1192,7 @@ App.EventsController = Em.ArrayController.extend({
   },
   sortAscending: true,
   sortProperties: ['start'],
+  needs: ['application'],
   filteredEvents: Em.A([]),
   updateRange: function(start, end) {
     var model, range,
@@ -1294,6 +1327,10 @@ App.EventsListView = App.ListView.extend({
 
 (function() {
 
+get = Em.get;
+
+set = Em.set;
+
 format = 'MM-DD-YYYY';
 
 App.EventsRoute = Em.Route.extend({
@@ -1320,24 +1357,16 @@ App.EventsRoute = Em.Route.extend({
     return ret;
   },
   model: function(params) {
-    var range;
-    range = {
-      start: moment(params.start, format).unix(),
-      end: moment(params.end, format).unix()
+    var filters, range;
+    filters = this.modelFor('application');
+    range = filters != null ? {
+      start: get(filters, 'start'),
+      end: get(filters, 'end')
+    } : {
+      start: moment().startOf('day').unix(),
+      end: moment().endOf('day').unix()
     };
     return App.Event.find(range);
-  },
-  renderTemplate: function(controller, model) {
-    this.render('events', {
-      into: 'application',
-      outlet: 'main',
-      controller: controller
-    });
-    return this.render('events/date-range-picker', {
-      into: 'application',
-      outlet: 'dateRangePicker',
-      controller: controller
-    });
   },
   actions: {
     showEventDetailPane: function(context) {
@@ -1400,16 +1429,20 @@ App.EventRoute = Em.Route.extend();
 (function() {
 
 App.Router.map(function() {
-  this.resource('events', {
+  return this.resource('filters', {
     path: 'start/:start/end/:end'
   }, function() {
-    this.route('month');
-    this.route('week');
-    return this.route('day');
+    this.resource('events', function() {
+      this.route('index', {
+        path: 'day'
+      });
+      this.route('month');
+      return this.route('week');
+    });
+    return this.resource('event', {
+      path: 'event/:event_id'
+    }, function() {});
   });
-  return this.resource('event', {
-    path: 'event/:event_id'
-  }, function() {});
 });
 
 

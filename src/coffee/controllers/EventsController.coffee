@@ -21,7 +21,7 @@ App.EventsController = Em.ArrayController.extend
   sortAscending: true
   sortProperties: ['start']
 
-  # needs: ['categories']
+  needs: ['application']
   # displayModes: ['day', 'week', 'month']
   # activeDisplayMode: 1    # Set to display events by week by default
   filteredEvents: Em.A([])

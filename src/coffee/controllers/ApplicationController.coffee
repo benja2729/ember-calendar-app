@@ -1,11 +1,8 @@
 
 App.ApplicationController = Em.Controller.extend
-  categories: Em.required Array
-
   lastRoute: null
   currentRoute: null
   lastPath: null
-  isReady: false
 
   _routeChangeObserver: Em.beforeObserver( (controller, property) ->
     @set 'lastRoute', @get(property)

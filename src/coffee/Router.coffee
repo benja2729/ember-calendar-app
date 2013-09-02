@@ -13,10 +13,9 @@ App.Router.map ->
   #     @route 'week'
   #     @route 'day'
   # @resource 'categories', ':categories', ->
-  # @resource 'application', 
-  @resource 'events', path: 'start/:start/end/:end', ->
-    # @route 'index', path: 'list'
-    @route 'month'
-    @route 'week'
-    @route 'day'
-  @resource 'event', path: 'event/:event_id', ->
+  @resource 'filters', path: 'start/:start/end/:end', ->
+    @resource 'events', ->
+      @route 'index', path: 'day'
+      @route 'month'
+      @route 'week'
+    @resource 'event', path: 'event/:event_id', ->

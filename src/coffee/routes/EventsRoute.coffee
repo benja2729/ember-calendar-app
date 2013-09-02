@@ -6,6 +6,9 @@ require 'views/EventsDateRangePickerView'
 require 'views/EventsView'
 require 'views/EventsListView'
 
+get = Em.get
+set = Em.set
+
 format = 'MM-DD-YYYY'
 
 App.EventsRoute = Em.Route.extend
@@ -26,23 +29,27 @@ App.EventsRoute = Em.Route.extend
     ret
 
   model: (params) ->
-    range =
-      start: moment(params.start, format).unix()
-      end: moment(params.end, format).unix()
+    # range =
+    #   start: moment(params.start, format).unix()
+    #   end: moment(params.end, format).unix()
+    # App.Event.find range
+    filters = @modelFor 'application'
+    range = if filters? then {start: get(filters, 'start'), end: get(filters, 'end')}
+    else {start: moment().startOf('day').unix(), end: moment().endOf('day').unix()}
     App.Event.find range
 
-  renderTemplate: (controller, model) ->
-    @render 'events', {
-      into: 'application'
-      outlet: 'main'
-      controller
-    }
+  # renderTemplate: (controller, model) ->
+  #   @render 'events', {
+  #     into: 'application'
+  #     outlet: 'main'
+  #     controller
+  #   }
 
-    @render 'events/date-range-picker', {
-      into: 'application'
-      outlet: 'dateRangePicker'
-      controller
-    }
+  #   @render 'events/date-range-picker', {
+  #     into: 'application'
+  #     outlet: 'dateRangePicker'
+  #     controller
+  #   }
 
   actions:
     showEventDetailPane: (context) ->
