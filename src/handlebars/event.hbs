@@ -1,7 +1,4 @@
-<header class="pane-header">
-  {{#view VU.ButtonView action="closePane" actionContext="parentView"}}Close{{/view}}
-</header>
-<section class="pane-body">
+<section>
   <h3>{{title}}</h3>
   <p>
     {{date startDate}}
@@ -11,14 +8,9 @@
   </p>
   <p><b>Location: </b>{{location}}</p>
   {{#if description}}{{showdown description}}{{/if}}
-  <ul>
-  {{#each categories}}
-    <li>{{#view VU.CategoryButtonView filtersBinding="controller.controllers.filters"}}{{name}}{{/view}}</li>
-  {{/each}}
-  </ul>
   {{outlet}}
 </section>
-<footer class="pane-footer">
+<footer>
 {{#if url}}
   <a {{bindAttr href="url"}}>More Information &nbsp;&gt;&gt;</a>
 {{/if}}

@@ -1,17 +1,18 @@
 
-define ['ember', 'ValpoUtils', 'App'], (Em, VU, App) ->
+require 'utils/ButtonView'
 
-  ApplicationView = Em.View.extend
-    classNames: ['row-fluid', 'pane', 'app-container']
-    bodyClassName: 'main-pane'
-    filtersClassName: 'filter-pane'
+App.ApplicationView = Em.View.extend
+  classNames: ['row-fluid', 'pane', 'app-container']
+  bodyClassName: 'main-pane'
+  filtersClassName: 'filter-pane'
 
-    FilterToggle: VU.ButtonView.extend
-      classNames: ['filter-toggle']
-      action: 'showFilters'
-      target: 'parentView'
-      actionContext: Em.computed.alias 'element'
+  FilterToggle: VU.ButtonView.extend
+    classNames: ['filter-toggle']
+    action: 'showFilters'
+    target: 'parentView'
+    actionContext: Em.computed.alias 'element'
 
+  actions:
     showFilters: (buttonElement) ->
       # TODO: Add functionality for when the browser resizes
       $this = $(@get 'element')
@@ -29,5 +30,3 @@ define ['ember', 'ValpoUtils', 'App'], (Em, VU, App) ->
           windowWidth - buttonWidth
         else filtersWidth / $this.width() * 100 + '%'
       $body.animate {left}
-
-  App.ApplicationView = ApplicationView

@@ -1,25 +1,22 @@
 
-###
-  This module is slightly unconventional in comparison to my
-  other modules in this app.
+require 'routes/ApplicationRoute'
+# require 'routes/CategoriesRoute'
+require 'routes/EventsRoute'
+require 'routes/EventRoute'
 
-  Since the Router definition is the backbone of the entire
-  Ember.js system, if requirejs decided to load and execute
-  this definition at the wrong time the app's routes wouldn't
-  be recognized.
 
-  This is loaded before the "App" module, but executed right after
-  the App is created inside of the "App" module.
-###
+App.Router.map ->
 
-define [], ->
-
-  RouterMap = ->
-    # Leave the implementation of tags for later
-    # @resource 'filters', path: '/:categories/:tags', ->
-
-    @resource 'filters', path: '/:categories', ->
-      @resource 'events', path: 'start/:start/end/:end', ->
-        @resource 'event', path: 'event/:event_id', ->
-
-  RouterMap
+  # @resource 'categories', path: '/:categories', ->
+  #   @resource 'events', path: 'start/:start/end/:end', ->
+  #     @route 'month'
+  #     @route 'week'
+  #     @route 'day'
+  # @resource 'categories', ':categories', ->
+  # @resource 'application', 
+  @resource 'events', path: 'start/:start/end/:end', ->
+    # @route 'index', path: 'list'
+    @route 'month'
+    @route 'week'
+    @route 'day'
+  @resource 'event', path: 'event/:event_id', ->

@@ -1,0 +1,7 @@
+
+<h3>Categories</h3>
+<div class="btn-group btn-group-vertical">
+{{#each controllers.application.categories}}
+  {{#view VU.CategoryButtonView}}{{name}}{{/view}}
+{{/each}}
+</div>

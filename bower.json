@@ -1,0 +1,27 @@
+{
+  "name": "vucalendar",
+  "main": "vucalendar.js",
+  "version": "0.0.0",
+  "authors": [
+    "Benjamin Fischer <ben.fischer@valpo.edu>"
+  ],
+  "description": "Integrated calendar app for Valparaiso University",
+  "license": "MIT",
+  "homepage": "valpo.edu",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ember": "~1.0.0-rc.8",
+    "ember-model": "~0.0.8",
+    "bootstrap": "2.3.2",
+    "bootstrap-daterangepicker": "*",
+    "ember-list-view": "~0.0.1",
+    "showdown": "~0.3.1"
+  }
+}
