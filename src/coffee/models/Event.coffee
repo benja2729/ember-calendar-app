@@ -1,21 +1,23 @@
 
-define ['App', 'ember', 'Store'], (App, Em, Store) ->
+require 'Category'
 
-  Event = Em.ObjectProxy.extend Em.Comparable,
-    store: Store
+DS.RESTAdapter.registerTransform 'unixDate',
+  serialize: (value) -> value.toString()
+  deserialize: (value) -> moment(value).unix()
 
-    compare: (event) -> Event.compare this, event
+# DS.RESTAdapter.registerTransform 'binBool',
+#   serialize: (value) -> if value then 1 else 0
+#   deserialize: (value) -> value is 1
 
-  Event.reopenClass
-    type: 'Event'
+# DS.RESTAdapter.map 'App.Event',
+#   isAllDay: key: 'allDay'
 
-    compare: (a, b) ->
-      Date.parse(Em.get a, 'start') - Date.parse(Em.get b, 'start')
-
-    find: (params) ->
-      # This may be a problem in the future
-      Store.find Event, params
-
-  Store.addType 'Event', []
-
-  App.Event = Event
+App.Event = DS.Model.extend
+  start: DS.attr 'unixDate'
+  end: DS.attr 'unixDate'
+  isAllDay: DS.attr 'boolean'   # DS.attr 'binBool'
+  title: DS.attr 'string'
+  location: DS.attr 'string'
+  description: DS.attr 'string'
+  url: DS.attr 'string'
+  categories: DS.hasMany 'App.Category'

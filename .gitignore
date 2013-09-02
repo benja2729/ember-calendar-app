@@ -1,9 +1,6 @@
 .DS_Store
+.c9revisions/
+npm-debug.log
 node_modules/
-tmp/
-.sass-cache/
-js/dist/
-src/compiled-js
-*.swp
-*.swo
-*.orig
+bower_components/
+src/compiled-js/

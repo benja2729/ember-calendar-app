@@ -1,3 +1,12 @@
-<h3>Events View</h3>
-{{view App.EventsListView contentBinding="controller.filteredEvents"}}
+<header class="events-header">
+{{partial "calendar-svg"}}
+<div class="btn-group pull-right">
+{{#link-to "events.index" class="btn" tagName="button"}}List{{/link-to}}
+{{#link-to "events.day" class="btn" tagName="button"}}Day{{/link-to}}
+{{#link-to "events.week" class="btn" tagName="button"}}Week{{/link-to}}
+{{#link-to "events.month" class="btn" tagName="button"}}Month{{/link-to}}
+</div>
+</header>
+<div class="events-body">
 {{outlet}}
+</div>
