@@ -11,4 +11,4 @@ App.EventsListView = App.ListView.extend
   rowTemplateName: 'events/list-row'
   # heightBinding: 'parentView.height'
   height: 600
-  rowHeight: 50
+  rowHeight: 65

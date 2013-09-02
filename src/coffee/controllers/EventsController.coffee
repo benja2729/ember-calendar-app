@@ -19,7 +19,7 @@ App.EventsController = Em.ArrayController.extend
     @_super.call this, arguments
 
   sortAscending: true
-  sortProperties: ['start', 'end']
+  sortProperties: ['start']
 
   # needs: ['categories']
   # displayModes: ['day', 'week', 'month']

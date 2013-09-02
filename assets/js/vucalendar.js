@@ -191,30 +191,20 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 Ember.TEMPLATES["application"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, stack2, hashTypes, hashContexts, options, escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  var buffer = '', stack1, stack2, hashTypes, hashContexts, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
   
-  var buffer = '', stack1, hashContexts, hashTypes;
-  data.buffer.push("\n      ");
-  hashContexts = {'tagName': depth0};
-  hashTypes = {'tagName': "STRING"};
-  stack1 = helpers.view.call(depth0, "VU.CategoryButtonView", {hash:{
-    'tagName': ("li")
-  },inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n    ");
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  var hashTypes, hashContexts;
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n      <li><a href=\"\">");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</a></li>\n    ");
+  return buffer;
   }
 
-function program4(depth0,data) {
+function program3(depth0,data) {
   
   
   data.buffer.push("Filters");
@@ -227,15 +217,15 @@ function program4(depth0,data) {
   options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.outlet || depth0.outlet),stack1 ? stack1.call(depth0, "dateRangePicker", options) : helperMissing.call(depth0, "outlet", "dateRangePicker", options))));
   data.buffer.push("\n    ");
-  data.buffer.push("\n    <h3>Categories</h3>\n    <ul class=\"nav nav-list\">\n    ");
+  data.buffer.push("\n    <h3>Categories</h3>\n    <div class=\"sidebar-nav\">\n    <ul class=\"nav nav-list\">\n    ");
   hashTypes = {};
   hashContexts = {};
-  stack2 = helpers.each.call(depth0, "controllers.application.categories", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack2 = helpers.each.call(depth0, "categories", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n    </ul>\n  </section>\n</aside>\n\n<section class=\"pane main-pane\">\n  <header class=\"pane-header row-fluid\">\n    ");
+  data.buffer.push("\n    </ul>\n    </div>\n  </section>\n</aside>\n\n<section class=\"pane main-pane\">\n  <header class=\"pane-header row-fluid\">\n    ");
   hashTypes = {};
   hashContexts = {};
-  stack2 = helpers.view.call(depth0, "view.FilterToggle", {hash:{},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack2 = helpers.view.call(depth0, "view.FilterToggle", {hash:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n    ");
   data.buffer.push("\n  </header>\n  <section class=\"pane-body\">\n    ");
@@ -506,9 +496,11 @@ function program7(depth0,data) {
   stack2 = ((stack1 = helpers['link-to'] || depth0['link-to']),stack1 ? stack1.call(depth0, "events.month", options) : helperMissing.call(depth0, "link-to", "events.month", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n</div>\n</header>\n<div class=\"events-body\">\n");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  hashContexts = {'contentBinding': depth0};
+  hashTypes = {'contentBinding': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "App.EventsListView", {hash:{
+    'contentBinding': ("controller.content")
+  },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n</div>");
   return buffer;
   
@@ -1167,7 +1159,7 @@ App.EventsController = Em.ArrayController.extend({
     return this._super.call(this, arguments);
   },
   sortAscending: true,
-  sortProperties: ['start', 'end'],
+  sortProperties: ['start'],
   filteredEvents: Em.A([]),
   updateRange: function(start, end) {
     var model, range,
@@ -1294,7 +1286,7 @@ App.EventsListView = App.ListView.extend({
   },
   rowTemplateName: 'events/list-row',
   height: 600,
-  rowHeight: 50
+  rowHeight: 65
 });
 
 

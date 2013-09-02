@@ -5,11 +5,13 @@
     {{outlet "dateRangePicker"}}
     {{!outlet "controlList"}}
     <h3>Categories</h3>
+    <div class="sidebar-nav">
     <ul class="nav nav-list">
-    {{#each controllers.application.categories}}
-      {{#view VU.CategoryButtonView tagName="li"}}{{name}}{{/view}}
+    {{#each categories}}
+      <li><a href="">{{!#view VU.CategoryButtonView tagName="li"}}{{name}}{{!/view}}</a></li>
     {{/each}}
     </ul>
+    </div>
   </section>
 </aside>
 
