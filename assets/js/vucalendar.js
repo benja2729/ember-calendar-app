@@ -499,7 +499,7 @@ function program7(depth0,data) {
   hashContexts = {'contentBinding': depth0};
   hashTypes = {'contentBinding': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "App.EventsListView", {hash:{
-    'contentBinding': ("controller.content")
+    'contentBinding': ("controller.arrangedContent")
   },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n</div>");
   return buffer;
