@@ -526,6 +526,10 @@ function program7(depth0,data) {
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "App.EventsListView", {hash:{
     'contentBinding': ("controller.arrangedContent")
   },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n</div>");
   return buffer;
   
@@ -1148,7 +1152,7 @@ DS.RESTAdapter.registerTransform('unixDate', {
   }
 });
 
-App.Event = DS.Model.extend({
+App.Event = DS.Model.extend(Em.SortableMixin, {
   start: DS.attr('unixDate'),
   end: DS.attr('unixDate'),
   isAllDay: DS.attr('boolean'),

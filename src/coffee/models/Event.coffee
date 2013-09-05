@@ -12,7 +12,7 @@ DS.RESTAdapter.registerTransform 'unixDate',
 # DS.RESTAdapter.map 'App.Event',
 #   isAllDay: key: 'allDay'
 
-App.Event = DS.Model.extend
+App.Event = DS.Model.extend Em.SortableMixin,
   start: DS.attr 'unixDate'
   end: DS.attr 'unixDate'
   isAllDay: DS.attr 'boolean'   # DS.attr 'binBool'
