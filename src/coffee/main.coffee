@@ -8,6 +8,7 @@ require 'Application'
   
 # App components
 require 'utils/main'
+require 'components/main'
 # require 'LOLAdapter'
 require 'Store'
 require 'Router'

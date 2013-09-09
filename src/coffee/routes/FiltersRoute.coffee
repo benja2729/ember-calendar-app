@@ -9,14 +9,20 @@ format = 'MM-DD-YYYY'
 
 App.FiltersRoute = Em.Route.extend
   model: (params) ->
-    ret = Em.Object.create({})
-    ret.setProperties
-      start: moment(params.start, format).unix()
-      end: moment(params.end, format).unix()
-    ret
+    store = @get 'store'
+    ids = Em.A params.categories.split(',')
+    categories = store.filter 'category', (item) -> ids.contains get(item, 'id')
+
+    Em.Object.create {
+      categories
+    }
 
   serialize: (model, params) ->
     ret = {}
-    ret['start'] = moment.unix(get model, 'start').format format
-    ret['end'] = moment.unix(get model, 'end').format format
+    ret['categories'] = get(model, 'categories').mapBy('id').join ','
     ret
+
+  # setupController: (controller, model) ->
+  #   debugger
+  #   store = @get 'store'
+  #   controller.set 'allCategories', store.findAll('category')

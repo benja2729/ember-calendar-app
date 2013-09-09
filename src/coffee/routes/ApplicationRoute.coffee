@@ -14,18 +14,14 @@ Em.Route.reopen
       @controllerFor('application').set 'currentRoute', routeName
 
 App.ApplicationRoute = Em.Route.extend
-  setupController: (controller, model) ->
+  model: ->
+    # The ApplicationRoute is the top-most route in the route hierarchy,
+    # and its model hook gets called once when the app starts up.
+    # @get('store').find 'category'   # We will want all of the categories at runtime
 
-    # Send an empty object into find to trigger 'didLoad' for some reason... >_<
-    allCategories = App.Category.find({}).one 'didLoad', categories, ->
+  setupController: (controller) ->
+    controller.set 'allCategories', @get('store').find('category')
 
-      # Wrap setting of ready state to be scheduled after
-      # bindings have been resolved to force category calls
-      # while filtering to be fetched from the Store
-      Em.run.scheduleOnce 'actions', this, ->
-        controller.set 'isReady', true
-
-    controller.set 'allCategories', allCategories
   actions:
     loadState: (path, model) ->
       # console.log path

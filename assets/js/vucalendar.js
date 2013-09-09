@@ -191,20 +191,9 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 Ember.TEMPLATES["application"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, stack2, hashTypes, hashContexts, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+  var buffer = '', stack1, stack2, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
-  
-  var buffer = '', hashTypes, hashContexts;
-  data.buffer.push("\n      <li><a href=\"\">");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("</a></li>\n    ");
-  return buffer;
-  }
-
-function program3(depth0,data) {
   
   
   data.buffer.push("Filters");
@@ -217,15 +206,19 @@ function program3(depth0,data) {
   options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.outlet || depth0.outlet),stack1 ? stack1.call(depth0, "dateRangePicker", options) : helperMissing.call(depth0, "outlet", "dateRangePicker", options))));
   data.buffer.push("\n    ");
-  data.buffer.push("\n    <h3>Categories</h3>\n    <div class=\"sidebar-nav\">\n    <ul class=\"nav nav-list\">\n    ");
+  data.buffer.push("\n    <h3>Categories</h3>\n    <div class=\"sidebar-nav\">\n    ");
+  hashContexts = {'action': depth0,'categories': depth0,'activeCategories': depth0};
+  hashTypes = {'action': "STRING",'categories': "ID",'activeCategories': "ID"};
+  options = {hash:{
+    'action': ("updateCategories"),
+    'categories': ("allCategories"),
+    'activeCategories': ("activeCategories")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['category-select-wrapper'] || depth0['category-select-wrapper']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "category-select-wrapper", options))));
+  data.buffer.push("\n    </div>\n  </section>\n</aside>\n\n<section class=\"pane main-pane\">\n  <header class=\"pane-header row-fluid\">\n    ");
   hashTypes = {};
   hashContexts = {};
-  stack2 = helpers.each.call(depth0, "allCategories", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n    </ul>\n    </div>\n  </section>\n</aside>\n\n<section class=\"pane main-pane\">\n  <header class=\"pane-header row-fluid\">\n    ");
-  hashTypes = {};
-  hashContexts = {};
-  stack2 = helpers.view.call(depth0, "view.FilterToggle", {hash:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack2 = helpers.view.call(depth0, "view.FilterToggle", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n    ");
   data.buffer.push("\n  </header>\n  <section class=\"pane-body\">\n    ");
@@ -303,6 +296,52 @@ function program2(depth0,data) {
   stack1 = helpers.each.call(depth0, "controllers.application.categories", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n</div>\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/category-select-wrapper"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n  ");
+  hashContexts = {'activeCategories': depth0,'category': depth0,'name': depth0};
+  hashTypes = {'activeCategories': "ID",'category': "ID",'name': "ID"};
+  options = {hash:{
+    'activeCategories': ("activeCategories"),
+    'category': ("category"),
+    'name': ("category.name")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['category-select'] || depth0['category-select']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "category-select", options))));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+  data.buffer.push("\n<ul class=\"nav nav-list\">\n");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "category", "in", "categories", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n</ul>\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/category-select"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("\n<a href=\"\">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</a>\n");
   return buffer;
   
 });
@@ -633,6 +672,16 @@ function program2(depth0,data) {
   
 });
 
+Ember.TEMPLATES["filters"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  
+
+
+  data.buffer.push("\n<h1>Filters View</h1>");
+  
+});
+
 Ember.TEMPLATES["month"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -796,7 +845,6 @@ var mobileQuery;
 
 window.App = Em.Application.create({
   LOG_TRANSITIONS: true,
-  LOG_TRANSITIONS_INTERNAL: true,
   rootElement: '#VUCalendar',
   isReady: false,
   isMobile: false
@@ -1005,12 +1053,65 @@ VU.BitObject.reopenClass({
 
 (function() {
 
+App.CategorySelectComponent = Em.Component.extend({
+  tagName: 'li',
+  name: Em.required(String),
+  category: Em.required('Category'),
+  activeCategories: Em.required('Category Array'),
+  classNameBindings: ['active'],
+  active: Em.computed('activeCategories.length', function() {
+    var _ref;
+    return !!((_ref = this.get('activeCategories')) != null ? _ref.contains(this.get('category')) : void 0);
+  }),
+  addCategory: function() {
+    var _ref;
+    return (_ref = this.get('activeCategories')) != null ? _ref.addObject(this.get('category')) : void 0;
+  },
+  removeCategory: function() {
+    return this.get('activeCategories').removeObject(this.get('category'));
+  },
+  click: function(event) {
+    event.preventDefault();
+    if (this.get('active')) {
+      return this.removeCategory();
+    } else {
+      return this.addCategory();
+    }
+  }
+});
+
+
+})();
+
+(function() {
+
+App.CategorySelectWrapperComponent = Em.Component.extend({
+  categories: Em.required(Array),
+  activeCategories: Em.required(Array),
+  click: function() {
+    var activeCategories;
+    activeCategories = this.get('activeCategories');
+    return this.sendAction('action', activeCategories);
+  }
+});
+
+
+})();
+
+(function() {
+
+App.ApplicationAdapter = DS.RESTAdapter.extend({
+  host: 'https://api.valpo.edu',
+  namespace: 'eventPool2'
+});
+
+
+})();
+
+(function() {
+
 App.Store = DS.Store.extend({
-  revision: 12,
-  adapter: DS.RESTAdapter.reopen({
-    url: 'https://api.valpo.edu',
-    namespace: 'eventPool2'
-  })
+  adapter: App.ApplicationAdapter
 });
 
 
@@ -1025,10 +1126,6 @@ var format;
 
 (function() {
 
-DS.RESTAdapter.configure('plurals', {
-  category: 'categories'
-});
-
 App.Category = DS.Model.extend({
   name: DS.attr('string')
 });
@@ -1039,6 +1136,8 @@ App.Category = DS.Model.extend({
 (function() {
 
 App.ApplicationController = Em.Controller.extend({
+  needs: ['filters'],
+  activeCategoriesBinding: 'controllers.filters.categories',
   lastRoute: null,
   currentRoute: null,
   lastPath: null,
@@ -1047,7 +1146,16 @@ App.ApplicationController = Em.Controller.extend({
   }, 'currentRoute'),
   _pathChangeObserver: Em.beforeObserver(function(controller, property) {
     return this.set('lastPath', this.get(property));
-  }, 'currentPath')
+  }, 'currentPath'),
+  actions: {
+    updateCategories: function(activeCategories) {
+      var model;
+      model = Em.Object.create({
+        categories: activeCategories
+      });
+      return this.transitionToRoute('filters', model);
+    }
+  }
 });
 
 
@@ -1101,14 +1209,9 @@ Em.Route.reopen({
 });
 
 App.ApplicationRoute = Em.Route.extend({
-  setupController: function(controller, model) {
-    var allCategories;
-    allCategories = App.Category.find({}).one('didLoad', categories, function() {
-      return Em.run.scheduleOnce('actions', this, function() {
-        return controller.set('isReady', true);
-      });
-    });
-    return controller.set('allCategories', allCategories);
+  model: function() {},
+  setupController: function(controller) {
+    return controller.set('allCategories', this.get('store').find('category'));
   },
   actions: {
     loadState: function(path, model) {
@@ -1138,29 +1241,71 @@ App.ApplicationRoute = Em.Route.extend({
 
 var format, get, set;
 
+get = Em.get;
+
+set = Em.set;
+
 
 })();
 
 (function() {
 
-DS.RESTAdapter.registerTransform('unixDate', {
-  serialize: function(value) {
-    return value.toString();
+App.FiltersController = Em.ObjectController.extend();
+
+
+})();
+
+(function() {
+
+App.FiltersView = Em.View.extend();
+
+
+})();
+
+(function() {
+
+format = 'MM-DD-YYYY';
+
+App.FiltersRoute = Em.Route.extend({
+  model: function(params) {
+    var categories, ids, store;
+    store = this.get('store');
+    ids = Em.A(params.categories.split(','));
+    categories = store.filter('category', function(item) {
+      return ids.contains(get(item, 'id'));
+    });
+    return Em.Object.create({
+      categories: categories
+    });
   },
-  deserialize: function(value) {
-    return moment(value).unix();
+  serialize: function(model, params) {
+    var ret;
+    ret = {};
+    ret['categories'] = get(model, 'categories').mapBy('id').join(',');
+    return ret;
   }
 });
 
-App.Event = DS.Model.extend(Em.SortableMixin, {
-  start: DS.attr('unixDate'),
-  end: DS.attr('unixDate'),
+
+})();
+
+(function() {
+
+var format, get, set;
+
+
+})();
+
+(function() {
+
+App.Event = DS.Model.extend({
+  start: DS.attr('date'),
+  end: DS.attr('date'),
   isAllDay: DS.attr('boolean'),
   title: DS.attr('string'),
   location: DS.attr('string'),
   description: DS.attr('string'),
-  url: DS.attr('string'),
-  categories: DS.hasMany('App.Category')
+  url: DS.attr('string')
 });
 
 
@@ -1434,19 +1579,8 @@ App.EventRoute = Em.Route.extend();
 
 App.Router.map(function() {
   return this.resource('filters', {
-    path: 'start/:start/end/:end'
-  }, function() {
-    this.resource('events', function() {
-      this.route('index', {
-        path: 'day'
-      });
-      this.route('month');
-      return this.route('week');
-    });
-    return this.resource('event', {
-      path: 'event/:event_id'
-    }, function() {});
-  });
+    path: ':categories'
+  }, function() {});
 });
 
 
