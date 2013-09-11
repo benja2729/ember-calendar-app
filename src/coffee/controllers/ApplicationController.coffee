@@ -16,12 +16,6 @@ App.ApplicationController = Em.Controller.extend
     # console.log @get(property)
   , 'currentPath')
 
-  actions:
-    updateCategories: (activeCategories) ->
-      model = Em.Object.create
-        categories: activeCategories
-      @transitionToRoute 'filters', model
-
   # For dev purposes only
   # _propertyChangeObserver: Em.observer( (controller, property) ->
   #   console.log "- Property #{property} has changed to #{@get(property)}"

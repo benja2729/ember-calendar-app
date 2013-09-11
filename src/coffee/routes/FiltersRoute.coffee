@@ -1,28 +1,27 @@
 
-get = Em.get
-set = Em.set
-
+require 'models/Filter'
 require 'controllers/FiltersController'
 require 'views/FiltersView'
 
-format = 'MM-DD-YYYY'
-
 App.FiltersRoute = Em.Route.extend
   model: (params) ->
-    store = @get 'store'
-    ids = Em.A params.categories.split(',')
-    categories = store.filter 'category', (item) -> ids.contains get(item, 'id')
+    if params.categories is 'all' then return App.Filter.create
+      categories: Em.A()
 
-    Em.Object.create {
+    params.categories ?= '11'
+    categories = Em.A params.categories.split(',')
+
+    App.Filter.create {
       categories
     }
 
   serialize: (model, params) ->
     ret = {}
-    ret['categories'] = get(model, 'categories').mapBy('id').join ','
-    ret
+    catArray = Em.get(model, 'categories') #.mapBy('id')
 
-  # setupController: (controller, model) ->
-  #   debugger
-  #   store = @get 'store'
-  #   controller.set 'allCategories', store.findAll('category')
+    ret['categories'] = if catArray.length is 0 then 'all'
+    else
+      catArray.sort (a, b) -> parseInt(a) > parseInt(b)
+      catArray.join ','
+
+    ret

@@ -3,8 +3,6 @@ require 'models/Category'
 require 'controllers/ApplicationController'
 require 'views/ApplicationView'
 
-format = 'MM-DD-YYYY'
-
 Em.Route.reopen
   enter: ->
     # To add 'popAppState' funcitonality
@@ -17,7 +15,7 @@ App.ApplicationRoute = Em.Route.extend
   model: ->
     # The ApplicationRoute is the top-most route in the route hierarchy,
     # and its model hook gets called once when the app starts up.
-    # @get('store').find 'category'   # We will want all of the categories at runtime
+    @get('store').find 'category'   # We will want all of the categories at runtime
 
   setupController: (controller) ->
     controller.set 'allCategories', @get('store').find('category')
@@ -34,15 +32,12 @@ App.ApplicationRoute = Em.Route.extend
       path = @get 'controller.lastRoute'
       @send 'loadState', path, model
 
+    updateCategories: (activeCategories) ->
+      model = @modelFor 'filters'
+      model = App.Filter.create() if model is undefined
+      model.set 'categories', activeCategories
+      # @send 'reloadState', model
+      @transitionTo 'filters', model
+
 # App.IndexRoute = Em.Route.extend
-#   redirect: ->
-#     model = @modelFor('filters')
-
-#     if model is undefined
-
-#       # Manually calling the Route's model via prototype might
-#       # not be the safest thing to do, so keep an eye on it
-#       model = App.FiltersRoute.prototype.model
-#         categories: '0'   # 0 stands for 'all' category
-
-#     @transitionTo 'filters', model
+#   redirect: -> @transitionTo 'filters'

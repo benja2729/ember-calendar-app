@@ -371,6 +371,41 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 });
 
+Ember.TEMPLATES["day"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, stack2, hashTypes, hashContexts, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n  <li>");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "title", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</li>\n");
+  return buffer;
+  }
+
+  data.buffer.push("<header class=\"events-header\">\n");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.partial || depth0.partial),stack1 ? stack1.call(depth0, "calendar-svg", options) : helperMissing.call(depth0, "partial", "calendar-svg", options))));
+  data.buffer.push("\n</header>\n<div class=\"events-body\">\n<ul class=\"unstyled\">\n");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers.each.call(depth0, "arrangedContent", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n</ul>\n");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n</div>");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES["event"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -675,10 +710,14 @@ function program2(depth0,data) {
 Ember.TEMPLATES["filters"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("\n<h1>Filters View</h1>");
+  data.buffer.push("\n<h1>Filters View</h1>\n");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  return buffer;
   
 });
 
@@ -780,71 +819,11 @@ function program5(depth0,data) {
 
 (function() {
 
-Em.Handlebars.registerBoundHelper('date', function(date) {
-  var time;
-  time = moment.unix(date);
-  return time.format('MMMM D, YYYY');
-});
-
-
-})();
-
-(function() {
-
-var debug;
-
-debug = 0;
-
-Em.Handlebars.registerBoundHelper('moment', function(date, options) {
-  var formatString;
-  formatString = options.hash.format;
-  return moment.unix(date).format(formatString);
-});
-
-
-})();
-
-(function() {
-
-Em.Handlebars.registerBoundHelper('showdown', function(text) {
-  var e, result;
-  try {
-    result = (new Showdown.converter()).makeHtml(text.replace(/\\n|\\r/g, '\n'));
-    return new Em.Handlebars.SafeString(result);
-  } catch (_error) {
-    e = _error;
-    console.log('Something went horribly wrong with the Showdown plugin in the showdown Handlebars helper.');
-    return 'Invalid input text';
-  }
-});
-
-
-})();
-
-(function() {
-
-Em.Handlebars.registerBoundHelper('time', function(date) {
-  var clone;
-  date = moment.unix(date);
-  clone = date.clone();
-  if (clone.startOf('day').diff(date) === 0) {
-    return 'midnight';
-  } else if (clone.hour(12).diff(date) === 0) {
-    return 'noon';
-  } else {
-    return date.format('hh:mm a');
-  }
-});
-
-
-})();
-
-(function() {
-
 var mobileQuery;
 
 window.App = Em.Application.create({
   LOG_TRANSITIONS: true,
+  LOG_TRANSITIONS_INTERNAL: true,
   rootElement: '#VUCalendar',
   isReady: false,
   isMobile: false
@@ -1061,14 +1040,14 @@ App.CategorySelectComponent = Em.Component.extend({
   classNameBindings: ['active'],
   active: Em.computed('activeCategories.length', function() {
     var _ref;
-    return !!((_ref = this.get('activeCategories')) != null ? _ref.contains(this.get('category')) : void 0);
+    return !!((_ref = this.get('activeCategories')) != null ? _ref.contains(this.get('category.id')) : void 0);
   }),
   addCategory: function() {
     var _ref;
-    return (_ref = this.get('activeCategories')) != null ? _ref.addObject(this.get('category')) : void 0;
+    return (_ref = this.get('activeCategories')) != null ? _ref.addObject(this.get('category.id')) : void 0;
   },
   removeCategory: function() {
-    return this.get('activeCategories').removeObject(this.get('category'));
+    return this.get('activeCategories').removeObject(this.get('category.id'));
   },
   click: function(event) {
     event.preventDefault();
@@ -1088,6 +1067,7 @@ App.CategorySelectComponent = Em.Component.extend({
 App.CategorySelectWrapperComponent = Em.Component.extend({
   categories: Em.required(Array),
   activeCategories: Em.required(Array),
+  displayList: Em.computed('activeCategories', function() {}),
   click: function() {
     var activeCategories;
     activeCategories = this.get('activeCategories');
@@ -1119,13 +1099,6 @@ App.Store = DS.Store.extend({
 
 (function() {
 
-var format;
-
-
-})();
-
-(function() {
-
 App.Category = DS.Model.extend({
   name: DS.attr('string')
 });
@@ -1146,16 +1119,7 @@ App.ApplicationController = Em.Controller.extend({
   }, 'currentRoute'),
   _pathChangeObserver: Em.beforeObserver(function(controller, property) {
     return this.set('lastPath', this.get(property));
-  }, 'currentPath'),
-  actions: {
-    updateCategories: function(activeCategories) {
-      var model;
-      model = Em.Object.create({
-        categories: activeCategories
-      });
-      return this.transitionToRoute('filters', model);
-    }
-  }
+  }, 'currentPath')
 });
 
 
@@ -1196,8 +1160,6 @@ App.ApplicationView = Em.View.extend({
 
 (function() {
 
-format = 'MM-DD-YYYY';
-
 Em.Route.reopen({
   enter: function() {
     var routeName;
@@ -1209,7 +1171,9 @@ Em.Route.reopen({
 });
 
 App.ApplicationRoute = Em.Route.extend({
-  model: function() {},
+  model: function() {
+    return this.get('store').find('category');
+  },
   setupController: function(controller) {
     return controller.set('allCategories', this.get('store').find('category'));
   },
@@ -1230,6 +1194,15 @@ App.ApplicationRoute = Em.Route.extend({
       var path;
       path = this.get('controller.lastRoute');
       return this.send('loadState', path, model);
+    },
+    updateCategories: function(activeCategories) {
+      var model;
+      model = this.modelFor('filters');
+      if (model === void 0) {
+        model = App.Filter.create();
+      }
+      model.set('categories', activeCategories);
+      return this.transitionTo('filters', model);
     }
   }
 });
@@ -1239,11 +1212,9 @@ App.ApplicationRoute = Em.Route.extend({
 
 (function() {
 
-var format, get, set;
-
-get = Em.get;
-
-set = Em.set;
+App.Filter = Em.Object.extend({
+  categories: Em.required(Array)
+});
 
 
 })();
@@ -1264,24 +1235,29 @@ App.FiltersView = Em.View.extend();
 
 (function() {
 
-format = 'MM-DD-YYYY';
-
 App.FiltersRoute = Em.Route.extend({
   model: function(params) {
-    var categories, ids, store;
-    store = this.get('store');
-    ids = Em.A(params.categories.split(','));
-    categories = store.filter('category', function(item) {
-      return ids.contains(get(item, 'id'));
-    });
-    return Em.Object.create({
+    var categories;
+    if (params.categories === 'all') {
+      return App.Filter.create({
+        categories: Em.A()
+      });
+    }
+    if (params.categories == null) {
+      params.categories = '11';
+    }
+    categories = Em.A(params.categories.split(','));
+    return App.Filter.create({
       categories: categories
     });
   },
   serialize: function(model, params) {
-    var ret;
+    var catArray, ret;
     ret = {};
-    ret['categories'] = get(model, 'categories').mapBy('id').join(',');
+    catArray = Em.get(model, 'categories');
+    ret['categories'] = catArray.length === 0 ? 'all' : (catArray.sort(function(a, b) {
+      return parseInt(a) > parseInt(b);
+    }), catArray.join(','));
     return ret;
   }
 });
@@ -1291,7 +1267,7 @@ App.FiltersRoute = Em.Route.extend({
 
 (function() {
 
-var format, get, set;
+var format, getRange, today;
 
 
 })();
@@ -1313,129 +1289,9 @@ App.Event = DS.Model.extend({
 
 (function() {
 
-var filterEvents;
-
-
-})();
-
-(function() {
-
-filterEvents = function() {
-  var content, events, filters;
-  filters = this.get('controllers.filters');
-  if (!filters.get('isReady')) {
-    return;
-  }
-  Em.Logger.debug('-- EventsController#filterEvents: filtering content');
-  content = this.get('content');
-  events = content.filter(filters.matchEvent, filters);
-  return this.set('filteredEvents', events);
-};
-
-App.EventsController = Em.ArrayController.extend({
-  init: function() {
-    this.addObserver('filteredEvents', this, function() {
-      return this.send('reloadState');
-    });
-    return this._super.call(this, arguments);
-  },
-  sortAscending: true,
+App.DayController = Em.ArrayController.extend({
   sortProperties: ['start'],
-  needs: ['application'],
-  filteredEvents: Em.A([]),
-  updateRange: function(start, end) {
-    var model, range,
-      _this = this;
-    range = {
-      start: start.unix(),
-      end: end.unix()
-    };
-    model = App.Event.find(range);
-    return model.one('didLoad', function() {
-      console.log(_this);
-      return _this.send('reloadState', model);
-    });
-  },
-  start: Em.computed('arrangedContent.firstObject.start', function(key, value) {
-    if (value != null) {
-      return value;
-    } else {
-      return this.get('arrangedContent.firstObject.start');
-    }
-  }),
-  end: Em.computed('arrangedContent.lastObject.end', function(key, value) {
-    if (value != null) {
-      return value;
-    } else {
-      return this.get('arrangedContent.lastObject.end');
-    }
-  }),
-  actions: {
-    reloadEvents: function() {
-      var filters, model, range,
-        _this = this;
-      filters = this.get('controllers.filters');
-      range = filters.getProperties('start', 'end');
-      model = App.Event.find(range);
-      return model.one('didLoad', function() {
-        return _this.set('model', model);
-      });
-    },
-    filterEvents: Em.observer(filterEvents, 'content', 'controllers.filters.isReady')
-  }
-});
-
-
-})();
-
-(function() {
-
-App.EventsIndexController = Em.ArrayController.extend({
-  needs: ['events'],
-  sortAscending: true,
-  sortProperties: ['start', 'end']
-});
-
-
-})();
-
-(function() {
-
-App.EventsDateRangePickerView = Em.View.extend({
-  didInsertElement: function() {
-    var $el, controller, _this;
-    $el = this.$(this.get('element')).find('.daterangepicker-report-range');
-    _this = this;
-    controller = this.get('controller');
-    return $el.daterangepicker({
-      ranges: {
-        'Today': [moment().startOf('day'), moment().endOf('day')],
-        'Tomorrow': [moment().add('days', 1).startOf('day'), moment().add('days', 1).endOf('day')],
-        'This Week': [moment().startOf('week'), moment().endOf('week')],
-        'Next Week': [moment().add('weeks', 1).startOf('week'), moment().add('weeks', 1).endOf('week')],
-        'This Month': [moment().startOf('month'), moment().endOf('month')],
-        'Next Month': [moment().add('months', 1).startOf('month'), moment().add('months', 1).endOf('month')]
-      }
-    }, $.proxy(controller.updateRange, controller));
-  }
-});
-
-
-})();
-
-(function() {
-
-App.EventsView = Em.View.extend({
-  height: Em.computed(function(property, value) {
-    if (value != null) {
-      return value;
-    } else {
-      return 300;
-    }
-  }),
-  didInsertElement: function() {
-    return this.set('height', $(this.get('element')).height());
-  }
+  sortAscending: true
 });
 
 
@@ -1476,101 +1332,44 @@ App.EventsListView = App.ListView.extend({
 
 (function() {
 
-get = Em.get;
+App.DayView = Em.View.extend();
 
-set = Em.set;
+
+})();
+
+(function() {
 
 format = 'MM-DD-YYYY';
 
-App.EventsRoute = Em.Route.extend({
-  serialize: function(model, params) {
-    var key, m, ret, _i, _len;
-    ret = {};
-    if (model.get('length') < 1) {
-      m = moment();
-      ret['start'] = m.startOf('day').format(format);
-      ret['end'] = m.endOf('day').format(format);
-    } else {
-      for (_i = 0, _len = params.length; _i < _len; _i++) {
-        key = params[_i];
-        ret[key] = (function() {
-          switch (key) {
-            case 'start':
-              return moment.unix(model.get('firstObject.start')).format(format);
-            case 'end':
-              return moment.unix(model.get('lastObject.end')).format(format);
-          }
-        })();
-      }
-    }
-    return ret;
-  },
+today = new Date();
+
+getRange = function(input) {
+  var m;
+  m = typeof input === 'string' ? moment(input, format) : moment(input);
+  return {
+    start: m.startOf('day').unix(),
+    end: m.endOf('day').unix()
+  };
+};
+
+App.DayRoute = Em.Route.extend({
   model: function(params) {
-    var filters, range;
-    filters = this.modelFor('application');
-    range = filters != null ? {
-      start: get(filters, 'start'),
-      end: get(filters, 'end')
-    } : {
-      start: moment().startOf('day').unix(),
-      end: moment().endOf('day').unix()
-    };
-    return App.Event.find(range);
+    var day, store;
+    if (params.day == null) {
+      params.day = 'today';
+    }
+    day = getRange(params.day === 'today' ? today : params.day);
+    store = this.get('store');
+    return store.find('event', day);
   },
-  actions: {
-    showEventDetailPane: function(context) {
-      return this.transitionTo('event', context);
-    }
+  serialize: function(model, params) {
+    var ret, start;
+    ret = {};
+    start = moment(model.get('firstObject.start'));
+    ret['day'] = start.date() === today.getDate() ? 'today' : start.format(format);
+    return ret;
   }
 });
-
-App.EventsIndexRoute = Em.Route.extend({
-  model: function() {
-    return this.modelFor('events');
-  }
-});
-
-
-})();
-
-(function() {
-
-App.EventController = Em.ObjectController.extend({
-  startDate: Em.computed(function() {
-    return moment(this.get('start'));
-  }).property('start'),
-  endDate: Em.computed(function() {
-    return moment(this.get('end'));
-  }).property('end'),
-  isMultiDay: Em.computed(function() {
-    var end, start;
-    start = this.get('startDate').date();
-    end = this.get('endDate').date();
-    return start !== end;
-  }).property('endDate'),
-  actions: {
-    closePane: function(view) {
-      var _this = this;
-      return view.closePane().done(function() {
-        return _this.send('popAppState');
-      });
-    }
-  }
-});
-
-
-})();
-
-(function() {
-
-App.EventView = Em.View.extend();
-
-
-})();
-
-(function() {
-
-App.EventRoute = Em.Route.extend();
 
 
 })();
@@ -1580,7 +1379,11 @@ App.EventRoute = Em.Route.extend();
 App.Router.map(function() {
   return this.resource('filters', {
     path: ':categories'
-  }, function() {});
+  }, function() {
+    return this.resource('day', {
+      path: ':day'
+    }, function() {});
+  });
 });
 
 

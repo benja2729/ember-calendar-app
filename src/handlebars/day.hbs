@@ -1,0 +1,11 @@
+<header class="events-header">
+{{partial "calendar-svg"}}
+</header>
+<div class="events-body">
+<ul class="unstyled">
+{{#each arrangedContent}}
+  <li>{{title}}</li>
+{{/each}}
+</ul>
+{{outlet}}
+</div>
