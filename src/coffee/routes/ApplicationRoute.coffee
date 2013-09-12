@@ -7,7 +7,7 @@ Em.Route.reopen
   enter: ->
     # To add 'popAppState' funcitonality
     routeName = @get 'routeName'
-    # console.log "-----\nEntered #{routeName}\n-----"
+    console.log "-----\nEntered #{routeName}\n-----"
     if /\.[^.]+$/.test routeName
       @controllerFor('application').set 'currentRoute', routeName
 
@@ -33,11 +33,14 @@ App.ApplicationRoute = Em.Route.extend
       @send 'loadState', path, model
 
     updateCategories: (activeCategories) ->
+      destinationRoute = @controllerFor('application').get 'currentRoute'
+      destinationModel = @modelFor destinationRoute
+
       model = @modelFor 'filters'
       model = App.Filter.create() if model is undefined
       model.set 'categories', activeCategories
-      # @send 'reloadState', model
-      @transitionTo 'filters', model
+
+      @transitionTo destinationRoute, model, destinationModel
 
 # App.IndexRoute = Em.Route.extend
 #   redirect: -> @transitionTo 'filters'

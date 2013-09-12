@@ -1164,6 +1164,7 @@ Em.Route.reopen({
   enter: function() {
     var routeName;
     routeName = this.get('routeName');
+    console.log("-----\nEntered " + routeName + "\n-----");
     if (/\.[^.]+$/.test(routeName)) {
       return this.controllerFor('application').set('currentRoute', routeName);
     }
@@ -1196,13 +1197,15 @@ App.ApplicationRoute = Em.Route.extend({
       return this.send('loadState', path, model);
     },
     updateCategories: function(activeCategories) {
-      var model;
+      var destinationModel, destinationRoute, model;
+      destinationRoute = this.controllerFor('application').get('currentRoute');
+      destinationModel = this.modelFor(destinationRoute);
       model = this.modelFor('filters');
       if (model === void 0) {
         model = App.Filter.create();
       }
       model.set('categories', activeCategories);
-      return this.transitionTo('filters', model);
+      return this.transitionTo(destinationRoute, model, destinationModel);
     }
   }
 });
