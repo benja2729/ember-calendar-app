@@ -10,4 +10,4 @@ App.Event = DS.Model.extend
   location: DS.attr 'string'
   description: DS.attr 'string'
   url: DS.attr 'string'
-  # categories: DS.hasMany 'App.Category'
+  categories: DS.hasMany 'category'

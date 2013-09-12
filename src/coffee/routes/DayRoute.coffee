@@ -20,8 +20,7 @@ App.DayRoute = Em.Route.extend
     day = getRange if params.day is 'today' then today
     else params.day
 
-    store = @get 'store'
-    store.find 'event', day
+    @loadDay day
 
   serialize: (model, params) ->
     ret = {}
@@ -29,3 +28,18 @@ App.DayRoute = Em.Route.extend
     ret['day'] = if start.date() is today.getDate() then 'today'
     else start.format format
     ret
+
+  setupController: (controller, model) ->
+    controller.setProperties
+      model: model
+      today: today
+
+  loadDay: (range) ->
+    store = @get 'store'
+    store.find 'event', range
+
+  actions:
+    transitionToDay: (input) ->
+      day = getRange input
+      model = @loadDay day
+      @transitionTo 'day', model

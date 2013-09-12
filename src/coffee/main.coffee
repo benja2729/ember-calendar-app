@@ -1,7 +1,7 @@
 
 # Pre-init files
 require 'templates'
-# require 'helpers/main'
+require 'helpers/main'
 
 # The Application
 require 'Application'

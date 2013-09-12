@@ -1,0 +1,17 @@
+
+<div class="well">
+{{#linkTo route event}}
+{{#with event}}
+  {{time start}}
+  <br />
+  {{title}}
+{{!--
+  <ul class="unstyled">
+  {{#each categories}}
+    <li>{{name}}</li>
+  {{/each}}
+  </ul>
+--}}
+{{/with}}
+{{/linkTo}}
+</div>

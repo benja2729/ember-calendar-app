@@ -1,11 +1,20 @@
-<header class="events-header">
-{{partial "calendar-svg"}}
+<header class="page-header events-header">
+{{!partial "calendar-svg"}}
+<h1>{{date currentDay}}</h1>
 </header>
 <div class="events-body">
-<ul class="unstyled">
-{{#each arrangedContent}}
-  <li>{{title}}</li>
-{{/each}}
-</ul>
-{{outlet}}
+  {{day-pager action="transitionToDay" date=currentDay range="day"}}
+  <ul class="unstyled">
+  {{#each filteredContent}}
+    <li>
+    {{event-archive-item event=this}}
+    </li>
+  {{else}}
+    <li>
+    <div class="well">
+    Your search rendered no results. D':
+    </div>
+  {{/each}}
+  </ul>
+  {{outlet}}
 </div>

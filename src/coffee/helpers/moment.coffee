@@ -1,6 +1,3 @@
 
-debug = 0
-
-Em.Handlebars.registerBoundHelper 'moment', (date, options) ->
-  formatString = options.hash.format
-  moment.unix(date).format formatString
+Em.Handlebars.registerBoundHelper 'moment', (date, format) ->
+  moment(date).format format

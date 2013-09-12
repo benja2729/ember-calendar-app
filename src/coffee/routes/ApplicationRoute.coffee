@@ -7,7 +7,7 @@ Em.Route.reopen
   enter: ->
     # To add 'popAppState' funcitonality
     routeName = @get 'routeName'
-    console.log "-----\nEntered #{routeName}\n-----"
+    # console.log "-----\nEntered #{routeName}\n-----"
     if /\.[^.]+$/.test routeName
       @controllerFor('application').set 'currentRoute', routeName
 

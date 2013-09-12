@@ -346,6 +346,120 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 });
 
+Ember.TEMPLATES["components/day-pager"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, stack2, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n    &larr; ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "previousDate", "format", options) : helperMissing.call(depth0, "moment", "previousDate", "format", options))));
+  data.buffer.push("\n  ");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "nextDate", "format", options) : helperMissing.call(depth0, "moment", "nextDate", "format", options))));
+  data.buffer.push(" &rarr;\n  ");
+  return buffer;
+  }
+
+  data.buffer.push("<ul class=\"pager\">\n  ");
+  hashContexts = {'classNames': depth0,'action': depth0,'date': depth0};
+  hashTypes = {'classNames': "STRING",'action': "STRING",'date': "ID"};
+  options = {hash:{
+    'classNames': ("previous"),
+    'action': ("sendTransition"),
+    'date': ("previousDate")
+  },inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  stack2 = ((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options));
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n");
+  data.buffer.push("\n  ");
+  hashContexts = {'classNames': depth0,'action': depth0,'date': depth0};
+  hashTypes = {'classNames': "STRING",'action': "STRING",'date': "ID"};
+  options = {hash:{
+    'classNames': ("next"),
+    'action': ("sendTransition"),
+    'date': ("nextDate")
+  },inverse:self.noop,fn:self.program(3, program3, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  stack2 = ((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options));
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n</ul>");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/event-archive-item"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, stack2, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts;
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['with'].call(depth0, "event", {hash:{},inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n");
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.time || depth0.time),stack1 ? stack1.call(depth0, "start", options) : helperMissing.call(depth0, "time", "start", options))));
+  data.buffer.push("\n  <br />\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "title", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n");
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+  data.buffer.push("\n<div class=\"well\">\n");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  stack2 = ((stack1 = helpers.linkTo || depth0.linkTo),stack1 ? stack1.call(depth0, "route", "event", options) : helperMissing.call(depth0, "linkTo", "route", "event", options));
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n</div>");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/pager-item"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("\n<a href=\"\">\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "yield", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n</a>");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES["date-range-picker"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -374,30 +488,49 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 Ember.TEMPLATES["day"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, stack2, hashTypes, hashContexts, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+  var buffer = '', stack1, stack2, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
-  var buffer = '', hashTypes, hashContexts;
-  data.buffer.push("\n  <li>");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "title", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("</li>\n");
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n    <li>\n    ");
+  hashContexts = {'event': depth0};
+  hashTypes = {'event': "ID"};
+  options = {hash:{
+    'event': ("")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['event-archive-item'] || depth0['event-archive-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "event-archive-item", options))));
+  data.buffer.push("\n    </li>\n  ");
   return buffer;
   }
 
-  data.buffer.push("<header class=\"events-header\">\n");
+function program3(depth0,data) {
+  
+  
+  data.buffer.push("\n    <li>\n    <div class=\"well\">\n    Your search rendered no results. D':\n    </div>\n  ");
+  }
+
+  data.buffer.push("<header class=\"page-header events-header\">\n");
+  data.buffer.push("\n<h1>");
   hashTypes = {};
   hashContexts = {};
-  options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.partial || depth0.partial),stack1 ? stack1.call(depth0, "calendar-svg", options) : helperMissing.call(depth0, "partial", "calendar-svg", options))));
-  data.buffer.push("\n</header>\n<div class=\"events-body\">\n<ul class=\"unstyled\">\n");
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.date || depth0.date),stack1 ? stack1.call(depth0, "currentDay", options) : helperMissing.call(depth0, "date", "currentDay", options))));
+  data.buffer.push("</h1>\n</header>\n<div class=\"events-body\">\n  ");
+  hashContexts = {'action': depth0,'date': depth0,'range': depth0};
+  hashTypes = {'action': "STRING",'date': "ID",'range': "STRING"};
+  options = {hash:{
+    'action': ("transitionToDay"),
+    'date': ("currentDay"),
+    'range': ("day")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['day-pager'] || depth0['day-pager']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "day-pager", options))));
+  data.buffer.push("\n  <ul class=\"unstyled\">\n  ");
   hashTypes = {};
   hashContexts = {};
-  stack2 = helpers.each.call(depth0, "arrangedContent", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack2 = helpers.each.call(depth0, "filteredContent", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n</ul>\n");
+  data.buffer.push("\n  </ul>\n  ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
@@ -713,7 +846,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("\n<h1>Filters View</h1>\n");
+  data.buffer.push("\n");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
@@ -819,11 +952,64 @@ function program5(depth0,data) {
 
 (function() {
 
+Em.Handlebars.registerBoundHelper('date', function(date) {
+  var time;
+  time = moment(date);
+  return time.format('MMMM D, YYYY');
+});
+
+
+})();
+
+(function() {
+
+Em.Handlebars.registerBoundHelper('moment', function(date, format) {
+  return moment(date).format(format);
+});
+
+
+})();
+
+(function() {
+
+Em.Handlebars.registerBoundHelper('showdown', function(text) {
+  var e, result;
+  try {
+    result = (new Showdown.converter()).makeHtml(text.replace(/\\n|\\r/g, '\n'));
+    return new Em.Handlebars.SafeString(result);
+  } catch (_error) {
+    e = _error;
+    console.log('Something went horribly wrong with the Showdown plugin in the showdown Handlebars helper.');
+    return 'Invalid input text';
+  }
+});
+
+
+})();
+
+(function() {
+
+Em.Handlebars.registerBoundHelper('time', function(date) {
+  var clone, time;
+  time = moment(date);
+  clone = time.clone();
+  if (clone.startOf('day').diff(time) === 0) {
+    return 'midnight';
+  } else if (clone.hour(12).diff(time) === 0) {
+    return 'noon';
+  } else {
+    return time.format('hh:mm a');
+  }
+});
+
+
+})();
+
+(function() {
+
 var mobileQuery;
 
 window.App = Em.Application.create({
-  LOG_TRANSITIONS: true,
-  LOG_TRANSITIONS_INTERNAL: true,
   rootElement: '#VUCalendar',
   isReady: false,
   isMobile: false
@@ -1080,6 +1266,73 @@ App.CategorySelectWrapperComponent = Em.Component.extend({
 
 (function() {
 
+App.EventArchiveItemComponent = Em.Component.extend({
+  event: Em.required('App.Event'),
+  route: 'event'
+});
+
+
+})();
+
+(function() {
+
+App.PagerItemComponent = Em.Component.extend({
+  tagName: 'li',
+  format: 'ddd, MMM Do',
+  date: Em.computed(function(key, value) {
+    if (value != null) {
+      return moment(value);
+    } else {
+      return void 0;
+    }
+  }),
+  click: function(event) {
+    var date;
+    event.preventDefault();
+    date = this.get('date');
+    return this.sendAction('action', date);
+  }
+});
+
+
+})();
+
+(function() {
+
+App.DayPagerComponent = Em.Component.extend({
+  range: Em.required(String),
+  format: 'ddd, MMM Do',
+  date: Em.computed(function(key, value) {
+    if (value != null) {
+      return moment(value);
+    } else {
+      return void 0;
+    }
+  }),
+  nextDate: Em.computed('date', function() {
+    var date, range;
+    date = this.get('date');
+    range = this.get('range');
+    return date.clone().add(range, 1);
+  }),
+  previousDate: Em.computed('date', function() {
+    var date, range;
+    date = this.get('date');
+    range = this.get('range');
+    return date.clone().subtract(range, 1);
+  }),
+  actions: {
+    sendTransition: function(date) {
+      return this.sendAction('action', date);
+    }
+  }
+});
+
+
+})();
+
+(function() {
+
 App.ApplicationAdapter = DS.RESTAdapter.extend({
   host: 'https://api.valpo.edu',
   namespace: 'eventPool2'
@@ -1164,7 +1417,6 @@ Em.Route.reopen({
   enter: function() {
     var routeName;
     routeName = this.get('routeName');
-    console.log("-----\nEntered " + routeName + "\n-----");
     if (/\.[^.]+$/.test(routeName)) {
       return this.controllerFor('application').set('currentRoute', routeName);
     }
@@ -1284,7 +1536,8 @@ App.Event = DS.Model.extend({
   title: DS.attr('string'),
   location: DS.attr('string'),
   description: DS.attr('string'),
-  url: DS.attr('string')
+  url: DS.attr('string'),
+  categories: DS.hasMany('category')
 });
 
 
@@ -1292,9 +1545,63 @@ App.Event = DS.Model.extend({
 
 (function() {
 
+var filterContent, testCategories;
+
+testCategories = function(categoryIds, event) {
+  var categories, result;
+  result = false;
+  categories = event.get('categories');
+  categories.forEach(function(category) {
+    var id, test;
+    id = category.get('id');
+    test = categoryIds.contains(id);
+    if (test) {
+      return result = true;
+    }
+  });
+  return result;
+};
+
+filterContent = function(content, filters) {
+  var categoryIds, ret;
+  categoryIds = filters.get('categories');
+  if (categoryIds.get('length') === 0) {
+    return content;
+  }
+  ret = Em.A();
+  content.forEach(function(event) {
+    var hasCategories;
+    hasCategories = testCategories(categoryIds, event);
+    if (hasCategories) {
+      return ret.addObject(event);
+    }
+  });
+  return ret;
+};
+
 App.DayController = Em.ArrayController.extend({
+  needs: ['filters'],
   sortProperties: ['start'],
-  sortAscending: true
+  sortAscending: true,
+  sortFunction: function(a, b) {
+    return +a - +b;
+  },
+  currentDay: Em.computed('arrangedContent.firstObject', function(key, value) {
+    var start, today;
+    if (value != null) {
+      return value;
+    } else {
+      start = this.get('arrangedContent.firstObject.start');
+      today = this.get('today');
+      return start || today;
+    }
+  }),
+  filteredContent: Em.computed('arrangedContent.@each', function() {
+    var arrangedContent, filters;
+    arrangedContent = this.get('arrangedContent');
+    filters = this.get('controllers.filters');
+    return filterContent(arrangedContent, filters);
+  })
 });
 
 
@@ -1357,13 +1664,12 @@ getRange = function(input) {
 
 App.DayRoute = Em.Route.extend({
   model: function(params) {
-    var day, store;
+    var day;
     if (params.day == null) {
       params.day = 'today';
     }
     day = getRange(params.day === 'today' ? today : params.day);
-    store = this.get('store');
-    return store.find('event', day);
+    return this.loadDay(day);
   },
   serialize: function(model, params) {
     var ret, start;
@@ -1371,6 +1677,25 @@ App.DayRoute = Em.Route.extend({
     start = moment(model.get('firstObject.start'));
     ret['day'] = start.date() === today.getDate() ? 'today' : start.format(format);
     return ret;
+  },
+  setupController: function(controller, model) {
+    return controller.setProperties({
+      model: model,
+      today: today
+    });
+  },
+  loadDay: function(range) {
+    var store;
+    store = this.get('store');
+    return store.find('event', range);
+  },
+  actions: {
+    transitionToDay: function(input) {
+      var day, model;
+      day = getRange(input);
+      model = this.loadDay(day);
+      return this.transitionTo('day', model);
+    }
   }
 });
 
@@ -1379,14 +1704,59 @@ App.DayRoute = Em.Route.extend({
 
 (function() {
 
+App.EventController = Em.ObjectController.extend({
+  startDate: Em.computed(function() {
+    return moment(this.get('start'));
+  }).property('start'),
+  endDate: Em.computed(function() {
+    return moment(this.get('end'));
+  }).property('end'),
+  isMultiDay: Em.computed(function() {
+    var end, start;
+    start = this.get('startDate').date();
+    end = this.get('endDate').date();
+    return start !== end;
+  }).property('endDate'),
+  actions: {
+    closePane: function(view) {
+      var _this = this;
+      return view.closePane().done(function() {
+        return _this.send('popAppState');
+      });
+    }
+  }
+});
+
+
+})();
+
+(function() {
+
+App.EventView = Em.View.extend();
+
+
+})();
+
+(function() {
+
+App.EventRoute = Em.Route.extend();
+
+
+})();
+
+(function() {
+
 App.Router.map(function() {
-  return this.resource('filters', {
+  this.resource('filters', {
     path: ':categories'
   }, function() {
     return this.resource('day', {
       path: ':day'
     }, function() {});
   });
+  return this.resource('event', {
+    path: 'event/:event_id'
+  }, function() {});
 });
 
 
