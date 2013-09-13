@@ -1,0 +1,10 @@
+
+{{#each items}}
+  {{#link-to "event" this tagName="div" classNames="well"}}
+    {{titleize title}}
+    <br />
+    {{time start}}
+  {{/link-to}}
+{{else}}
+  {{yield}}
+{{/each}}

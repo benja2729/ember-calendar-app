@@ -1,25 +1,21 @@
 
-{{!outlet "filterPane"}}
+{{!-- outlet "filterPane"}}
 <aside class="pane side-pane filter-pane">
-  <section class="pane-body">
-    {{outlet "dateRangePicker"}}
-    {{!outlet "controlList"}}
-    <h3>Categories</h3>
-    <div class="sidebar-nav">
-    {{category-select-wrapper action="updateCategories" categories=allCategories activeCategories=activeCategories}}
-    </div>
-  </section>
+--}}
+<aside {{bind-attr class=":st-menu view.transitionEffect"}} {{action "closeMenu" target=view on="mouseLeave"}}>
+  <h2>Categories</h2>
+  {{category-select-wrapper action="updateCategories" categories=allCategories activeCategories=activeCategories}}
 </aside>
 
-<section class="pane main-pane">
-  <header class="pane-header row-fluid">
-    {{#view view.FilterToggle}}Filters{{/view}}
-    {{!outlet "activeFilters"}}
-  </header>
-  <section class="pane-body">
-    {{outlet}}
+{{!-- <section class="pane main-pane"> --}}
+<div class="st-pusher">
+  <section class="st-content">
+    <header class="pane-header row-fluid">
+      {{filter-toggle isOpen=view.isOpen isMobile=view.isMobile}}
+    </header>
+    <div class="pane-body">
+      {{outlet}}
+    </div>
   </section>
+</div>
 </section>
-
-{{!outlet "sidePane"}}
-{{!outlet "eventDetailPane"}}

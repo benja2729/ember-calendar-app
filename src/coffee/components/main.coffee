@@ -1,4 +1,5 @@
 
+require 'components/FilterToggleComponent'
 require 'components/CategorySelectWrapperComponent'
-require 'components/EventArchiveItemComponent'
+require 'components/ArchiveListComponent'
 require 'components/DayPagerComponent'

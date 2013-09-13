@@ -191,22 +191,25 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 Ember.TEMPLATES["application"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, stack2, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+  var buffer = '', stack1, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
-function program1(depth0,data) {
-  
-  
-  data.buffer.push("Filters");
-  }
 
   data.buffer.push("\n");
-  data.buffer.push("\n<aside class=\"pane side-pane filter-pane\">\n  <section class=\"pane-body\">\n    ");
-  hashTypes = {};
-  hashContexts = {};
-  options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.outlet || depth0.outlet),stack1 ? stack1.call(depth0, "dateRangePicker", options) : helperMissing.call(depth0, "outlet", "dateRangePicker", options))));
-  data.buffer.push("\n    ");
-  data.buffer.push("\n    <h3>Categories</h3>\n    <div class=\"sidebar-nav\">\n    ");
+  data.buffer.push("\n<aside ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  options = {hash:{
+    'class': (":st-menu view.transitionEffect")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || depth0['bind-attr']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(" ");
+  hashContexts = {'target': depth0,'on': depth0};
+  hashTypes = {'target': "ID",'on': "STRING"};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "closeMenu", {hash:{
+    'target': ("view"),
+    'on': ("mouseLeave")
+  },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n  <h2>Categories</h2>\n  ");
   hashContexts = {'action': depth0,'categories': depth0,'activeCategories': depth0};
   hashTypes = {'action': "STRING",'categories': "ID",'activeCategories': "ID"};
   options = {hash:{
@@ -215,19 +218,20 @@ function program1(depth0,data) {
     'activeCategories': ("activeCategories")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers['category-select-wrapper'] || depth0['category-select-wrapper']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "category-select-wrapper", options))));
-  data.buffer.push("\n    </div>\n  </section>\n</aside>\n\n<section class=\"pane main-pane\">\n  <header class=\"pane-header row-fluid\">\n    ");
-  hashTypes = {};
-  hashContexts = {};
-  stack2 = helpers.view.call(depth0, "view.FilterToggle", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n    ");
-  data.buffer.push("\n  </header>\n  <section class=\"pane-body\">\n    ");
+  data.buffer.push("\n</aside>\n\n");
+  data.buffer.push("\n<div class=\"st-pusher\">\n  <section class=\"st-content\">\n    <header class=\"pane-header row-fluid\">\n      ");
+  hashContexts = {'isOpen': depth0,'isMobile': depth0};
+  hashTypes = {'isOpen': "ID",'isMobile': "ID"};
+  options = {hash:{
+    'isOpen': ("view.isOpen"),
+    'isMobile': ("view.isMobile")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['filter-toggle'] || depth0['filter-toggle']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "filter-toggle", options))));
+  data.buffer.push("\n    </header>\n    <div class=\"pane-body\">\n      ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n  </section>\n</section>\n\n");
-  data.buffer.push("\n");
-  data.buffer.push("\n");
+  data.buffer.push("\n    </div>\n  </section>\n</div>\n</section>\n");
   return buffer;
   
 });
@@ -300,6 +304,79 @@ function program2(depth0,data) {
   
 });
 
+Ember.TEMPLATES["components/archive-item"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "yield", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/archive-list"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, stack2, hashContexts, hashTypes, options;
+  data.buffer.push("\n  ");
+  hashContexts = {'tagName': depth0,'classNames': depth0};
+  hashTypes = {'tagName': "STRING",'classNames': "STRING"};
+  options = {hash:{
+    'tagName': ("div"),
+    'classNames': ("well")
+  },inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  stack2 = ((stack1 = helpers['link-to'] || depth0['link-to']),stack1 ? stack1.call(depth0, "event", "", options) : helperMissing.call(depth0, "link-to", "event", "", options));
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n");
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.titleize || depth0.titleize),stack1 ? stack1.call(depth0, "title", options) : helperMissing.call(depth0, "titleize", "title", options))));
+  data.buffer.push("\n    <br />\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.time || depth0.time),stack1 ? stack1.call(depth0, "start", options) : helperMissing.call(depth0, "time", "start", options))));
+  data.buffer.push("\n  ");
+  return buffer;
+  }
+
+function program4(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "yield", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "items", {hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES["components/category-select-wrapper"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -308,7 +385,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = '', stack1, hashContexts, hashTypes, options;
-  data.buffer.push("\n  ");
+  data.buffer.push("\n  <li>\n    ");
   hashContexts = {'activeCategories': depth0,'category': depth0,'name': depth0};
   hashTypes = {'activeCategories': "ID",'category': "ID",'name': "ID"};
   options = {hash:{
@@ -317,11 +394,11 @@ function program1(depth0,data) {
     'name': ("category.name")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers['category-select'] || depth0['category-select']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "category-select", options))));
-  data.buffer.push("\n");
+  data.buffer.push("\n  </li>\n");
   return buffer;
   }
 
-  data.buffer.push("\n<ul class=\"nav nav-list\">\n");
+  data.buffer.push("\n<ul class=\"unstyled\">\n");
   hashTypes = {};
   hashContexts = {};
   stack1 = helpers.each.call(depth0, "category", "in", "categories", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
@@ -337,12 +414,12 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("\n<a href=\"\">");
+  data.buffer.push("\n");
   hashTypes = {};
   hashContexts = {};
   options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.titleize || depth0.titleize),stack1 ? stack1.call(depth0, "name", options) : helperMissing.call(depth0, "titleize", "name", options))));
-  data.buffer.push("</a>\n");
+  data.buffer.push("\n");
   return buffer;
   
 });
@@ -402,46 +479,16 @@ function program3(depth0,data) {
   
 });
 
-Ember.TEMPLATES["components/event-archive-item"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES["components/filter-toggle"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, stack2, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
 
-function program1(depth0,data) {
-  
-  var buffer = '', stack1, hashTypes, hashContexts;
+
   data.buffer.push("\n");
-  hashTypes = {};
-  hashContexts = {};
-  stack1 = helpers['with'].call(depth0, "event", {hash:{},inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n");
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  var buffer = '', stack1, hashTypes, hashContexts, options;
-  data.buffer.push("\n  ");
-  hashTypes = {};
-  hashContexts = {};
-  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.time || depth0.time),stack1 ? stack1.call(depth0, "start", options) : helperMissing.call(depth0, "time", "start", options))));
-  data.buffer.push("\n  <br />\n  ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "title", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n");
-  data.buffer.push("\n");
-  return buffer;
-  }
-
-  data.buffer.push("\n<div class=\"well\">\n");
-  hashTypes = {};
-  hashContexts = {};
-  options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  stack2 = ((stack1 = helpers.linkTo || depth0.linkTo),stack1 ? stack1.call(depth0, "route", "event", options) : helperMissing.call(depth0, "linkTo", "route", "event", options));
-  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n</div>");
   return buffer;
   
 });
@@ -493,30 +540,16 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 function program1(depth0,data) {
   
-  var buffer = '', stack1, hashContexts, hashTypes, options;
-  data.buffer.push("\n    <li>\n    ");
-  hashContexts = {'event': depth0};
-  hashTypes = {'event': "ID"};
-  options = {hash:{
-    'event': ("")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers['event-archive-item'] || depth0['event-archive-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "event-archive-item", options))));
-  data.buffer.push("\n    </li>\n  ");
-  return buffer;
-  }
-
-function program3(depth0,data) {
   
-  
-  data.buffer.push("\n    <li>\n    <div class=\"well\">\n    Your search rendered no results. D':\n    </div>\n  ");
+  data.buffer.push("\n    <div class=\"well\">\n    Your search rendered no results. D':\n    </div>\n  ");
   }
 
   data.buffer.push("<header class=\"page-header events-header\">\n");
   data.buffer.push("\n<h1>");
   hashTypes = {};
   hashContexts = {};
-  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.date || depth0.date),stack1 ? stack1.call(depth0, "currentDay", options) : helperMissing.call(depth0, "date", "currentDay", options))));
+  options = {hash:{},contexts:[depth0,depth0],types:["ID","STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "currentDay", "dddd, MMMM Do, YYYY", options) : helperMissing.call(depth0, "moment", "currentDay", "dddd, MMMM Do, YYYY", options))));
   data.buffer.push("</h1>\n</header>\n<div class=\"events-body\">\n  ");
   hashContexts = {'action': depth0,'date': depth0,'range': depth0};
   hashTypes = {'action': "STRING",'date': "ID",'range': "STRING"};
@@ -526,12 +559,15 @@ function program3(depth0,data) {
     'range': ("day")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers['day-pager'] || depth0['day-pager']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "day-pager", options))));
-  data.buffer.push("\n  <ul class=\"unstyled\">\n  ");
-  hashTypes = {};
-  hashContexts = {};
-  stack2 = helpers.each.call(depth0, "filteredContent", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  data.buffer.push("\n\n  ");
+  hashContexts = {'items': depth0};
+  hashTypes = {'items': "ID"};
+  options = {hash:{
+    'items': ("filteredContent")
+  },inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  stack2 = ((stack1 = helpers['archive-list'] || depth0['archive-list']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "archive-list", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n  </ul>\n  ");
+  data.buffer.push("\n\n  ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
@@ -1243,11 +1279,36 @@ VU.BitObject.reopenClass({
 
 (function() {
 
+App.FilterToggleComponent = Em.Component.extend({
+  tagName: 'button',
+  classNames: ['btn', 'btn-primary', 'btn-giving', 'filter-toggle'],
+  classNameBindings: ['isOpen:active'],
+  title: 'Filters',
+  isOpen: Em.required(Boolean),
+  isMobile: Em.required(Boolean),
+  click: function() {
+    return this.toggleProperty('isOpen');
+  },
+  mouseEnter: function() {
+    var isMobile;
+    isMobile = this.get('isMobile');
+    if (!isMobile) {
+      return this.set('isOpen', true);
+    }
+  }
+});
+
+
+})();
+
+(function() {
+
 App.CategorySelectComponent = Em.Component.extend({
-  tagName: 'li',
+  tagName: 'div',
   name: Em.required(String),
   category: Em.required('Category'),
   activeCategories: Em.required('Category Array'),
+  classNames: ['category-select'],
   classNameBindings: ['active'],
   active: Em.computed('activeCategories.length', function() {
     var _ref;
@@ -1291,9 +1352,8 @@ App.CategorySelectWrapperComponent = Em.Component.extend({
 
 (function() {
 
-App.EventArchiveItemComponent = Em.Component.extend({
-  event: Em.required('App.Event'),
-  route: 'event'
+App.ArchiveListComponent = Em.Component.extend({
+  items: Em.required(Array)
 });
 
 
@@ -1406,29 +1466,33 @@ App.ApplicationController = Em.Controller.extend({
 (function() {
 
 App.ApplicationView = Em.View.extend({
-  classNames: ['row-fluid', 'pane', 'app-container'],
-  bodyClassName: 'main-pane',
-  filtersClassName: 'filter-pane',
-  FilterToggle: VU.ButtonView.extend({
-    classNames: ['filter-toggle'],
-    action: 'showFilters',
-    target: 'parentView',
-    actionContext: Em.computed.alias('element')
+  init: function() {
+    window.view = this;
+    return this._super();
+  },
+  isMobileBinding: 'App.isMobile',
+  classNames: ['st-container'],
+  classNameBindings: ['transitionEffect', 'isOpen:st-menu-open'],
+  transitionEffect: Em.computed('isMobile', function() {
+    var isMobile;
+    isMobile = this.get('isMobile');
+    if (isMobile) {
+      return 'st-effect-4';
+    } else {
+      return 'st-effect-1';
+    }
   }),
+  isOpen: false,
+  _defaultOpen: (function() {
+    return this.set('isOpen', !this.get('isMobile'));
+  }).on('init'),
   actions: {
-    showFilters: function(buttonElement) {
-      var $body, $button, $filters, $this, buttonWidth, filtersWidth, left, windowWidth;
-      $this = $(this.get('element'));
-      $body = $this.find('.' + this.get('bodyClassName'));
-      $filters = $this.find('.' + this.get('filtersClassName'));
-      $button = $(buttonElement);
-      buttonWidth = $button.outerWidth(true);
-      filtersWidth = $filters.outerWidth(true);
-      windowWidth = $(window).width();
-      left = parseInt($body.css('left'), 10) > 0 ? 0 : buttonWidth + filtersWidth > windowWidth ? windowWidth - buttonWidth : filtersWidth / $this.width() * 100 + '%';
-      return $body.animate({
-        left: left
-      });
+    closeMenu: function() {
+      var isMobile;
+      isMobile = this.get('isMobile');
+      if (!isMobile) {
+        return this.set('isOpen', false);
+      }
     }
   }
 });

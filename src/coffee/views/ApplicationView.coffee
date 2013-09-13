@@ -2,31 +2,24 @@
 require 'utils/ButtonView'
 
 App.ApplicationView = Em.View.extend
-  classNames: ['row-fluid', 'pane', 'app-container']
-  bodyClassName: 'main-pane'
-  filtersClassName: 'filter-pane'
+  init: ->
+    window.view = this
+    @_super()
+  isMobileBinding: 'App.isMobile'
+  classNames: ['st-container']
+  classNameBindings: ['transitionEffect', 'isOpen:st-menu-open'] #['row-fluid', 'pane', 'app-container']
+  transitionEffect: Em.computed 'isMobile', ->
+    isMobile = @get 'isMobile'
+    if isMobile then 'st-effect-4'
+    else 'st-effect-1'
+  # transitionEffect: 'st-effect-4'
 
-  FilterToggle: VU.ButtonView.extend
-    classNames: ['filter-toggle']
-    action: 'showFilters'
-    target: 'parentView'
-    actionContext: Em.computed.alias 'element'
+  isOpen: false
+  _defaultOpen: ( ->
+    @set 'isOpen', not @get('isMobile')
+  ).on 'init'
 
   actions:
-    showFilters: (buttonElement) ->
-      # TODO: Add functionality for when the browser resizes
-      $this = $(@get 'element')
-      $body = $this.find('.' + @get 'bodyClassName')
-      $filters = $this.find('.' + @get 'filtersClassName')
-      $button = $(buttonElement)
-
-      buttonWidth = $button.outerWidth true
-      filtersWidth = $filters.outerWidth true
-      windowWidth = $(window).width()
-
-      left = if parseInt($body.css('left'), 10) > 0 then 0
-      else
-        if buttonWidth + filtersWidth > windowWidth
-          windowWidth - buttonWidth
-        else filtersWidth / $this.width() * 100 + '%'
-      $body.animate {left}
+    closeMenu: ->
+      isMobile = @get 'isMobile'
+      if not isMobile then @set 'isOpen', false

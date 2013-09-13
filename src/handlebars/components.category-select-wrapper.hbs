@@ -1,6 +1,8 @@
 
-<ul class="nav nav-list">
+<ul class="unstyled">
 {{#each category in categories}}
-  {{category-select activeCategories=activeCategories category=category name=category.name}}
+  <li>
+    {{category-select activeCategories=activeCategories category=category name=category.name}}
+  </li>
 {{/each}}
 </ul>
