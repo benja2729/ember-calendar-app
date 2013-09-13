@@ -334,13 +334,14 @@ function program1(depth0,data) {
 Ember.TEMPLATES["components/category-select"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
 
   data.buffer.push("\n<a href=\"\">");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.titleize || depth0.titleize),stack1 ? stack1.call(depth0, "name", options) : helperMissing.call(depth0, "titleize", "name", options))));
   data.buffer.push("</a>\n");
   return buffer;
   
@@ -1001,6 +1002,30 @@ Em.Handlebars.registerBoundHelper('time', function(date) {
     return time.format('hh:mm a');
   }
 });
+
+
+})();
+
+(function() {
+
+var shortWords, titleize;
+
+shortWords = Ember.A(['of', 'a', 'the', 'and', 'an', 'or', 'nor', 'but', 'is', 'if', 'then', 'else', 'when', 'at', 'from', 'by', 'on', 'off', 'for', 'in', 'out', 'over', 'to', 'into', 'with']);
+
+titleize = function(str) {
+  var strArray;
+  strArray = str.split(' ');
+  strArray = Ember.ArrayPolyfills.map.call(strArray, function(slug) {
+    if (!shortWords.contains(slug)) {
+      return Ember.String.capitalize(slug);
+    } else {
+      return slug;
+    }
+  });
+  return strArray.join(' ');
+};
+
+Ember.Handlebars.registerBoundHelper('titleize', titleize);
 
 
 })();
