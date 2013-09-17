@@ -548,8 +548,13 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 function program1(depth0,data) {
   
-  var buffer = '';
-  data.buffer.push("\n    <div class=\"well\">\n    <h3>Your search rendered no results.</h3>\n    ");
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n    <div class=\"well\">\n    <h3>Your search for events on ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.date || depth0.date),stack1 ? stack1.call(depth0, "currentDay", options) : helperMissing.call(depth0, "date", "currentDay", options))));
+  data.buffer.push(" rendered no results.</h3>\n    ");
   data.buffer.push("\n    </div>\n  ");
   return buffer;
   }
