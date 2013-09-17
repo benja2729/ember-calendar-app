@@ -1527,6 +1527,9 @@ App.ApplicationController = Em.Controller.extend({
 (function() {
 
 App.ApplicationView = Em.View.extend({
+  _removeLoader: (function() {
+    return $('#loader').remove();
+  }).on('willInsertElement'),
   init: function() {
     window.view = this;
     return this._super();

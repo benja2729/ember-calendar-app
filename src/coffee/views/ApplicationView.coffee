@@ -2,6 +2,10 @@
 require 'utils/ButtonView'
 
 App.ApplicationView = Em.View.extend
+  _removeLoader: ( ->
+    $('#loader').remove()
+  ).on 'willInsertElement'
+  
   init: ->
     window.view = this
     @_super()
