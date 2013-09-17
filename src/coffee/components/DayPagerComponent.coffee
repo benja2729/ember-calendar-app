@@ -4,6 +4,8 @@ require 'components/PagerItemComponent'
 App.DayPagerComponent = Em.Component.extend
   range: Em.required String
   format: 'ddd, MMM Do'
+  today: moment()
+  isToday: Em.computed 'date', -> @get('today').date() is @get('date').date()
   date: Em.computed (key, value) ->
     if value? then moment value
     else undefined
@@ -18,4 +20,7 @@ App.DayPagerComponent = Em.Component.extend
 
   actions:
     sendTransition: (date) ->
-      @sendAction 'action', date
+      today = @get 'today'
+      isToday = @get('isToday') and today.date() is date.date() 
+      if not isToday then @sendAction 'action', date
+      # @sendAction 'action', date

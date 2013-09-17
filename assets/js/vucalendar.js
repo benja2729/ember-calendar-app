@@ -471,8 +471,19 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
     'date': ("previousDate")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options))));
-  data.buffer.push("\n  </li>\n");
-  data.buffer.push("\n  <li class=\"next\">\n    ");
+  data.buffer.push("\n  </li>\n  <li>\n    ");
+  hashContexts = {'tagName': depth0,'action': depth0,'title': depth0,'date': depth0,'isToday': depth0,'classNameBindings': depth0};
+  hashTypes = {'tagName': "STRING",'action': "STRING",'title': "STRING",'date': "ID",'isToday': "ID",'classNameBindings': "STRING"};
+  options = {hash:{
+    'tagName': ("a"),
+    'action': ("sendTransition"),
+    'title': ("Today"),
+    'date': ("today"),
+    'isToday': ("isToday"),
+    'classNameBindings': ("isToday:disabled")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options))));
+  data.buffer.push("\n  </li>\n  <li class=\"next\">\n    ");
   hashContexts = {'tagName': depth0,'action': depth0,'date': depth0};
   hashTypes = {'tagName': "STRING",'action': "STRING",'date': "ID"};
   options = {hash:{
@@ -503,14 +514,36 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 Ember.TEMPLATES["components/pager-item"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
-
+function program1(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "title", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n  ");
   hashTypes = {};
   hashContexts = {};
   options = {hash:{},contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "date", "format", options) : helperMissing.call(depth0, "moment", "date", "format", options))));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "title", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n");
   return buffer;
   
@@ -1426,6 +1459,7 @@ App.ArchiveListComponent = Em.Component.extend({
 App.PagerItemComponent = App.ButtonControlComponent.extend({
   classNames: ['pager-item'],
   format: 'ddd, MMM Do',
+  title: null,
   date: Em.computed(function(key, value) {
     if (value != null) {
       return moment(value);
@@ -1449,6 +1483,10 @@ App.PagerItemComponent = App.ButtonControlComponent.extend({
 App.DayPagerComponent = Em.Component.extend({
   range: Em.required(String),
   format: 'ddd, MMM Do',
+  today: moment(),
+  isToday: Em.computed('date', function() {
+    return this.get('today').date() === this.get('date').date();
+  }),
   date: Em.computed(function(key, value) {
     if (value != null) {
       return moment(value);
@@ -1470,7 +1508,12 @@ App.DayPagerComponent = Em.Component.extend({
   }),
   actions: {
     sendTransition: function(date) {
-      return this.sendAction('action', date);
+      var isToday, today;
+      today = this.get('today');
+      isToday = this.get('isToday') && today.date() === date.date();
+      if (!isToday) {
+        return this.sendAction('action', date);
+      }
     }
   }
 });
