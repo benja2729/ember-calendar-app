@@ -1,13 +1,13 @@
 <ul class="pager">
-  {{#pager-item classNames="previous" action="sendTransition" date=previousDate}}
-    &larr; {{moment previousDate format}}
-  {{/pager-item}}
+  <li class="previous">
+    {{pager-item tagName="a" action="sendTransition" date=previousDate}}
+  </li>
 {{!--
   <li>
     <strong>{{date date}}</strong>
   </li>
 --}}
-  {{#pager-item classNames="next" action="sendTransition" date=nextDate}}
-    {{moment nextDate format}} &rarr;
-  {{/pager-item}}
+  <li class="next">
+    {{pager-item tagName="a" action="sendTransition" date=nextDate}}
+  </li>
 </ul>

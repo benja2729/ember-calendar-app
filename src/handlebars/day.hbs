@@ -5,7 +5,7 @@
 <div class="events-body">
   {{day-pager action="transitionToDay" date=currentDay range="day"}}
 
-  {{#archive-list items=filteredContent}}
+  {{#archive-list items=filteredContent transition="transitionToEvent" classNames="fader"}}
     <div class="well">
     Your search rendered no results.
     {{partial _crying-face}}

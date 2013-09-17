@@ -317,13 +317,35 @@ function program2(depth0,data) {
 Ember.TEMPLATES["components/archive-item"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, hashTypes, hashContexts, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.date || depth0.date),stack1 ? stack1.call(depth0, "start", options) : helperMissing.call(depth0, "date", "start", options))));
+  data.buffer.push(" - ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.time || depth0.time),stack1 ? stack1.call(depth0, "start", options) : helperMissing.call(depth0, "time", "start", options))));
+  data.buffer.push("\n  <br />\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.titleize || depth0.titleize),stack1 ? stack1.call(depth0, "title", options) : helperMissing.call(depth0, "titleize", "title", options))));
+  data.buffer.push("\n");
+  return buffer;
+  }
 
   data.buffer.push("\n");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "yield", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  stack1 = helpers['with'].call(depth0, "event", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n");
   return buffer;
   
@@ -336,37 +358,23 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 function program1(depth0,data) {
   
-  var buffer = '', stack1, stack2, hashContexts, hashTypes, options;
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n");
   data.buffer.push("\n  ");
-  hashContexts = {'tagName': depth0,'classNames': depth0};
-  hashTypes = {'tagName': "STRING",'classNames': "STRING"};
+  hashContexts = {'route': depth0,'event': depth0,'load': depth0,'show': depth0};
+  hashTypes = {'route': "STRING",'event': "ID",'load': "STRING",'show': "STRING"};
   options = {hash:{
-    'tagName': ("div"),
-    'classNames': ("well")
-  },inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  stack2 = ((stack1 = helpers['link-to'] || depth0['link-to']),stack1 ? stack1.call(depth0, "event", "", options) : helperMissing.call(depth0, "link-to", "event", "", options));
-  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+    'route': ("event"),
+    'event': (""),
+    'load': ("loadItem"),
+    'show': ("showItem")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['archive-item'] || depth0['archive-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "archive-item", options))));
   data.buffer.push("\n");
   return buffer;
   }
-function program2(depth0,data) {
-  
-  var buffer = '', stack1, hashTypes, hashContexts, options;
-  data.buffer.push("\n    ");
-  hashTypes = {};
-  hashContexts = {};
-  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.titleize || depth0.titleize),stack1 ? stack1.call(depth0, "title", options) : helperMissing.call(depth0, "titleize", "title", options))));
-  data.buffer.push("\n    <br />\n    ");
-  hashTypes = {};
-  hashContexts = {};
-  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.time || depth0.time),stack1 ? stack1.call(depth0, "start", options) : helperMissing.call(depth0, "time", "start", options))));
-  data.buffer.push("\n  ");
-  return buffer;
-  }
 
-function program4(depth0,data) {
+function program3(depth0,data) {
   
   var buffer = '', hashTypes, hashContexts;
   data.buffer.push("\n  ");
@@ -380,9 +388,23 @@ function program4(depth0,data) {
   data.buffer.push("\n");
   hashTypes = {};
   hashContexts = {};
-  stack1 = helpers.each.call(depth0, "items", {hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack1 = helpers.each.call(depth0, "items", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/button-control"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "yield", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   return buffer;
   
 });
@@ -437,54 +459,29 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 Ember.TEMPLATES["components/day-pager"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, stack2, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+  var buffer = '', stack1, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
-function program1(depth0,data) {
-  
-  var buffer = '', stack1, hashTypes, hashContexts, options;
-  data.buffer.push("\n    &larr; ");
-  hashTypes = {};
-  hashContexts = {};
-  options = {hash:{},contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "previousDate", "format", options) : helperMissing.call(depth0, "moment", "previousDate", "format", options))));
-  data.buffer.push("\n  ");
-  return buffer;
-  }
 
-function program3(depth0,data) {
-  
-  var buffer = '', stack1, hashTypes, hashContexts, options;
-  data.buffer.push("\n    ");
-  hashTypes = {};
-  hashContexts = {};
-  options = {hash:{},contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "nextDate", "format", options) : helperMissing.call(depth0, "moment", "nextDate", "format", options))));
-  data.buffer.push(" &rarr;\n  ");
-  return buffer;
-  }
-
-  data.buffer.push("<ul class=\"pager\">\n  ");
-  hashContexts = {'classNames': depth0,'action': depth0,'date': depth0};
-  hashTypes = {'classNames': "STRING",'action': "STRING",'date': "ID"};
+  data.buffer.push("<ul class=\"pager\">\n  <li class=\"previous\">\n    ");
+  hashContexts = {'tagName': depth0,'action': depth0,'date': depth0};
+  hashTypes = {'tagName': "STRING",'action': "STRING",'date': "ID"};
   options = {hash:{
-    'classNames': ("previous"),
+    'tagName': ("a"),
     'action': ("sendTransition"),
     'date': ("previousDate")
-  },inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  stack2 = ((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options));
-  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n");
-  data.buffer.push("\n  ");
-  hashContexts = {'classNames': depth0,'action': depth0,'date': depth0};
-  hashTypes = {'classNames': "STRING",'action': "STRING",'date': "ID"};
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options))));
+  data.buffer.push("\n  </li>\n");
+  data.buffer.push("\n  <li class=\"next\">\n    ");
+  hashContexts = {'tagName': depth0,'action': depth0,'date': depth0};
+  hashTypes = {'tagName': "STRING",'action': "STRING",'date': "ID"};
   options = {hash:{
-    'classNames': ("next"),
+    'tagName': ("a"),
     'action': ("sendTransition"),
     'date': ("nextDate")
-  },inverse:self.noop,fn:self.program(3, program3, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  stack2 = ((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options));
-  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n</ul>");
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options))));
+  data.buffer.push("\n  </li>\n</ul>");
   return buffer;
   
 });
@@ -506,14 +503,15 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 Ember.TEMPLATES["components/pager-item"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("\n<a href=\"\">\n  ");
+  data.buffer.push("\n");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "yield", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n</a>");
+  options = {hash:{},contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "date", "format", options) : helperMissing.call(depth0, "moment", "date", "format", options))));
+  data.buffer.push("\n");
   return buffer;
   
 });
@@ -576,10 +574,12 @@ function program1(depth0,data) {
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers['day-pager'] || depth0['day-pager']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "day-pager", options))));
   data.buffer.push("\n\n  ");
-  hashContexts = {'items': depth0};
-  hashTypes = {'items': "ID"};
+  hashContexts = {'items': depth0,'transition': depth0,'classNames': depth0};
+  hashTypes = {'items': "ID",'transition': "STRING",'classNames': "STRING"};
   options = {hash:{
-    'items': ("filteredContent")
+    'items': ("filteredContent"),
+    'transition': ("transitionToEvent"),
+    'classNames': ("fader")
   },inverse:self.noop,fn:self.program(1, program1, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['archive-list'] || depth0['archive-list']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "archive-list", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
@@ -1067,8 +1067,8 @@ shortWords = Ember.A(['of', 'a', 'the', 'and', 'an', 'or', 'nor', 'but', 'is', '
 titleize = function(str) {
   var strArray;
   strArray = str.split(' ');
-  strArray = Ember.ArrayPolyfills.map.call(strArray, function(slug) {
-    if (!shortWords.contains(slug)) {
+  strArray = Ember.ArrayPolyfills.map.call(strArray, function(slug, index) {
+    if (index === 0 || !shortWords.contains(slug)) {
       return Ember.String.capitalize(slug);
     } else {
       return slug;
@@ -1295,9 +1295,21 @@ VU.BitObject.reopenClass({
 
 (function() {
 
-App.FilterToggleComponent = Em.Component.extend({
+App.ButtonControlComponent = Em.Component.extend({
   tagName: 'button',
-  classNames: ['btn', 'btn-primary', 'btn-giving', 'filter-toggle'],
+  classNames: ['btn', 'btn-primary'],
+  click: function() {
+    return this.sendAction('action', this);
+  }
+});
+
+
+})();
+
+(function() {
+
+App.FilterToggleComponent = App.ButtonControlComponent.extend({
+  classNames: ['btn-giving', 'filter-toggle'],
   classNameBindings: ['isOpen:active'],
   title: 'Filters',
   isOpen: Em.required(Boolean),
@@ -1368,8 +1380,26 @@ App.CategorySelectWrapperComponent = Em.Component.extend({
 
 (function() {
 
-App.ArchiveListComponent = Em.Component.extend({
-  items: Em.required(Array)
+App.ArchiveItemComponent = Em.Component.extend({
+  tagName: 'div',
+  classNames: ['well', 'archive-item'],
+  classNameBindings: ['isActive:active', 'popOut'],
+  event: Em.required('App.Event'),
+  route: 'event',
+  click: function() {
+    var model, route;
+    route = this.get('route');
+    model = this.get('event');
+    return this.sendAction('load', {
+      route: route,
+      model: model
+    });
+  },
+  isActive: false,
+  _activeHandler: (function(event) {
+    return this.toggleProperty('isActive');
+  }).on('mouseEnter', 'mouseLeave'),
+  popOut: Em.computed.alias('isActive')
 });
 
 
@@ -1377,8 +1407,23 @@ App.ArchiveListComponent = Em.Component.extend({
 
 (function() {
 
-App.PagerItemComponent = Em.Component.extend({
-  tagName: 'li',
+App.ArchiveListComponent = Em.Component.extend({
+  classNames: ['archive-list'],
+  items: Em.required(Array),
+  actions: {
+    loadItem: function(transition) {
+      return this.sendAction('transition', transition);
+    }
+  }
+});
+
+
+})();
+
+(function() {
+
+App.PagerItemComponent = App.ButtonControlComponent.extend({
+  classNames: ['pager-item'],
   format: 'ddd, MMM Do',
   date: Em.computed(function(key, value) {
     if (value != null) {
@@ -1800,6 +1845,9 @@ App.DayRoute = Em.Route.extend({
       day = getRange(input);
       model = this.loadDay(day);
       return this.transitionTo('day', model);
+    },
+    transitionToEvent: function(trasition) {
+      return this.transitionTo(trasition.route, trasition.model);
     }
   }
 });

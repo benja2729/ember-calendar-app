@@ -1,7 +1,8 @@
 
-App.FilterToggleComponent = Em.Component.extend
-  tagName: 'button'
-  classNames: ['btn', 'btn-primary', 'btn-giving','filter-toggle']
+require 'components/ButtonControlComponent'
+
+App.FilterToggleComponent = App.ButtonControlComponent.extend
+  classNames: ['btn-giving', 'filter-toggle']
   classNameBindings: ['isOpen:active']
   title: 'Filters'
   isOpen: Em.required Boolean

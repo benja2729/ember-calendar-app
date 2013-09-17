@@ -3,8 +3,8 @@ shortWords = Ember.A ['of','a','the','and','an','or','nor','but','is','if','then
 
 titleize = (str) ->
   strArray = str.split ' '
-  strArray = Ember.ArrayPolyfills.map.call strArray, (slug) ->
-    if not shortWords.contains slug
+  strArray = Ember.ArrayPolyfills.map.call strArray, (slug, index) ->
+    if index is 0 or not shortWords.contains slug
       Ember.String.capitalize slug
     else slug
   strArray.join ' '

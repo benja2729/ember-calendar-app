@@ -1,6 +1,8 @@
 
-App.PagerItemComponent = Em.Component.extend
-  tagName: 'li'
+require 'components/ButtonControlComponent'
+
+App.PagerItemComponent = App.ButtonControlComponent.extend
+  classNames: ['pager-item']
   format: 'ddd, MMM Do'
   date: Em.computed (key, value) ->
     if value? then moment value

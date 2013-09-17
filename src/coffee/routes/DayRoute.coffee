@@ -43,3 +43,6 @@ App.DayRoute = Em.Route.extend
       day = getRange input
       model = @loadDay day
       @transitionTo 'day', model
+
+    transitionToEvent: (trasition) ->
+      @transitionTo trasition.route, trasition.model

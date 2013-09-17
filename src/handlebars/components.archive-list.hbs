@@ -1,10 +1,13 @@
 
 {{#each items}}
+{{!--
   {{#link-to "event" this tagName="div" classNames="well"}}
     {{titleize title}}
     <br />
     {{time start}}
   {{/link-to}}
+--}}
+  {{archive-item route="event" event=this load="loadItem" show="showItem"}}
 {{else}}
   {{yield}}
 {{/each}}
