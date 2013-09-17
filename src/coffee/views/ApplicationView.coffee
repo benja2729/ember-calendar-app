@@ -11,7 +11,7 @@ App.ApplicationView = Em.View.extend
     @_super()
   isMobileBinding: 'App.isMobile'
   classNames: ['st-container']
-  classNameBindings: ['transitionEffect', 'isOpen:st-menu-open'] #['row-fluid', 'pane', 'app-container']
+  classNameBindings: ['isMobile:is-mobile:not-mobile', 'transitionEffect', 'isOpen:st-menu-open'] #['row-fluid', 'pane', 'app-container']
   transitionEffect: Em.computed 'isMobile', ->
     isMobile = @get 'isMobile'
     if isMobile then 'st-effect-4'
