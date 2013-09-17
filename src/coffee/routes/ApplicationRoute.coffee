@@ -42,5 +42,5 @@ App.ApplicationRoute = Em.Route.extend
 
       @transitionTo destinationRoute, model, destinationModel
 
-# App.IndexRoute = Em.Route.extend
-#   redirect: -> @transitionTo 'filters'
+App.IndexRoute = Em.Route.extend
+  redirect: -> @transitionTo 'day'

@@ -1616,6 +1616,12 @@ App.ApplicationRoute = Em.Route.extend({
   }
 });
 
+App.IndexRoute = Em.Route.extend({
+  redirect: function() {
+    return this.transitionTo('day');
+  }
+});
+
 
 })();
 
