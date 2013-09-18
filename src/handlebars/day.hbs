@@ -3,7 +3,7 @@
 <h1>{{moment currentDay "dddd, MMMM Do, YYYY"}}</h1>
 </header>
 <div class="events-body">
-  {{day-pager action="transitionToDay" date=currentDay range="day"}}
+  {{range-pager action="transitionToDay" date=currentDay range="day"}}
 
   {{#archive-list items=filteredContent transition="transitionToEvent" classNames="fader"}}
     <div class="well">

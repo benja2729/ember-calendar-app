@@ -1,7 +1,7 @@
 
 require 'components/PagerItemComponent'
 
-App.DayPagerComponent = Em.Component.extend
+App.RangePagerComponent = Em.Component.extend
   range: Em.required String
   format: 'ddd, MMM Do'
   today: moment()

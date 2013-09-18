@@ -456,47 +456,6 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   
 });
 
-Ember.TEMPLATES["components/day-pager"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-
-
-  data.buffer.push("<ul class=\"pager\">\n  <li class=\"previous\">\n    ");
-  hashContexts = {'tagName': depth0,'action': depth0,'date': depth0};
-  hashTypes = {'tagName': "STRING",'action': "STRING",'date': "ID"};
-  options = {hash:{
-    'tagName': ("a"),
-    'action': ("sendTransition"),
-    'date': ("previousDate")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options))));
-  data.buffer.push("\n  </li>\n  <li>\n    ");
-  hashContexts = {'tagName': depth0,'action': depth0,'title': depth0,'date': depth0,'isToday': depth0,'classNameBindings': depth0};
-  hashTypes = {'tagName': "STRING",'action': "STRING",'title': "STRING",'date': "ID",'isToday': "ID",'classNameBindings': "STRING"};
-  options = {hash:{
-    'tagName': ("a"),
-    'action': ("sendTransition"),
-    'title': ("Today"),
-    'date': ("today"),
-    'isToday': ("isToday"),
-    'classNameBindings': ("isToday:disabled")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options))));
-  data.buffer.push("\n  </li>\n  <li class=\"next\">\n    ");
-  hashContexts = {'tagName': depth0,'action': depth0,'date': depth0};
-  hashTypes = {'tagName': "STRING",'action': "STRING",'date': "ID"};
-  options = {hash:{
-    'tagName': ("a"),
-    'action': ("sendTransition"),
-    'date': ("nextDate")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options))));
-  data.buffer.push("\n  </li>\n</ul>");
-  return buffer;
-  
-});
-
 Ember.TEMPLATES["components/filter-toggle"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
@@ -545,6 +504,47 @@ function program3(depth0,data) {
   stack1 = helpers['if'].call(depth0, "title", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/range-pager"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("<ul class=\"pager\">\n  <li class=\"previous\">\n    ");
+  hashContexts = {'tagName': depth0,'action': depth0,'date': depth0};
+  hashTypes = {'tagName': "STRING",'action': "STRING",'date': "ID"};
+  options = {hash:{
+    'tagName': ("a"),
+    'action': ("sendTransition"),
+    'date': ("previousDate")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options))));
+  data.buffer.push("\n  </li>\n  <li>\n    ");
+  hashContexts = {'tagName': depth0,'action': depth0,'title': depth0,'date': depth0,'isToday': depth0,'classNameBindings': depth0};
+  hashTypes = {'tagName': "STRING",'action': "STRING",'title': "STRING",'date': "ID",'isToday': "ID",'classNameBindings': "STRING"};
+  options = {hash:{
+    'tagName': ("a"),
+    'action': ("sendTransition"),
+    'title': ("Today"),
+    'date': ("today"),
+    'isToday': ("isToday"),
+    'classNameBindings': ("isToday:disabled")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options))));
+  data.buffer.push("\n  </li>\n  <li class=\"next\">\n    ");
+  hashContexts = {'tagName': depth0,'action': depth0,'date': depth0};
+  hashTypes = {'tagName': "STRING",'action': "STRING",'date': "ID"};
+  options = {hash:{
+    'tagName': ("a"),
+    'action': ("sendTransition"),
+    'date': ("nextDate")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options))));
+  data.buffer.push("\n  </li>\n</ul>");
   return buffer;
   
 });
@@ -606,7 +606,7 @@ function program1(depth0,data) {
     'date': ("currentDay"),
     'range': ("day")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers['day-pager'] || depth0['day-pager']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "day-pager", options))));
+  data.buffer.push(escapeExpression(((stack1 = helpers['range-pager'] || depth0['range-pager']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "range-pager", options))));
   data.buffer.push("\n\n  ");
   hashContexts = {'items': depth0,'transition': depth0,'classNames': depth0};
   hashTypes = {'items': "ID",'transition': "STRING",'classNames': "STRING"};
@@ -1480,7 +1480,7 @@ App.PagerItemComponent = App.ButtonControlComponent.extend({
 
 (function() {
 
-App.DayPagerComponent = Em.Component.extend({
+App.RangePagerComponent = Em.Component.extend({
   range: Em.required(String),
   format: 'ddd, MMM Do',
   today: moment(),
