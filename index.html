@@ -36,21 +36,24 @@
   
   <body>
     <div class="container pane" id="VUCalendar">
+      <noscript><h1>You must have JavaScript enabled to view the calendar.</h1></noscript>
 
       <!-- TODO: Impliment integrated loader with Ember -->
-      <div id="loader" class="">
-        <div class="wrapper">
-            <div class="inner">
-                <span>L</span>
-                <span>o</span>
-                <span>a</span>
-                <span>d</span>
-                <span>i</span>
-                <span>n</span>
-                <span>g</span>
-            </div>
-        </div>
-      </div>
+      <script>
+      document.write('<div id="loader" class="">\
+        <div class="wrapper">\
+          <div class="inner">\
+            <span>L</span>\
+            <span>o</span>\
+            <span>a</span>\
+            <span>d</span>\
+            <span>i</span>\
+            <span>n</span>\
+            <span>g</span>\
+          </div>\
+        </div>\
+      </div>');
+      </script>
 
     </div>
   </body>
