@@ -1059,10 +1059,22 @@ Em.Handlebars.registerBoundHelper('moment', function(date, format) {
 
 (function() {
 
+var linkRegex, linkRplStr, nlRegex, nlRplStr;
+
+nlRegex = /\\n|\\r/g;
+
+nlRplStr = "\n";
+
+linkRegex = /(\s+|^)(https?:\\/\\/.*)[\.,\?\!:;]?(\s+|$)/g;
+
+linkRplStr = "<a href=\"$2\">$2</a>";
+
 Em.Handlebars.registerBoundHelper('showdown', function(text) {
   var e, result;
   try {
-    result = (new Showdown.converter()).makeHtml(text.replace(/\\n|\\r/g, '\n'));
+    result = text.replace(nlRegex, nlRplStr);
+    result = (new Showdown.converter()).makeHtml(result);
+    result = result.replace(linkRegex, linkRplStr);
     return new Em.Handlebars.SafeString(result);
   } catch (_error) {
     e = _error;
