@@ -1065,15 +1065,19 @@ nlRegex = /\\n|\\r/g;
 
 nlRplStr = "\n";
 
-linkRegex = /(\s+|^)(https?:\\/\\/.*)[\.,\?\!:;]?(\s+|$)/g;
+linkRegex = /(\s+|^)(https?:\/\/[^<\s]*)(.*(?:$|\s+))/g;
 
-linkRplStr = "<a href=\"$2\">$2</a>";
+linkRplStr = "$1<a href=\"$2\">$2</a>$3";
 
 Em.Handlebars.registerBoundHelper('showdown', function(text) {
   var e, result;
   try {
     result = text.replace(nlRegex, nlRplStr);
     result = (new Showdown.converter()).makeHtml(result);
+    result.replace(linkRegex, function() {
+      console.log(arguments);
+      return "";
+    });
     result = result.replace(linkRegex, linkRplStr);
     return new Em.Handlebars.SafeString(result);
   } catch (_error) {
@@ -1634,7 +1638,20 @@ Em.Route.reopen({
 
 App.ApplicationRoute = Em.Route.extend({
   model: function() {
-    return this.get('store').find('category');
+    var store;
+    store = this.get('store');
+    store.push('event', {
+      'id': '2729',
+      'start': moment().startOf('day').format(),
+      'end': moment().endOf('day').format(),
+      'location': 'IMC',
+      'is_all_day': false,
+      'title': 'Test Record',
+      'description': 'Test Description!\n\nLet\'s see what Showdown can do.\n\nAuto-parsed link: http://www.valpo.edu\n\nAuto-parsed link: http://www.valpo.edu with text after\n\nHTML link: <a href="http://www.valpo.edu">Valpo</a>\n\nMarkDown link: [Valpo](http://www.valpo.edu)',
+      'url': 'http://www.valpo.edu',
+      'categories': [11]
+    });
+    return store.find('category');
   },
   setupController: function(controller) {
     return controller.set('allCategories', this.get('store').find('category'));
