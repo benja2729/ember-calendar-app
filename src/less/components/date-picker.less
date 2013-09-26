@@ -1,0 +1,57 @@
+
+.chosenFontAtSize(@size) {
+  // font-family: serif;
+  font-weight: normal;
+  font-size: @size;
+}
+
+.date-picker {
+
+  table {
+    width: 100%;
+
+    td {
+      text-align: center;
+      padding: 0.5em;
+    }
+  }
+
+  header {
+    .chosenFontAtSize(1.2em);
+    position: relative;
+    width: 100%;
+    height: 30px;
+
+    .current-month {
+      position: absolute;
+      left: 20%;
+      right: 20%;
+      text-align: center;
+    }
+
+    .button-header {
+      position: absolute;
+      color: white;
+      background-color: grey;
+      border-radius: 1px;
+    }
+
+    .button-left {
+      left: 0%;
+    }
+
+    .button-right {
+      right: 0%;
+    }
+  }
+
+  .calendar {
+    .chosenFontAtSize(1em);
+  }
+}
+
+.valid-day {
+  &:hover {
+    background-color: white;
+  }
+}

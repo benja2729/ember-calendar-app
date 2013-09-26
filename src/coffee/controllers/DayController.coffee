@@ -28,14 +28,23 @@ App.DayController = Em.ArrayController.extend
   sortAscending: true
   sortFunction: (a, b) -> +a - +b
 
-  currentDay: Em.computed 'arrangedContent.firstObject', (key, value) ->
+  currentDay: Em.computed (key, value) ->
     if value? then value
     else 
       start = @get 'arrangedContent.firstObject.start'
       today = @get 'today'
       start or today
+  _currentDayObserver: Em.observer( ->
+    currentDay = @get 'currentDay'
+    @send 'transitionToDay', currentDay
+  , 'currentDay')
 
-  filteredContent: Em.computed 'arrangedContent.@each', ->
+  allDayEvents: Em.computed.filterBy 'arrangedContent', 'isAllDay', true
+  hasAllDayEvents: Em.computed.empty 'allDayEvents.length'
+
+  featuredEvents: Em.computed.filterBy 'arrangedContent', 'isFeatured', true
+
+  filteredEvents: Em.computed 'arrangedContent.@each', ->
     arrangedContent = @get 'arrangedContent'
     filters = @get 'controllers.filters'
     filterContent arrangedContent, filters

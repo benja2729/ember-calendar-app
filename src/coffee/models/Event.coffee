@@ -11,3 +11,6 @@ App.Event = DS.Model.extend
   description: DS.attr 'string'
   url: DS.attr 'string'
   categories: DS.hasMany 'category'
+  isFeatured: Em.computed 'categories.@each', ->
+    categories = @get 'categories'
+    categories.anyBy 'id', '11'

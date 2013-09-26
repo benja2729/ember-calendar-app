@@ -1,7 +1,20 @@
 
 .pager li>a, .pager-item {
-  padding: 0.7em 2em;
-  .buttonBackground(#d2bd88, #a58329, #4d2813);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #a58329;
+  cursor: pointer;
+
+  &:hover {
+    color: black;
+    background-color: inherit;
+  }
+
+  &.btn {
+    padding: 0.7em 2em;
+    .buttonBackground(#d2bd88, #a58329, #4d2813);
+  }
 
   &:before, &:after {
     font-size: 1.3em;

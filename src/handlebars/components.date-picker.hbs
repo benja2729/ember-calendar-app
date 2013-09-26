@@ -1,0 +1,37 @@
+<header>
+{{!--
+  <div class="button-header button-left" {{action "changeMonth" -1}}>left</div>
+  <div class="current-month">{{currentMonthName}}</div>
+  <div class="button-header button-right" {{action "changeMonth" 1}}>right</div>
+--}}
+  {{range-pager range="month" date=currentMonth format="MMMM" shortFormat="MMM"}}
+</header>
+
+<table class="calendar">
+  <thead>
+    <tr>
+    {{#each dayNames}}
+      <th>{{this}}</th>
+    {{/each}}
+    </tr>
+  </thead>
+
+  <tbody>
+  {{! some entries may be null so we must account for them }}
+  {{#each week in weeks}}
+    <tr>
+    {{#each day in week}}
+      {{#if day}}
+        {{pager-item format="DD" tagName="td" date=day action="selectDate"}}
+        {{!--
+        <td class="valid-day" {{action "selectDate" day}}>{{day.date}}</td>
+        --}}
+      {{else}}
+        <td class="invalid-day"></td>
+      {{/if}}
+    {{/each}}
+    </tr>
+  {{/each}}
+  </tbody>
+
+</table>

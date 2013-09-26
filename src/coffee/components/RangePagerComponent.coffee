@@ -3,7 +3,12 @@ require 'components/PagerItemComponent'
 
 App.RangePagerComponent = Em.Component.extend
   range: Em.required String
-  format: 'ddd, MMM Do'
+  isMobileBinding: 'App.isMobile'
+  format: 'MMMM'
+  shortFormat: Em.computed.defaultTo 'format'
+  _format: Em.computed 'isMobile', ->
+    if @get('isMobile') then @get('shortFormat')
+    else @get('format')
   today: moment()
   isToday: Em.computed 'date', -> @get('today').date() is @get('date').date()
   date: Em.computed (key, value) ->
@@ -19,8 +24,4 @@ App.RangePagerComponent = Em.Component.extend
     date.clone().subtract range, 1
 
   actions:
-    sendTransition: (date) ->
-      today = @get 'today'
-      isToday = @get('isToday') and today.date() is date.date() 
-      if not isToday then @sendAction 'action', date
-      # @sendAction 'action', date
+    changeDate: (date) -> @set 'date', date

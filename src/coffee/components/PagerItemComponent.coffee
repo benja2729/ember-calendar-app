@@ -1,7 +1,5 @@
 
-require 'components/ButtonControlComponent'
-
-App.PagerItemComponent = App.ButtonControlComponent.extend
+App.PagerItemComponent = Em.Component.extend
   classNames: ['pager-item']
   format: 'ddd, MMM Do'
   title: null

@@ -9,6 +9,22 @@
 @import "tympanus/SidebarTransitions/component.less";
 @import "components/pager-item.less";
 @import "components/archive-list.less";
+@import "components/date-picker.less";
+
+.is-featured {
+  position: relative;
+
+  &:before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 0 0 30px 30px;
+    border-left-color: #a58329;
+  }
+}
 
 /**
  * Overrides VU default nav text-transform for

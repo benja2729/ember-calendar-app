@@ -1,11 +1,11 @@
 <ul class="pager">
   <li class="previous">
-    {{pager-item tagName="a" action="sendTransition" date=previousDate}}
+    {{pager-item format=_format tagName="a" date=previousDate action="changeDate"}}
   </li>
   <li>
-    {{pager-item tagName="a" action="sendTransition" title="Today" date=today isToday=isToday classNameBindings="isToday:disabled"}}
+    {{moment date _format}}
   </li>
   <li class="next">
-    {{pager-item tagName="a" action="sendTransition" date=nextDate}}
+    {{pager-item format=_format tagName="a" date=nextDate action="changeDate"}}
   </li>
 </ul>
