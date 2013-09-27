@@ -1,16 +1,14 @@
 
-App.ArchiveItemComponent = Em.Component.extend
+require 'utils/EventControlMixin'
+
+App.ArchiveItemComponent = Em.Component.extend App.EventControlMixin,
   tagName: 'div'
   classNames: ['well', 'archive-item']
   classNameBindings: ['isActive:active', 'popOut', 'isFeatured']
-  event: Em.required 'App.Event'
-  route: 'event'
+  content: Em.required 'App.Event'
   click: ->
-    route = @get 'route'
-    model = @get 'event'
-    @sendAction 'load', {route, model}
-
-  isFeatured: Em.computed.alias 'event.isFeatured'
+    model = @get 'content'
+    @sendAction 'action', model
 
   isActive: false
   _activeHandler: ((event) ->

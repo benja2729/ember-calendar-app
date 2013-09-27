@@ -1,13 +1,13 @@
 <header class="page-header events-header">
 {{!partial "calendar-svg"}}
-<h1>{{moment currentDay "dddd, MMMM Do, YYYY"}}</h1>
+<h1>{{moment currentDay "MMMM Do, YYYY"}}</h1>
 </header>
 <div class="events-body">
   <div class="row-fluid">
     {{date-picker value=currentDay class="span4"}}
     <div class="span8">
       <h2>Featured Events</h2>
-      {{#archive-list items=featuredEvents transition="transitionToEvent" classNames="fader"}}
+      {{#archive-list items=featuredEvents load="transitionToEvent" show="showEvent" classNames="fader"}}
         <div class="well">
         <h3>There Are no Featured Events today.</h3>
         {{!-- {{partial _crying-face}} --}}
@@ -18,14 +18,14 @@
 
   {{#if hasAllDayEvents}}
     <h2>All Day Events</h2>
-    {{archive-list items=allDayEvents transition="transitionToEvent"}}
+    {{archive-list items=allDayEvents load="transitionToEvent" show="showEvent"}}
   {{/if}}
 
   <section class="events-list">
     <header class="page-header">
       <h2>Events List</h2>
     </header>
-    {{#archive-list items=filteredEvents transition="transitionToEvent" classNames="fader"}}
+    {{#archive-list items=filteredEvents load="transitionToEvent" show="showEvent" classNames="fader"}}
       <div class="well">
       <h3>Your search for events on {{date currentDay}} rendered no results.</h3>
       {{!-- {{partial _crying-face}} --}}

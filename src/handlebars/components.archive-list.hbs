@@ -7,7 +7,7 @@
     {{time start}}
   {{/link-to}}
 --}}
-  {{archive-item route="event" event=this load="loadItem" show="showItem"}}
+  {{archive-item content=this action="displayItem"}}
 {{else}}
   {{yield}}
 {{/each}}

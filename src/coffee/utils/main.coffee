@@ -17,3 +17,5 @@ require 'utils/BackButtonView'
 require 'utils/CategoryButtonView'
 require 'utils/SidePaneView'
 require 'utils/BitObject'
+
+require 'utils/EventControlMixin'

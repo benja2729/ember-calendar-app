@@ -21,6 +21,10 @@ App.ApplicationView = Em.View.extend
   isOpen: false
   _defaultOpen: ( ->
     @set 'isOpen', not @get('isMobile')
+    Em.run.later( =>
+      term = @get('isOpen')
+      if term then @set('isOpen', false)
+    , 2500)
   ).on 'init'
 
   actions:

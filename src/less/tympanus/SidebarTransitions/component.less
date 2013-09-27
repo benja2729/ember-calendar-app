@@ -92,6 +92,9 @@
 	z-index: 100;
 	visibility: hidden;
 	width: 300px;
+	@media (max-width: 380px) {
+		width: 200px;
+	}
 	height: 100%;
 	-webkit-transition: all 0.5s;
 	transition: all 0.5s;
@@ -239,6 +242,11 @@
 .st-effect-4.st-menu-open .st-pusher {
 	-webkit-transform: translate3d(300px, 0, 0);
 	transform: translate3d(300px, 0, 0);
+
+	@media (max-width: 380px) {
+		-webkit-transform: translate3d(200px, 0, 0);
+		transform: translate3d(200px, 0, 0);
+	}
 }
 
 .st-effect-4.st-menu {

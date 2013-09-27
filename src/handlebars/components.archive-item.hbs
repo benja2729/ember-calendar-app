@@ -1,6 +1,18 @@
 
-{{#with event}}
-  {{date start}} - {{time start}}
-  <br />
-  {{titleize title}}
-{{/with}}
+<div class="row-fluid">
+  <div class="span5">
+    <strong>{{titleize content.title}}</strong>
+  </div>
+  <div class="span3">
+  {{#if isMultiDay}}
+    {{date content.start}}, {{time content.start}}
+    {{#if isMinDuration}} - {{date content.start}}, {{time content.end}}{{/if}}
+  {{else}}
+    {{time content.start}}
+    {{#if isMinDuration}} - {{time content.end}}{{/if}}
+  {{/if}}
+  </div>
+  {{#if content.location}}
+    <div class="span3"><strong>Location: </strong>{{content.location}}</div>
+  {{/if}}
+</div>

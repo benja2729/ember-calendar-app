@@ -44,5 +44,7 @@ App.DayRoute = Em.Route.extend
       model = @loadDay day
       @transitionTo 'day', model
 
-    transitionToEvent: (trasition) ->
-      @transitionTo trasition.route, trasition.model
+    transitionToEvent: (model) ->
+      @transitionTo 'event', model
+
+    showEvent: (event) -> alert 'DayRoute#showEvent says: "You still need to implement this"'
