@@ -1,17 +1,22 @@
 <section>
-  <h3>{{title}}</h3>
+  <h3>{{titleize content.title}}</h3>
   <p>
-    {{date startDate}}
-    {{#if isMultiDay}} - {{date endDate}}{{/if}}
+  {{#if isMultiDay}}
+    {{date content.start}}, {{time content.start}}
+    {{#if isMinDuration}} - {{date content.start}}, {{time content.end}}{{/if}}
+  {{else}}
+    {{date content.start}}
     <br />
-    {{time start}} - {{time end}}
+    {{time content.start}}
+    {{#if isMinDuration}} - {{time content.end}}{{/if}}
+  {{/if}}
   </p>
-  <p><b>Location: </b>{{location}}</p>
-  {{#if description}}{{showdown description}}{{/if}}
+  <p><b>Location: </b>{{content.location}}</p>
+  {{#if content.description}}{{showdown content.description}}{{/if}}
   {{outlet}}
 </section>
 <footer>
-{{#if url}}
-  <a {{bindAttr href="url"}}>More Information &nbsp;&gt;&gt;</a>
+{{#if content.url}}
+  <a {{bindAttr href="content.url"}}>More Information &nbsp;&gt;&gt;</a>
 {{/if}}
 </footer>

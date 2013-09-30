@@ -7,7 +7,7 @@
     {{date-picker value=currentDay class="span4"}}
     <div class="span8">
       <h2>Featured Events</h2>
-      {{#archive-list items=featuredEvents load="transitionToEvent" show="showEvent" classNames="fader"}}
+      {{#archive-list items=featuredEvents load="transitionToEvent" show="showEvent"}}
         <div class="well">
         <h3>There Are no Featured Events today.</h3>
         {{!-- {{partial _crying-face}} --}}
@@ -25,7 +25,7 @@
     <header class="page-header">
       <h2>Events List</h2>
     </header>
-    {{#archive-list items=filteredEvents load="transitionToEvent" show="showEvent" classNames="fader"}}
+    {{#archive-list items=filteredEvents load="transitionToEvent" show="showEvent"}}
       <div class="well">
       <h3>Your search for events on {{date currentDay}} rendered no results.</h3>
       {{!-- {{partial _crying-face}} --}}

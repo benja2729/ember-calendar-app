@@ -48,3 +48,8 @@ App.DayController = Em.ArrayController.extend
     arrangedContent = @get 'arrangedContent'
     filters = @get 'controllers.filters'
     filterContent arrangedContent, filters
+
+  # actions:
+  #   showEvent: (event) ->
+  #     Em.Logger.error 'DayRoute#showEvent says: "You still need to implement this"'
+  #     @set 'selectedEvent', event

@@ -1,4 +1,5 @@
 
+require 'components/ModalWindowComponent'
 require 'components/FilterToggleComponent'
 require 'components/CategorySelectWrapperComponent'
 require 'components/DatePickerComponent'

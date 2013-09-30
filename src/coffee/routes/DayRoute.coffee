@@ -47,4 +47,7 @@ App.DayRoute = Em.Route.extend
     transitionToEvent: (model) ->
       @transitionTo 'event', model
 
-    showEvent: (event) -> alert 'DayRoute#showEvent says: "You still need to implement this"'
+    showEvent: (event) ->
+      Em.Logger.error 'DayRoute#showEvent says: "You still need to implement this"'
+      # @set 'selectedEvent', event
+      @transitionTo 'event', event

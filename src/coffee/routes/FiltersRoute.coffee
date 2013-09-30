@@ -5,10 +5,10 @@ require 'views/FiltersView'
 
 App.FiltersRoute = Em.Route.extend
   model: (params) ->
-    if params.categories is 'all' then return App.Filter.create
+    if params.categories is 'all' or params.categories is undefined then return App.Filter.create
       categories: Em.A()
 
-    params.categories ?= '11'
+    # params.categories ?= '11'
     categories = Em.A params.categories.split(',')
 
     App.Filter.create {
