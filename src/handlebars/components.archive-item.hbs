@@ -1,9 +1,9 @@
 
-<div class="row-fluid">
-  <div class="span5">
+<div class="row">
+  <div class="col-sm-5">
     <strong>{{titleize content.title}}</strong>
   </div>
-  <div class="span3">
+  <div class="col-sm-3">
   {{#if isMultiDay}}
     {{date content.start}}, {{time content.start}}
     {{#if isMinDuration}} - {{date content.start}}, {{time content.end}}{{/if}}
@@ -13,6 +13,6 @@
   {{/if}}
   </div>
   {{#if content.location}}
-    <div class="span3"><strong>Location: </strong>{{content.location}}</div>
+    <div class="col-sm-3"><strong>Location: </strong>{{content.location}}</div>
   {{/if}}
 </div>

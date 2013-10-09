@@ -1,15 +1,12 @@
 
 // Bootstrap Core variables and mixins
 @import "variables.less"; // Modify this for custom colors, font-sizes, etc
+// @import "mixins-2.3.2.less";
 @import "mixins.less";
+@import "calendar-mixins.less";
 @import "daterangepicker.less";
-// @import "tympanus/CreativeButtons/component.less";
-// http://tympanus.net/codrops/2012/11/14/creative-css-loading-animations/
-@import "tympanus/LoadingAnimations/style.less";
-@import "tympanus/SidebarTransitions/component.less";
-@import "components/pager-item.less";
-@import "components/archive-list.less";
-@import "components/date-picker.less";
+@import "tympanus/main.less";
+@import "components/main.less";
 
 .is-featured {
   position: relative;
@@ -165,4 +162,5 @@
   /* Needs to be behind .app-container */
   z-index: -101;
   overflow: hidden;
+  padding: 0;
 }

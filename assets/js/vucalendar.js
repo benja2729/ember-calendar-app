@@ -90,7 +90,7 @@ function program7(depth0,data) {
 function program9(depth0,data) {
   
   var buffer = '', stack1, hashTypes, hashContexts, options;
-  data.buffer.push("\n<div class=\"row-fluid\">\n  ");
+  data.buffer.push("\n<div class=\"row\">\n  ");
   hashTypes = {};
   hashContexts = {};
   options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
@@ -99,7 +99,7 @@ function program9(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("<div class=\"row-fluid\">\n  <div class=\"btn-group pull-right\">\n    ");
+  data.buffer.push("<div class=\"row\">\n  <div class=\"btn-group pull-right\">\n    ");
   hashContexts = {'classNames': depth0};
   hashTypes = {'classNames': "STRING"};
   options = {hash:{
@@ -386,7 +386,7 @@ function program5(depth0,data) {
 function program7(depth0,data) {
   
   var buffer = '', hashTypes, hashContexts;
-  data.buffer.push("\n    <div class=\"span3\"><strong>Location: </strong>");
+  data.buffer.push("\n    <div class=\"col-sm-3\"><strong>Location: </strong>");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "content.location", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
@@ -394,12 +394,12 @@ function program7(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("\n<div class=\"row-fluid\">\n  <div class=\"span5\">\n    <strong>");
+  data.buffer.push("\n<div class=\"row\">\n  <div class=\"col-sm-5\">\n    <strong>");
   hashTypes = {};
   hashContexts = {};
   options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.titleize || depth0.titleize),stack1 ? stack1.call(depth0, "content.title", options) : helperMissing.call(depth0, "titleize", "content.title", options))));
-  data.buffer.push("</strong>\n  </div>\n  <div class=\"span3\">\n  ");
+  data.buffer.push("</strong>\n  </div>\n  <div class=\"col-sm-3\">\n  ");
   hashTypes = {};
   hashContexts = {};
   stack2 = helpers['if'].call(depth0, "isMultiDay", {hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
@@ -805,16 +805,16 @@ function program5(depth0,data) {
   hashTypes = {};
   hashContexts = {};
   options = {hash:{},contexts:[depth0,depth0],types:["ID","STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "currentDay", "MMMM Do, YYYY", options) : helperMissing.call(depth0, "moment", "currentDay", "MMMM Do, YYYY", options))));
-  data.buffer.push("</h1>\n</header>\n<div class=\"events-body\">\n  <div class=\"row-fluid\">\n    ");
+  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "currentDay", "MMMM D, YYYY", options) : helperMissing.call(depth0, "moment", "currentDay", "MMMM D, YYYY", options))));
+  data.buffer.push("</h1>\n</header>\n<div class=\"events-body\">\n  <div class=\"row\">\n    ");
   hashContexts = {'value': depth0,'class': depth0};
   hashTypes = {'value': "ID",'class': "STRING"};
   options = {hash:{
     'value': ("currentDay"),
-    'class': ("span4")
+    'class': ("col-sm-4")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers['date-picker'] || depth0['date-picker']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "date-picker", options))));
-  data.buffer.push("\n    <div class=\"span8\">\n      <h2>Featured Events</h2>\n      ");
+  data.buffer.push("\n    <div class=\"col-sm-8\">\n      <h2>Featured Events</h2>\n      ");
   hashContexts = {'items': depth0,'load': depth0,'show': depth0};
   hashTypes = {'items': "ID",'load': "STRING",'show': "STRING"};
   options = {hash:{
@@ -1274,11 +1274,11 @@ function program5(depth0,data) {
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "lastMonth", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(" class=\"btn btn-primary span1\">&lt;</button>\n<button type=\"button\" ");
+  data.buffer.push(" class=\"btn btn-primary col-sm-1\">&lt;</button>\n<button type=\"button\" ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "nextMonth", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(" class=\"btn btn-primary span1 pull-right\">&gt;</button>\n<table class=\"table\">\n  <caption class=\"page-header\"><h1>");
+  data.buffer.push(" class=\"btn btn-primary col-sm-1 pull-right\">&gt;</button>\n<table class=\"table\">\n  <caption class=\"page-header\"><h1>");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "stateValue", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));

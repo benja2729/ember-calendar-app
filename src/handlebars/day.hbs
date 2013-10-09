@@ -1,11 +1,11 @@
 <header class="page-header events-header">
 {{!partial "calendar-svg"}}
-<h1>{{moment currentDay "MMMM Do, YYYY"}}</h1>
+<h1>{{moment currentDay "MMMM D, YYYY"}}</h1>
 </header>
 <div class="events-body">
-  <div class="row-fluid">
-    {{date-picker value=currentDay class="span4"}}
-    <div class="span8">
+  <div class="row">
+    {{date-picker value=currentDay class="col-sm-4"}}
+    <div class="col-sm-8">
       <h2>Featured Events</h2>
       {{#archive-list items=featuredEvents load="transitionToEvent" show="showEvent"}}
         <div class="well">
