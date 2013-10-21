@@ -1,5 +1,6 @@
 
 require 'utils/VU'
+require 'utils/moment-format'
 
 # require 'ArrayPromise'
 # require 'ObjectPromise'

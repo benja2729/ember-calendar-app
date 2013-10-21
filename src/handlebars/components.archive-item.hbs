@@ -3,13 +3,11 @@
   <div class="col-sm-5">
     <strong>{{titleize content.title}}</strong>
   </div>
-  <div class="col-sm-3">
-  {{#if isMultiDay}}
-    {{date content.start}}, {{time content.start}}
-    {{#if isMinDuration}} - {{date content.start}}, {{time content.end}}{{/if}}
+  <div class="col-sm-4">
+  {{#if content.isMultiDay}}
+    {{range content.range showDayOfWeek=true}}
   {{else}}
-    {{time content.start}}
-    {{#if isMinDuration}} - {{time content.end}}{{/if}}
+    {{range content.range showDate=false}}
   {{/if}}
   </div>
   {{#if content.location}}

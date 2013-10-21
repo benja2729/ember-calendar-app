@@ -1,22 +1,26 @@
-<section>
-  <h3>{{titleize content.title}}</h3>
-  <p>
-  {{#if isMultiDay}}
-    {{date content.start}}, {{time content.start}}
-    {{#if isMinDuration}} - {{date content.start}}, {{time content.end}}{{/if}}
-  {{else}}
-    {{date content.start}}
-    <br />
-    {{time content.start}}
-    {{#if isMinDuration}} - {{time content.end}}{{/if}}
+<section class="well">
+  <a href="#" class="btn btn-primary btn-giving" {{action "back"}}>Back</a>
+  <header>
+    <h3>{{titleize content.title}}</h3>
+  </header>
+
+  <div>
+    <div class="well well-vu">
+      {{#if isMultiDay}}
+        {{range range}}
+      {{else}}
+        {{date start}}<br />
+        {{range range showDate=false}}
+      {{/if}}
+    </div>
+    <p><b>Location: </b>{{content.location}}</p>
+    {{#if content.description}}{{showdown content.description}}{{/if}}
+    {{outlet}}
+  </div>
+
+  <footer>
+  {{#if content.url}}
+    <a {{bindAttr href="content.url"}}>More Information &nbsp;&gt;&gt;</a>
   {{/if}}
-  </p>
-  <p><b>Location: </b>{{content.location}}</p>
-  {{#if content.description}}{{showdown content.description}}{{/if}}
-  {{outlet}}
+  </footer>
 </section>
-<footer>
-{{#if content.url}}
-  <a {{bindAttr href="content.url"}}>More Information &nbsp;&gt;&gt;</a>
-{{/if}}
-</footer>
