@@ -24,7 +24,7 @@ App.DayRoute = Em.Route.extend
 
   serialize: (model, params) ->
     ret = {}
-    start = moment(model.get 'firstObject.start')
+    start = moment(model.findBy('isMultiDay', false).get('start') )
     ret['day'] = if start.date() is today.getDate() then 'today'
     else start.format format
     ret
@@ -36,16 +36,17 @@ App.DayRoute = Em.Route.extend
 
   loadDay: (range) ->
     store = @get 'store'
-    store.find 'event', range
+    twix = moment.unix(range.start).twix(moment.unix range.end)
+    store.filter 'event', range, (item) ->
+      range = item.get 'range'
+      # console.log item.get('title'), range.simpleFormat('MMM DD h:mm'), twix.overlaps(range)
+      twix.overlaps(range) or twix.engulfs(range)
 
   actions:
     transitionToDay: (input) ->
       day = getRange input
       model = @loadDay day
       @transitionTo 'day', model
-
-    transitionToEvent: (model) ->
-      @transitionTo 'event', model
 
     showEvent: (event) ->
       Em.Logger.error 'DayRoute#showEvent says: "You still need to implement this"'

@@ -1,16 +1,20 @@
 
-<div class="row">
-  <div class="col-sm-5">
-    <strong>{{titleize content.title}}</strong>
+<div {{bind-attr class=":archive-item popOut isFeatured isActive:active animate:fade animate:in"}}>
+  {{#if template}}{{yield}}{{else}}
+
+  <strong>{{titleize content.title}}</strong>
+  <div class="row">
+    <div class="col-sm-5">
+    {{#if content.isMultiDay}}
+      {{range content.range showDayOfWeek=true}}
+    {{else}}
+      {{range content.range showDate=false}}
+    {{/if}}
+    </div>
+    {{#if content.location}}
+      <div class="col-sm-7"><strong>Location: </strong>{{content.location}}</div>
+    {{/if}}
   </div>
-  <div class="col-sm-4">
-  {{#if content.isMultiDay}}
-    {{range content.range showDayOfWeek=true}}
-  {{else}}
-    {{range content.range showDate=false}}
-  {{/if}}
-  </div>
-  {{#if content.location}}
-    <div class="col-sm-3"><strong>Location: </strong>{{content.location}}</div>
+
   {{/if}}
 </div>

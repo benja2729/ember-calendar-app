@@ -1,25 +1,24 @@
 
 // Bootstrap Core variables and mixins
 @import "variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "vu-variables.less";
 // @import "mixins-2.3.2.less";
 @import "mixins.less";
 @import "calendar-mixins.less";
-@import "daterangepicker.less";
+// @import "daterangepicker.less";
 @import "tympanus/main.less";
 @import "components/main.less";
 
-.is-featured {
-  position: relative;
+body, .st-content {
+  background-color: #faf7f2;
+}
 
-  &:before {
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-style: solid;
-    border-color: transparent;
-    border-width: 0 0 30px 30px;
-    border-left-color: #a58329;
+.main-controls {
+  
+
+  border-right: 1px solid @valpo-brown;
+  @media (max-width: @screen-sm) {
+    border-right-color: transparent;
   }
 }
 
@@ -163,4 +162,8 @@
   z-index: -101;
   overflow: hidden;
   padding: 0;
+
+  .page-header {
+    border-color: @valpo-brown;
+  }
 }

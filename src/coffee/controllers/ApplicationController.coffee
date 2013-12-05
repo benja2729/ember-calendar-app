@@ -2,6 +2,7 @@
 App.ApplicationController = Em.Controller.extend
   needs: ['filters']
   activeCategoriesBinding: 'controllers.filters.categories'
+  filtersAreOpen: false
   lastRoute: null
   currentRoute: null
   lastPath: null

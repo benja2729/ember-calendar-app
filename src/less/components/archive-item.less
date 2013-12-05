@@ -1,15 +1,28 @@
 
+.is-featured {
+  position: relative;
+
+  &:before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 0 0 30px 30px;
+    border-left-color: #a58329;
+  }
+}
+
 .archive-item {
   position: relative;
   cursor: pointer;
   color: #40352f;
+  background-color: white;
+  padding: 15px;
+  border: 1px solid @valpo-neutral;
   width: 100%;
   .transition(all 0.3s);
-
-  &.modal {
-    width: 60%;
-    position: absolute;
-  }
 
   .active {
     
@@ -17,6 +30,11 @@
 
   & [class *= "span"] {
     min-height: 20px;
+  }
+
+  &:before {
+    top: -1px;
+    left: -1px;
   }
 
   &:after {
@@ -29,6 +47,19 @@
     top: 0;
     visibility: hidden;
     .transition(all 0.3s);
+  }
+
+  .not-mobile .fader:hover & {
+    border-color: fade(@valpo-neutral, 60%);
+
+    &:after {
+      visibility: visible;
+      background: fade(@valpo-neutral, 30%);
+    }
+
+    &.active:after {
+      background: transparent !important;
+    }
   }
 
   .not-mobile &.pop-out {

@@ -26,8 +26,10 @@ App.Event = DS.Model.extend
 
   isMultiDay: Em.computed 'range', ->
     range = @get 'range'
-    range.countInner('days') isnt 0
+    # range.countInner('days') isnt 0
+    not range.isSame 'day'
 
   isFeatured: Em.computed 'categories.@each', ->
     categories = @get 'categories'
-    categories.anyBy 'id', '11'
+    # categories.anyBy 'id', '11'
+    categories.anyBy 'name', 'featured'

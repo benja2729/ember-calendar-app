@@ -3,8 +3,9 @@ require 'utils/EventControlMixin'
 
 App.ArchiveItemComponent = Em.Component.extend App.EventControlMixin,
   tagName: 'div'
-  classNames: ['well', 'archive-item']
-  classNameBindings: ['isActive:active', 'popOut', 'isFeatured', 'isModal:modal', 'fade', 'fade:in']
+  # classNames: ['well', 'archive-item']
+  classNames: ['col-xs-12', 'col-inline', 'layout-block']
+  # classNameBindings: ['isFeatured']
   content: Em.required 'App.Event'
   click: ->
     model = @get 'content'
@@ -13,12 +14,7 @@ App.ArchiveItemComponent = Em.Component.extend App.EventControlMixin,
   _activeHandler: ((event) ->
     @toggleProperty 'isActive'
   ).on 'mouseEnter', 'mouseLeave'
-  _modalObserver: Em.observer( ->
-    @set 'animate', not @get('isModal')
-  , 'isModal')
 
   animate: true
-  isModal: false
-  fade: Em.computed.and 'animate', 'isModal'
   isActive: false
   popOut: Em.computed.and 'isActive', 'animate'

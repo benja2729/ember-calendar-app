@@ -1,26 +1,46 @@
-<section class="well">
-  <a href="#" class="btn btn-primary btn-giving" {{action "back"}}>Back</a>
-  <header>
-    <h3>{{titleize content.title}}</h3>
-  </header>
 
-  <div>
-    <div class="well well-vu">
-      {{#if isMultiDay}}
-        {{range range}}
-      {{else}}
-        {{date start}}<br />
-        {{range range showDate=false}}
-      {{/if}}
-    </div>
-    <p><b>Location: </b>{{content.location}}</p>
-    {{#if content.description}}{{showdown content.description}}{{/if}}
-    {{outlet}}
-  </div>
+<header class="page-header events-header">
+  <h1>{{moment start "MMMM D, YYYY"}}</h1>
+</header>
 
-  <footer>
-  {{#if content.url}}
-    <a {{bindAttr href="content.url"}}>More Information &nbsp;&gt;&gt;</a>
+<button class="btn btn-primary" {{action "back"}}>Back</button>
+
+<div class="media">
+
+  {{! imgUrl doesn't exist upon writing. Just using as a place holder}}
+  {{#if imgUrl}}
+  <a class="pull-left" href="#">
+    <img class="media-object" src="..." alt="...">
+  </a>
   {{/if}}
-  </footer>
-</section>
+
+  <div class="media-body">
+    <h4 class="media-heading">{{titleize title}}</h4>
+    <p>
+    {{#if isMultiDay}}
+      {{range range}}
+    {{else}}
+      {{date start}}<br />
+      {{range range showDate=false}}
+    {{/if}}
+    </p>
+    <p><b>Location: </b>{{#if location}}{{location}}{{else}}To Be Determined{{/if}}</p>
+    {{#if description}}{{showdown description}}{{/if}}
+    {{#if url}}
+      <p><a {{bindAttr href="url"}}>More Information &nbsp;&gt;&gt;</a><p>
+    {{/if}}
+  </div>
+</div>
+
+{{#if filteredEvents}}
+  <header class="page-header">
+    <h2>Events List</h2>
+  </header>
+  <div class="row fader">
+  {{#each filteredEvents}}
+    {{archive-item content=this classNames="col-md-6" action="transitionToEvent"}}
+  {{/each}}
+  </div>
+{{/if}}
+
+{{outlet}}

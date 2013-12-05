@@ -6,6 +6,9 @@ App.FilterToggleComponent = App.ButtonControlComponent.extend
   classNameBindings: ['isOpen:active']
   title: 'Filters'
   isOpen: Em.required Boolean
+  _isOpenObserver: Em.observer 'isOpen', ->
+    console.log @get('isOpen')
+    @sendAction 'action', @get('isOpen')
   isMobile: Em.required Boolean
   click: -> @toggleProperty 'isOpen'
   mouseEnter: ->

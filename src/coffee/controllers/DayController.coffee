@@ -1,6 +1,7 @@
 
 testCategories = (categoryIds, event) ->
   result = false
+  if Em.get(categoryIds, 'length') is 0 then return true
   categories = event.get 'categories'
 
   categories.forEach (category) ->
@@ -12,18 +13,19 @@ testCategories = (categoryIds, event) ->
 
 filterContent = (content, filters) ->
   categoryIds = filters.get 'categories'
-  if categoryIds.get('length') is 0 then return content
   ret = Em.A()
 
   content.forEach (event) ->
     hasCategories = testCategories categoryIds, event
-    if hasCategories
+    isAllDay = event.get('isAllDay')
+    if hasCategories and hasCategories and not isAllDay
       ret.addObject event
 
   ret
 
 App.DayController = Em.ArrayController.extend
-  needs: ['filters']
+  needs: ['application', 'filters']
+  filtersAreOpenBinding: 'controllers.application.filtersAreOpen'
   sortProperties: ['start']
   sortAscending: true
   sortFunction: (a, b) -> +a - +b
@@ -40,7 +42,7 @@ App.DayController = Em.ArrayController.extend
   , 'currentDay')
 
   allDayEvents: Em.computed.filterBy 'arrangedContent', 'isAllDay', true
-  hasAllDayEvents: Em.computed.empty 'allDayEvents.length'
+  hasAllDayEvents: Em.computed 'allDayEvents.length', -> @get('allDayEvents.length') isnt 0
 
   featuredEvents: Em.computed.filterBy 'arrangedContent', 'isFeatured', true
 

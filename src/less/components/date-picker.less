@@ -10,9 +10,29 @@
   table {
     width: 100%;
 
-    td {
+    td, th {
       text-align: center;
-      padding: 0.5em;
+    }
+
+    td {
+      padding: 1em;
+    }
+  }
+
+  .calendar-tile {
+    color: @valpo-gold;
+    cursor: pointer;
+
+    &.is-today {
+      .box-shadow(~"0 0 3px @{valpo-brown} inset");
+    }
+    &.active {
+      // .box-shadow(~"0 0 3px @{valpo-gold} inset");
+      background-color: @valpo-gold;
+      color: #fff;
+    }
+    &:hover {
+      .box-shadow(~"0 0 10px @{valpo-gold} inset, 0 0 1px @{valpo-gold}");
     }
   }
 
