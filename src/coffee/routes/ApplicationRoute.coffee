@@ -10,6 +10,11 @@ Em.Route.reopen
     # console.log "-----\nEntered #{routeName}\n-----"
     if /\.[^.]+$/.test routeName
       @controllerFor('application').set 'currentRoute', routeName
+  metaForType: (type) ->
+    store = @get 'store'
+    model = store.modelFor(type)
+    store.typeMapFor(model).metadata
+
 
 App.ApplicationRoute = Em.Route.extend
   model: ->
@@ -68,6 +73,8 @@ App.ApplicationRoute = Em.Route.extend
     controller.set 'allCategories', @get('store').find('category')
 
   actions:
+    loading: ->
+      console.log 'in Application'
     transitionToEvent: (model) ->
       @transitionTo 'event', model
     loadState: (path, model) ->

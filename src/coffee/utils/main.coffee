@@ -1,4 +1,5 @@
 
+require 'utils/EmberEnumExtend'
 require 'utils/VU'
 require 'utils/moment-format'
 

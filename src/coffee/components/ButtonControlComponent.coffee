@@ -1,5 +1,5 @@
 
 App.ButtonControlComponent = Em.Component.extend
   tagName: 'button'
-  classNames: ['btn', 'btn-primary']
+  classNames: ['btn']
   click: -> @sendAction 'action', this

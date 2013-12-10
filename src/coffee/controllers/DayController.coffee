@@ -1,24 +1,18 @@
 
-testCategories = (categoryIds, event) ->
-  result = false
-  if Em.get(categoryIds, 'length') is 0 then return true
-  categories = event.get 'categories'
-
-  categories.forEach (category) ->
-    id = category.get 'id'
-    test = categoryIds.contains(id)
-    if test then result = true
-    
-  result
-
 filterContent = (content, filters) ->
+  return content if Em.get(content, 'length') is 0
   categoryIds = filters.get 'categories'
+  hasAllCategories = Em.get(categoryIds, 'length') is 0
   ret = Em.A()
 
   content.forEach (event) ->
-    hasCategories = testCategories categoryIds, event
-    isAllDay = event.get('isAllDay')
-    if hasCategories and hasCategories and not isAllDay
+    {isAllDay, categories} = event.getProperties 'isAllDay', 'categories'
+    if isAllDay then return
+
+    hasCategories = hasAllCategories or Em.EnumerableUtils.hasCommon categories, categoryIds, (obj, id) ->
+      obj.get('id') is id
+
+    if hasCategories
       ret.addObject event
 
   ret
@@ -30,16 +24,17 @@ App.DayController = Em.ArrayController.extend
   sortAscending: true
   sortFunction: (a, b) -> +a - +b
 
+  # This should probably be managed by the Router
   currentDay: Em.computed (key, value) ->
     if value? then value
     else 
       start = @get 'arrangedContent.firstObject.start'
       today = @get 'today'
       start or today
-  _currentDayObserver: Em.observer( ->
-    currentDay = @get 'currentDay'
-    @send 'transitionToDay', currentDay
-  , 'currentDay')
+  # _currentDayObserver: Em.observer( ->
+  #   currentDay = @get 'currentDay'
+  #   @send 'transitionToDay', currentDay
+  # , 'currentDay')
 
   allDayEvents: Em.computed.filterBy 'arrangedContent', 'isAllDay', true
   hasAllDayEvents: Em.computed 'allDayEvents.length', -> @get('allDayEvents.length') isnt 0

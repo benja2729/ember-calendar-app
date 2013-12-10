@@ -6,7 +6,7 @@
     <div class="col-sm-6 main-controls">
       {{filter-toggle action="toggleFilterPane" isOpen=filtersAreOpen isMobile=App.isMobile title="Categories" classNames="valpo-sheen-gold"}}
       <div class="row">
-        {{date-picker activeDate=currentDay class="col-xs-12"}}
+        {{date-picker activeDate=currentDay action="transitionToDay" class="col-xs-12"}}
       </div>
     </div>
     <div class="col-sm-6">

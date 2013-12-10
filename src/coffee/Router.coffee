@@ -1,5 +1,6 @@
 
 require 'routes/ApplicationRoute'
+require 'routes/LoadingRoute'
 require 'routes/FiltersRoute'
 require 'routes/DayRoute'
 # require 'routes/EventsRoute'

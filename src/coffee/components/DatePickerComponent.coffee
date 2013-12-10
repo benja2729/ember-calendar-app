@@ -2,6 +2,9 @@
 require 'components/RangePagerComponent'
 
 App.DatePickerComponent = Em.Component.extend
+  _setInitialMonth: ( ->
+    @set 'currentMonth', @get('activeDate')
+  ).on('init')
   classNames: ['date-picker']
   tile: Em.View.extend Em.ViewTargetActionSupport,
     tagName: 'td'
@@ -24,7 +27,7 @@ App.DatePickerComponent = Em.Component.extend
     click: -> @triggerAction()
 
   today: moment()
-  currentMonth: moment()
+  currentMonth: null
   activeDate: null
   monthFormat: 'MMMM YYYY'
   dayFormat: 'ddd'
@@ -76,6 +79,7 @@ App.DatePickerComponent = Em.Component.extend
     #select an active day (typically called by action in template)
     selectDate: (day) ->
       @set 'activeDate', day
+      @sendAction 'action', day
 
     
     #change the currentMonth being displayed
