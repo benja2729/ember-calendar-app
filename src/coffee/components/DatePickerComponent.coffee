@@ -7,7 +7,7 @@ App.DatePickerComponent = Em.Component.extend
   # ).on('init')
   classNames: ['date-picker']
   tile: Em.View.extend Em.ViewTargetActionSupport,
-    tagName: 'td'
+    # tagName: 'td'
     classNames: ['calendar-tile']
     classNameBindings: ['isActive:active', 'isToday']
     todayBinding: 'parentView.today'

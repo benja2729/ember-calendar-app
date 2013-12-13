@@ -13,26 +13,34 @@
     td, th {
       text-align: center;
     }
-
-    td {
-      padding: 1em;
-    }
   }
 
   .calendar-tile {
+    height: 100%;
+    width: 100%;
+    padding: 1em;
     color: @valpo-gold;
     cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
 
+    .not-mobile &:hover {
+      // .box-shadow(~"0 0 10px @{valpo-gold} inset, 0 0 1px @{valpo-gold}");
+      border-color: @valpo-brown;
+      color: @valpo-brown;
+    }
     &.is-today {
-      .box-shadow(~"0 0 3px @{valpo-brown} inset");
+      background-color: @valpo-brown;
+      background-color: fade(@valpo-brown, 60%);
+      border-color: @valpo-brown;
+      color: #fff;
     }
     &.active {
       // .box-shadow(~"0 0 3px @{valpo-gold} inset");
       background-color: @valpo-gold;
+      border-color: @valpo-gold;
       color: #fff;
-    }
-    &:hover {
-      .box-shadow(~"0 0 10px @{valpo-gold} inset, 0 0 1px @{valpo-gold}");
     }
   }
 

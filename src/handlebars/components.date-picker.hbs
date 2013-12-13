@@ -22,7 +22,7 @@
     <tr>
     {{#each day in week}}
       {{#if day}}
-        {{#view view.tile dateBinding=day}}{{moment day view.format}}{{/view}}
+        <td>{{#view view.tile dateBinding=day}}{{moment day view.format}}{{/view}}</td>
         {{!--
         {{pager-item format="DD" tagName="td" date=day action="selectDate"}}
         --}}
