@@ -1,9 +1,9 @@
 
-<header class="page-header events-header">
-  <h1>{{moment start "MMMM D, YYYY"}}</h1>
-</header>
+{{partial "day-header"}}
 
-{{button-control action="back" classNames="btn-primary" title="Back"}}
+<button class="btn btn-primary" {{action "loadState" "day"}}>
+  <i class="icon-long-arrow-left"></i> Events
+</button>
 
 <div class="media">
 
@@ -26,8 +26,8 @@
     </p>
     <p><b>Location: </b>{{#if location}}{{location}}{{else}}To Be Determined{{/if}}</p>
     {{#if description}}{{showdown description}}{{/if}}
-    {{#if url}}
-      <p><a {{bindAttr href="url"}}>More Information &nbsp;&gt;&gt;</a><p>
+    {{#if moreInfoUrl}}
+      <p><a {{bind-attr href=moreInfoUrl}} target="_blank">More Information &nbsp;&gt;&gt;</a><p>
     {{/if}}
   </div>
 </div>

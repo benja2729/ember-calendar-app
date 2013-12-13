@@ -9,6 +9,6 @@ moment.lang 'en',
       if isLowercase then 'p.m.' else 'P.M.'
 
   monthsShort : [
-      "Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.",
-      "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
+      "Jan.", "Feb.", "March", "April", "May", "June",
+      "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
   ]

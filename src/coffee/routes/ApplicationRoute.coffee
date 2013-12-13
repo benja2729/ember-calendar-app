@@ -7,9 +7,8 @@ Em.Route.reopen
   enter: ->
     # To add 'popAppState' funcitonality
     routeName = @get 'routeName'
-    # console.log "-----\nEntered #{routeName}\n-----"
-    if /\.[^.]+$/.test routeName
-      @controllerFor('application').set 'currentRoute', routeName
+    if /^\w+$/.test(routeName) and routeName isnt "loading" and routeName isnt 'application'
+      @controllerFor('application').set 'currentResource', routeName
   metaForType: (type) ->
     store = @get 'store'
     model = store.modelFor(type)
@@ -79,17 +78,18 @@ App.ApplicationRoute = Em.Route.extend
       @transitionTo 'event', model
     loadState: (path, model) ->
       # console.log path
+      model ?= @modelFor path
       if model? then @transitionTo path, model
       else @transitionTo path
-    reloadState: (model) ->
-      path = @get 'controller.currentRoute'
-      @send 'loadState', path, model
-    popAppState: (model) ->
-      path = @get 'controller.lastRoute'
-      @send 'loadState', path, model
+    # reloadState: (model) ->
+    #   path = @get 'controller.currentResource'
+    #   @send 'loadState', path, model
+    popAppState: ->
+      path = @get 'controller.lastResource'
+      @send 'loadState', path
 
     updateCategories: (activeCategories) ->
-      destinationRoute = @controllerFor('application').get 'currentRoute'
+      destinationRoute = @controllerFor('application').get 'currentResource'
       destinationModel = @modelFor destinationRoute
 
       model = @modelFor 'filters'

@@ -1,10 +1,9 @@
-<header class="page-header events-header">
-  <h1>{{moment currentDay "MMMM D, YYYY"}}</h1>
-</header>
+{{partial "day-header"}}
 <div class="events-body">
   <div class="row">
     <div class="col-sm-6 main-controls">
-      {{filter-toggle action="toggleFilterPane" isOpen=filtersAreOpen isMobile=App.isMobile title="Categories" classNames="valpo-sheen-gold"}}
+      {{filter-toggle action="toggleFilterPane" isOpen=filtersAreOpen isMobile=App.isMobile title="Categories" classNames="btn-lg valpo-sheen-gold"}}
+      <button class="btn pull-right btn-lg  valpo-sheen-gold" {{action "transitionToDay" today}}>Today</button>
       <div class="row">
         {{date-picker activeDate=currentDay action="transitionToDay" class="col-xs-12"}}
       </div>

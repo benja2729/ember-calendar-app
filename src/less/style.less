@@ -13,6 +13,11 @@ body, .st-content {
   background-color: #faf7f2;
 }
 
+.btn:focus {
+  outline: none;
+  color: white; // Should probably be in valpo-sheen-gold
+}
+
 .main-controls {
   
 
@@ -29,20 +34,6 @@ body, .st-content {
  .sidebar-nav ul li>a {
   text-transform: none;
  }
-
-/**
- * ListView required CSS
- */
-.ember-list-view {
-  overflow: auto;
-  overflow-x: auto !important;
-  position: relative;
-}
-.ember-list-item-view {
-  position: absolute;
-  left: 0;
-  right: 0;
-}
 
 /**
  * IMPORTANT: The app's container must have poisitioning
@@ -62,6 +53,7 @@ body, .st-content {
 .pane, .pane-body {
   display: block;
   overflow-y: auto;
+  overflow-y: overlay;
   position: absolute;
   top: 0;
   bottom: 0;

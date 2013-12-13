@@ -11,6 +11,6 @@ App.FilterToggleComponent = App.ButtonControlComponent.extend
     @sendAction 'action', @get('isOpen')
   isMobile: Em.required Boolean
   click: -> @toggleProperty 'isOpen'
-  mouseEnter: ->
-    isMobile = @get 'isMobile'
-    if not isMobile then @set 'isOpen', true
+  # mouseEnter: ->
+  #   isMobile = @get 'isMobile'
+  #   if not isMobile then @set 'isOpen', true
