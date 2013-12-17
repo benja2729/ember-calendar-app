@@ -1,9 +1,36 @@
-Labore slow-carb Echo Park anim Terry Richardson. Labore put a bird on it incididunt PBR, Cosby sweater fashion axe organic readymade. Post-ironic yr High Life iPhone, wayfarers accusamus kitsch butcher Marfa labore food truck asymmetrical leggings ea. Tattooed brunch eu stumptown selvage, next level art party occaecat swag seitan selfies keytar locavore. Banksy brunch pariatur master cleanse odio. Letterpress fashion axe freegan wolf, ennui bicycle rights shabby chic. Accusamus 8-bit esse plaid trust fund.
+<p class="lead">
+(Intro copy about the calendar and the BETA project.)
+</p>
 
-Godard Tonx twee Intelligentsia sint farm-to-table. Nisi Terry Richardson enim paleo cred, stumptown twee officia mollit. Sartorial consectetur laboris occupy dreamcatcher. Deserunt veniam mixtape Tumblr. Elit selvage aesthetic, Williamsburg XOXO consectetur flannel salvia velit veniam farm-to-table sartorial messenger bag Truffaut. Ea craft beer nulla asymmetrical sint, cray McSweeney's. Polaroid jean shorts eiusmod, artisan distillery laboris PBR gentrify food truck pop-up magna.
+<div class="page-header">
+<h2>Using the Events Calendar</h2>
+</div>
+By default, visiting the calendar [home page](http://www.valpo.edu/calendar "Calendar Home Page") will bring up a list of events going on around campus that day.
+To load the events on a given day, just click on the desired day in the date picker on the left. The results will appear on the rest of the page according to the kind of event that it is.
+Feel free to browse through any day in the past or the future. If you get lost, you can always return to where you started by clicking on the "Today" button.
+When you are done browsing events you may return to [valpo.edu](http://www.valpo.edu/ "Valparaiso University Homepage") by clicking the logo at the top.
 
-Cardigan XOXO Austin, PBR laborum est Carles YOLO literally Echo Park messenger bag scenester lomo quinoa. Aliqua Etsy dolor, mustache enim retro quis tote bag ea. Chia cred single-origin coffee, Carles ullamco in chambray assumenda Neutra plaid laboris exercitation paleo tofu. Ethical duis jean shorts gastropub gentrify, bitters officia American Apparel. Beard cray pop-up, Blue Bottle asymmetrical hashtag Marfa sunt vegan Carles chia single-origin coffee pork belly. Cornhole art party tattooed freegan nesciunt. Marfa sunt deep v Carles, letterpress Helvetica ad farm-to-table flexitarian PBR&B lo-fi Tonx distillery.
+### Types of Events
+__Upcoming Events:__ These are events that are actively promoted by Valparaiso University and may be happening on the selected day or the near future.
+You can tell these events apart from others by the golden triangle in their top-left corner.
 
-Sunt enim velit aliqua asymmetrical, fap direct trade aesthetic. Mixtape odio before they sold out, delectus pickled Truffaut tattooed pug. Twee mlkshk High Life, craft beer Etsy yr slow-carb tofu Neutra keytar Echo Park lomo. Elit raw denim twee distillery. Before they sold out eiusmod Intelligentsia blog biodiesel fap, labore adipisicing Carles flannel magna. Banh mi tote bag delectus chillwave keffiyeh. Tempor dolore American Apparel, artisan lomo Pitchfork put a bird on it disrupt.
+__All Day Events:__ These events are considered to be occurring during the entirety of one or many days. All Day Events can also be featured and many events can make-up an All Day Event. 
 
-Banksy excepteur cliche, ut irony Wes Anderson irure salvia mollit flexitarian Intelligentsia et Godard labore sapiente. Freegan Pitchfork Schlitz non, sint delectus mumblecore. Tofu shabby chic id anim PBR butcher. Hella eu nulla, et Blue Bottle mixtape art party cred laborum skateboard fap laboris. Cray raw denim occaecat direct trade polaroid. Anim salvia 3 wolf moon, photo booth DIY Godard vegan commodo cliche Cosby sweater mollit. Wolf tempor sapiente leggings, Wes Anderson duis culpa pickled.
+### Loading an Event
+After you select a day from the date picker, a list of events will be shown for that day. Each event tile will give you a quick look at the event details, but to read into it with more detail click on the tile. 
+
+### Filtering Events
+If you wish to narrow-down the events that you see throughout the calendar, navigate to the events list page and click on the "Categories" button. You may click on one or many categories at a time. Each category selected will show events that belong to any one of them, so selecting more categories will show you more events. The only exception to this rule is if you clear all of the categories by clicking the "Clear" button in the filters window. No categories selected will show all events.
+
+### Sharing an Event
+If you find an event that you want to share with your friends, you may at any time copy the url and share it on your social network of choice.
+
+<div class="page-header">
+<h2>How to Submit Your Event</h2>
+</div>
+(Information concerning who to contact and who is allowed to submit access to the events calendar)
+
+<div class="page-header">
+<h2>Send Us Your Feedback</h2>
+</div>
+(A link to or an embedded Google Form to aggregate feedback)
