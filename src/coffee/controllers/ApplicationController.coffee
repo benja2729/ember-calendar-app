@@ -1,7 +1,10 @@
 
 App.ApplicationController = Em.Controller.extend
   needs: ['filters']
-  activeCategoriesBinding: 'controllers.filters.categories'
+  filtersBinding: 'controllers.filters'
+  # allCategories: Em.A()
+  # allCategoriesBinding: 'filters.allCategories'
+  activeCategoriesBinding: 'filters.categories'
   defaultResource: 'day'
   filtersAreOpen: false
   lastResource: null

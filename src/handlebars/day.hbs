@@ -2,17 +2,17 @@
 <div class="events-body">
   <div class="row">
     <div class="col-sm-6 main-controls">
-      {{filter-toggle action="toggleFilterPane" isOpen=filtersAreOpen isMobile=App.isMobile title="Categories" classNames="btn-lg valpo-sheen-gold"}}
+      {{filter-toggle action="toggleFilterPane" isOpen=filtersAreOpen filters=filters isMobile=App.isMobile title="Categories" classNames="btn-lg valpo-sheen-gold"}}
       <button class="btn pull-right btn-lg  valpo-sheen-gold" {{action "transitionToDay" today}}>Today</button>
       <div class="row">
         {{date-picker activeDate=currentDay action="transitionToDay" class="col-xs-12"}}
       </div>
     </div>
     <div class="col-sm-6">
-      <h2>Featured Events</h2>
+      <h2>Upcoming Events</h2>
       <div class="row">
-      {{#each featuredEvents}}
-        {{archive-item content=this action="transitionToEvent"}}
+      {{#each event in featuredEvents}}
+        {{archive-item content=event isPromoted=true currentDay=currentDay action="transitionToEvent"}}
       {{else}}
         {{#archive-item}}
           There are no Featured Events today.
@@ -22,7 +22,9 @@
     </div>
   </div>
 
-  {{#if hasAllDayEvents}}
+  {{#if App.isMobile}}<h2>{{moment currentDay "MMM D, YYYY"}}</h2>{{/if}}
+
+  {{#if allDayEvents}}
     <div class="page-header">
       <h2>All Day Events</h2>
     </div>
@@ -38,7 +40,7 @@
       <h2>Events List</h2>
     </header>
     <div class="row fader">
-    {{#each filteredEvents}}
+    {{#each eventsList}}
       {{archive-item content=this classNames="col-md-6" action="transitionToEvent"}}
     {{else}}
       {{#archive-item}}

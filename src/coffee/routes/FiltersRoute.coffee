@@ -5,19 +5,45 @@ require 'views/FiltersView'
 
 App.FiltersRoute = Em.Route.extend
   model: (params) ->
-    if params.categories is 'all' or params.categories is undefined then return App.Filter.create
-      categories: Em.A()
+    currentModel = @get('currentModel')
+    if currentModel then return currentModel
+    
+    store = @get 'store'
+    c = params.categories
 
-    # params.categories ?= '11'
-    categories = Em.A params.categories.split(',')
+    categories = if c is 'all' or c is undefined then [] else params.categories.split(',')
+    store.push 'filter',
+      'id': 1
+      'categories': categories
 
-    App.Filter.create {
-      categories
-    }
+    # deferred = $.Deferred()
+    # store = @get('store')
+
+    # console.log params.categories
+
+    # if params.categories is 'all' or params.categories is undefined then return App.Filter.create
+    #   categories: Em.A()
+
+    # # params.categories ?= '11'
+    # categories = params.categories.split(',')
+    # promise = store.findByIds 'category', params.categories
+    # promise.then (categories) =>
+    #   console.log 'in promise then', categories
+    #   model = App.Filter.create {
+    #     categories
+    #   }
+    #   deferred.resolveWith this, [model]
+
+    # deferred.promise()
+
+  # setupController: (controller, model) ->
+  #   store = @get 'store'
+  #   categories = store.findAll 'category'
+  #   controller.set 'allCategories', categories
 
   serialize: (model, params) ->
     ret = {}
-    catArray = Em.get(model, 'categories') #.mapBy('id')
+    catArray = Em.get(model, 'categories').mapBy('id')
 
     ret['categories'] = if catArray.length is 0 then 'all'
     else

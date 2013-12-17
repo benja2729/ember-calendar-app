@@ -1,7 +1,8 @@
 
-require 'utils/EmberEnumExtend'
-require 'utils/VU'
 require 'utils/moment-format'
+require 'utils/EmberEnumExtend'
+
+# require 'utils/VU'
 
 # require 'ArrayPromise'
 # require 'ObjectPromise'
@@ -14,10 +15,10 @@ require 'utils/moment-format'
 # require 'DateProxy'
 # require 'Tile'
 
-require 'utils/ButtonView'
-require 'utils/BackButtonView'
-require 'utils/CategoryButtonView'
-require 'utils/SidePaneView'
-require 'utils/BitObject'
+# require 'utils/ButtonView'
+# require 'utils/BackButtonView'
+# require 'utils/CategoryButtonView'
+# require 'utils/SidePaneView'
+# require 'utils/BitObject'
 
-require 'utils/EventControlMixin'
+# require 'utils/EventControlMixin'

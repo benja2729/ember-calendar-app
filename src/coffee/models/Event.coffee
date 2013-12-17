@@ -1,10 +1,9 @@
 
-require 'ApplicationAdapter'
-require 'models/Category'
-
 App.Event = DS.Model.extend
   start: DS.attr 'date'
   end: DS.attr 'date'
+  featuredStart: DS.attr 'date'
+  featuredEnd: DS.attr 'date'
   isAllDay: DS.attr 'boolean'
   title: DS.attr 'string'
   location: DS.attr 'string'
@@ -23,6 +22,14 @@ App.Event = DS.Model.extend
       end = moment(@get 'end')
 
     start.twix end, isAllDay
+
+  featuredRange: Em.computed 'isFeatured', 'featuredStart', 'featuredEnd', ->
+    if not @get('isFeatured') then return false
+    format = 'MM/DD/YYYY'
+    start = moment(@get 'featuredStart', format)
+    end = moment(@get 'featuredEnd', format)
+    range = start.twix end, true
+    if range.isValid() then range else false
 
   isMultiDay: Em.computed 'range', ->
     range = @get 'range'

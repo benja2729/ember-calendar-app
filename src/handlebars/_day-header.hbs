@@ -6,6 +6,8 @@
     {{#link-to "help" tagName="button" classNames="btn btn-primary"}}<i class="icon-question"></i>{{/link-to}}
   </span>
   <h1>
-    {{moment currentDay "MMMM D, YYYY"}}
+  {{#with currentDay}}
+    {{partial "current-day-format"}}
+  {{/with}}
   </h1>
 </header>

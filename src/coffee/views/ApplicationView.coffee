@@ -1,6 +1,4 @@
 
-require 'utils/ButtonView'
-
 App.ApplicationView = Em.View.extend
   _removeLoader: ( ->
     $('#loader').remove()

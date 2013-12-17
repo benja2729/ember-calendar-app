@@ -1,8 +1,11 @@
 
-<ul class="unstyled">
+<ul class="unstyled layout-block">
 {{#each category in categories}}
   <li>
     {{category-select activeCategories=activeCategories category=category name=category.name}}
   </li>
 {{/each}}
 </ul>
+<div class="col-xs-12">
+  {{button-control classNames="category-clear btn btn-lg valpo-sheen-gold layout-block" action="clearCategories" title="Clear"}}
+</div>

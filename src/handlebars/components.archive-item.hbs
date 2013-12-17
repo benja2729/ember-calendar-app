@@ -1,15 +1,11 @@
 
-<div {{bind-attr class=":archive-item popOut isFeatured isActive:active animate:fade animate:in"}}>
+<div {{bind-attr class=":archive-item popOut content.isFeatured isActive:active animate:fade animate:in"}}>
   {{#if template}}{{yield}}{{else}}
 
   <strong>{{titleize content.title}}</strong>
   <div class="row">
     <div class="col-sm-5">
-    {{#if content.isMultiDay}}
-      {{range content.range showDayOfWeek=true}}
-    {{else}}
-      {{range content.range showDate=false}}
-    {{/if}}
+    {{range content.range formatOptions}}
     </div>
     {{#if content.location}}
       <div class="col-sm-7"><strong>Location: </strong>{{content.location}}</div>

@@ -68,12 +68,10 @@ App.ApplicationRoute = Em.Route.extend
     #   'categories': [11]
     store.find 'category'   # We will want all of the categories at runtime
 
-  setupController: (controller) ->
-    controller.set 'allCategories', @get('store').find('category')
+  setupController: (controller, categories) ->
+    controller.set 'allCategories', categories
 
   actions:
-    loading: ->
-      console.log 'in Application'
     transitionToEvent: (model) ->
       @transitionTo 'event', model
     loadState: (path, model) ->
@@ -89,14 +87,17 @@ App.ApplicationRoute = Em.Route.extend
       @send 'loadState', path
 
     updateCategories: (activeCategories) ->
-      destinationRoute = @controllerFor('application').get 'currentResource'
-      destinationModel = @modelFor destinationRoute
+      # destinationRoute = @controllerFor('application').get 'currentResource'
+      # destinationModel = @modelFor destinationRoute
 
-      model = @modelFor 'filters'
-      model = App.Filter.create() if model is undefined
-      model.set 'categories', activeCategories
+      # model = @modelFor 'filters'
+      # model = App.Filter.create() if model is undefined
+      # model.set 'categories', activeCategories
 
-      @transitionTo destinationRoute, model, destinationModel
+      # console.log 'updateCategories', activeCategories
+
+      # @transitionTo 'filters.' + destinationRoute , model, destinationModel
+      @send 'loadState', 'day'
 
 App.IndexRoute = Em.Route.extend
   redirect: -> @transitionTo 'day'
