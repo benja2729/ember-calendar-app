@@ -16,12 +16,14 @@
   <div class="media-body">
     <h4 class="media-heading">{{titleize title}}</h4>
     <p>
-    {{#if isMultiDay}}
-      {{range range}}
-    {{else}}
-      {{date start}}<br />
-      {{range range showDate=false}}
-    {{/if}}
+      <span class="btn-link" {{action "loadDay" start}}>
+      {{#if isMultiDay}}
+        {{range range}}
+      {{else}}
+        {{date start}}<br />
+        {{range range showDate=false}}
+      {{/if}}
+      </span>
     </p>
     <p><b>Location: </b>{{#if location}}{{location}}{{else}}To Be Determined{{/if}}</p>
     {{#if description}}{{showdown description}}{{/if}}

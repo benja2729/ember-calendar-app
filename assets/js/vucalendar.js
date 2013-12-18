@@ -1,9 +1,2158 @@
-/*!
- * @name: vucalendar
- * @version: 0.1.0
- * @author: Benjamin Fischer
- * @repository: http://github.com/stevekane/4south-ember/
- * @license: MIT
- */
-!function(){Ember.TEMPLATES["_all-day-list"]=Ember.Handlebars.template(function(a,b,c,d,e){function f(a,b){var d,e,f,h="";return b.buffer.push('\n  <div class="page-header">\n    <h2>All Day Events</h2>\n  </div>\n  <div class="row">\n  '),e={},f={},d=c.each.call(a,"event","in","allDayEvents",{hash:{},inverse:n.noop,fn:n.program(2,g,b),contexts:[a,a,a],types:["ID","ID","ID"],hashContexts:f,hashTypes:e,data:b}),(d||0===d)&&b.buffer.push(d),b.buffer.push("\n  </div>\n"),h}function g(a,b){var d,e,f,g,h="";return b.buffer.push("\n    "),e={content:a,filters:a,action:a},f={content:"ID",filters:"ID",action:"STRING"},g={hash:{content:"event",filters:"filters",action:"transitionToEvent"},contexts:[],types:[],hashContexts:e,hashTypes:f,data:b},b.buffer.push(m((d=c["archive-item"]||a["archive-item"],d?d.call(a,g):l.call(a,"archive-item",g)))),b.buffer.push("\n  "),h}this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var h,i,j,k="",l=c.helperMissing,m=this.escapeExpression,n=this;return e.buffer.push("\n"),i={},j={},h=c["if"].call(b,"allDayEvents",{hash:{},inverse:n.noop,fn:n.program(1,f,e),contexts:[b],types:["ID"],hashContexts:j,hashTypes:i,data:e}),(h||0===h)&&e.buffer.push(h),e.buffer.push("\n"),k}),Ember.TEMPLATES["_current-day-format"]=Ember.Handlebars.template(function(a,b,c,d,e){function f(a,b){var d,e,f,g,h="";return b.buffer.push("\n  "),e={},f={},g={hash:{},contexts:[a,a],types:["ID","STRING"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(m((d=c.moment||a.moment,d?d.call(a,"","MMM D, YYYY",g):l.call(a,"moment","","MMM D, YYYY",g)))),b.buffer.push("\n"),h}function g(a,b){var d,e,f,g,h="";return b.buffer.push("\n  "),e={},f={},g={hash:{},contexts:[a,a],types:["ID","STRING"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(m((d=c.moment||a.moment,d?d.call(a,"","MMMM D, YYYY",g):l.call(a,"moment","","MMMM D, YYYY",g)))),b.buffer.push("\n"),h}this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var h,i,j,k="",l=c.helperMissing,m=this.escapeExpression,n=this;return e.buffer.push("\n"),i={},j={},h=c["if"].call(b,"App.isMobile",{hash:{},inverse:n.program(3,g,e),fn:n.program(1,f,e),contexts:[b],types:["ID"],hashContexts:j,hashTypes:i,data:e}),(h||0===h)&&e.buffer.push(h),e.buffer.push("\n"),k}),Ember.TEMPLATES["_day-header"]=Ember.Handlebars.template(function(a,b,c,d,e){function f(a,b){b.buffer.push('<i class="icon-question"></i>')}function g(a,b){var d,e,f,g,h="";return b.buffer.push("\n    "),e={},f={},g={hash:{},contexts:[a],types:["STRING"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(o((d=c.partial||a.partial,d?d.call(a,"current-day-format",g):n.call(a,"partial","current-day-format",g)))),b.buffer.push("\n  "),h}this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var h,i,j,k,l,m="",n=c.helperMissing,o=this.escapeExpression,p=this;return e.buffer.push('\n<header class="page-header">\n  <span class="pull-right h1">\n    <small class="beta">BETA</small>\n    '),e.buffer.push("\n    "),j={tagName:b,classNames:b},k={tagName:"STRING",classNames:"STRING"},l={hash:{tagName:"button",classNames:"btn btn-primary"},inverse:p.noop,fn:p.program(1,f,e),contexts:[b],types:["STRING"],hashContexts:j,hashTypes:k,data:e},h=c["link-to"]||b["link-to"],i=h?h.call(b,"help",l):n.call(b,"link-to","help",l),(i||0===i)&&e.buffer.push(i),e.buffer.push("\n  </span>\n  <h1>\n  "),k={},j={},i=c["with"].call(b,"currentDay",{hash:{},inverse:p.noop,fn:p.program(3,g,e),contexts:[b],types:["ID"],hashContexts:j,hashTypes:k,data:e}),(i||0===i)&&e.buffer.push(i),e.buffer.push("\n  </h1>\n</header>\n"),m}),Ember.TEMPLATES.application=Ember.Handlebars.template(function(a,b,c,d,e){this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var f,g,h,i,j="",k=c.helperMissing,l=this.escapeExpression;return e.buffer.push("\n"),e.buffer.push("\n<aside "),g={"class":b},h={"class":"STRING"},i={hash:{"class":":st-menu view.transitionEffect"},contexts:[],types:[],hashContexts:g,hashTypes:h,data:e},e.buffer.push(l((f=c["bind-attr"]||b["bind-attr"],f?f.call(b,i):k.call(b,"bind-attr",i)))),e.buffer.push(" "),g={target:b,on:b},h={target:"ID",on:"STRING"},e.buffer.push(l(c.action.call(b,"closeMenu",{hash:{target:"view",on:"mouseLeave"},contexts:[b],types:["STRING"],hashContexts:g,hashTypes:h,data:e}))),e.buffer.push(">\n  <h2>Categories</h2>\n  "),g={action:b,categories:b,activeCategories:b},h={action:"STRING",categories:"ID",activeCategories:"ID"},i={hash:{action:"updateCategories",categories:"allCategories",activeCategories:"activeCategories"},contexts:[],types:[],hashContexts:g,hashTypes:h,data:e},e.buffer.push(l((f=c["category-select-wrapper"]||b["category-select-wrapper"],f?f.call(b,i):k.call(b,"category-select-wrapper",i)))),e.buffer.push("\n</aside>\n\n"),e.buffer.push('\n<div class="st-pusher">\n  <section class="st-content">\n    <div class="pane-body app-body">\n\n    '),e.buffer.push('\n\n      <a class="logo valpo-sheen-brown" href="http://www.valpo.edu/">\n        <img src="http://www.valpo.edu/wp-content/themes/valpo/img/valpo_prestige_logo.png" alt="Valparaiso University logo" class="img">\n      </a>\n\n      '),h={},g={},e.buffer.push(l(c._triageMustache.call(b,"outlet",{hash:{},contexts:[b],types:["ID"],hashContexts:g,hashTypes:h,data:e}))),e.buffer.push("\n    </div>\n  </section>\n</div>\n</section>\n"),j}),Ember.TEMPLATES["components/archive-item"]=Ember.Handlebars.template(function(a,b,c,d,e){function f(a,b){var d,e;d={},e={},b.buffer.push(p(c._triageMustache.call(a,"yield",{hash:{},contexts:[a],types:["ID"],hashContexts:e,hashTypes:d,data:b})))}function g(a,b){var d,e,f,g,j,k="";return b.buffer.push("\n\n  <strong>"),f={},g={},j={hash:{},contexts:[a],types:["ID"],hashContexts:g,hashTypes:f,data:b},b.buffer.push(p((d=c.titleize||a.titleize,d?d.call(a,"content.title",j):q.call(a,"titleize","content.title",j)))),b.buffer.push('</strong>\n  <div class="row">\n    <div class="col-sm-5">\n    '),f={},g={},j={hash:{},contexts:[a,a],types:["ID","ID"],hashContexts:g,hashTypes:f,data:b},b.buffer.push(p((d=c.range||a.range,d?d.call(a,"content.range","formatOptions",j):q.call(a,"range","content.range","formatOptions",j)))),b.buffer.push("\n    </div>\n    "),f={},g={},e=c["if"].call(a,"content.location",{hash:{},inverse:r.noop,fn:r.program(4,h,b),contexts:[a],types:["ID"],hashContexts:g,hashTypes:f,data:b}),(e||0===e)&&b.buffer.push(e),b.buffer.push('\n  </div>\n  <div class="row">\n    <div class="col-xs-12">\n      <ul class="list-inline list-categories">\n      '),f={},g={},e=c.each.call(a,"category","in","content.categories",{hash:{},inverse:r.noop,fn:r.program(6,i,b),contexts:[a,a,a],types:["ID","ID","ID"],hashContexts:g,hashTypes:f,data:b}),(e||0===e)&&b.buffer.push(e),b.buffer.push("\n      </ul>\n    </div>\n  </div>\n\n  "),k}function h(a,b){var d,e,f="";return b.buffer.push('\n      <div class="col-sm-7"><strong>Location: </strong>'),d={},e={},b.buffer.push(p(c._triageMustache.call(a,"content.location",{hash:{},contexts:[a],types:["ID"],hashContexts:e,hashTypes:d,data:b}))),b.buffer.push("</div>\n    "),f}function i(a,b){var d,e,f,g,h="";return b.buffer.push("\n        <li>\n          "),e={tagName:a,category:a,activeCategories:a},f={tagName:"STRING",category:"ID",activeCategories:"ID"},g={hash:{tagName:"em",category:"category",activeCategories:"filters.categories"},contexts:[],types:[],hashContexts:e,hashTypes:f,data:b},b.buffer.push(p((d=c["category-display"]||a["category-display"],d?d.call(a,g):q.call(a,"category-display",g)))),b.buffer.push("\n        </li>\n      "),h}this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var j,k,l,m,n,o="",p=this.escapeExpression,q=c.helperMissing,r=this;return e.buffer.push("\n<div "),l={"class":b},m={"class":"STRING"},n={hash:{"class":":archive-item popOut content.isFeatured isActive:active animate:fade animate:in"},contexts:[],types:[],hashContexts:l,hashTypes:m,data:e},e.buffer.push(p((j=c["bind-attr"]||b["bind-attr"],j?j.call(b,n):q.call(b,"bind-attr",n)))),e.buffer.push(">\n  "),m={},l={},k=c["if"].call(b,"template",{hash:{},inverse:r.program(3,g,e),fn:r.program(1,f,e),contexts:[b],types:["ID"],hashContexts:l,hashTypes:m,data:e}),(k||0===k)&&e.buffer.push(k),e.buffer.push("\n</div>\n"),o}),Ember.TEMPLATES["components/button-control"]=Ember.Handlebars.template(function(a,b,c,d,e){function f(a,b){var d,e,f="";return b.buffer.push("\n  "),d={},e={},b.buffer.push(k(c._triageMustache.call(a,"yield",{hash:{},contexts:[a],types:["ID"],hashContexts:e,hashTypes:d,data:b}))),b.buffer.push("\n"),f}function g(a,b){var d,e,f="";return b.buffer.push("\n  "),d={},e={},b.buffer.push(k(c._triageMustache.call(a,"title",{hash:{},contexts:[a],types:["ID"],hashContexts:e,hashTypes:d,data:b}))),b.buffer.push("\n"),f}this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var h,i,j,k=this.escapeExpression,l=this;i={},j={},h=c["if"].call(b,"template",{hash:{},inverse:l.program(3,g,e),fn:l.program(1,f,e),contexts:[b],types:["ID"],hashContexts:j,hashTypes:i,data:e}),h||0===h?e.buffer.push(h):e.buffer.push("")}),Ember.TEMPLATES["components/category-display"]=Ember.Handlebars.template(function(a,b,c,d,e){function f(a,b){var d,e,f="";return b.buffer.push("\n  "),d={},e={},b.buffer.push(l(c._triageMustache.call(a,"outlet",{hash:{},contexts:[a],types:["ID"],hashContexts:e,hashTypes:d,data:b}))),b.buffer.push("\n"),f}function g(a,b){var d,e,f,g,h="";return b.buffer.push("\n  "),e={},f={},g={hash:{},contexts:[a],types:["ID"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(l((d=c.titleize||a.titleize,d?d.call(a,"name",g):m.call(a,"titleize","name",g)))),b.buffer.push("\n"),h}this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var h,i,j,k="",l=this.escapeExpression,m=c.helperMissing,n=this;return e.buffer.push("\n"),i={},j={},h=c["if"].call(b,"template",{hash:{},inverse:n.program(3,g,e),fn:n.program(1,f,e),contexts:[b],types:["ID"],hashContexts:j,hashTypes:i,data:e}),(h||0===h)&&e.buffer.push(h),k}),Ember.TEMPLATES["components/category-select-wrapper"]=Ember.Handlebars.template(function(a,b,c,d,e){function f(a,b){var d,e,f,g,h="";return b.buffer.push("\n  <li>\n    "),e={activeCategories:a,category:a,name:a},f={activeCategories:"ID",category:"ID",name:"ID"},g={hash:{activeCategories:"activeCategories",category:"category",name:"category.name"},contexts:[],types:[],hashContexts:e,hashTypes:f,data:b},b.buffer.push(m((d=c["category-select"]||a["category-select"],d?d.call(a,g):l.call(a,"category-select",g)))),b.buffer.push("\n  </li>\n"),h}this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var g,h,i,j,k="",l=c.helperMissing,m=this.escapeExpression,n=this;return e.buffer.push('\n<ul class="unstyled layout-block">\n'),h={},i={},g=c.each.call(b,"category","in","categories",{hash:{},inverse:n.noop,fn:n.program(1,f,e),contexts:[b,b,b],types:["ID","ID","ID"],hashContexts:i,hashTypes:h,data:e}),(g||0===g)&&e.buffer.push(g),e.buffer.push('\n</ul>\n<div class="col-xs-12">\n  '),i={classNames:b,action:b,title:b},h={classNames:"STRING",action:"STRING",title:"STRING"},j={hash:{classNames:"category-clear btn btn-lg valpo-sheen-gold layout-block",action:"clearCategories",title:"Clear"},contexts:[],types:[],hashContexts:i,hashTypes:h,data:e},e.buffer.push(m((g=c["button-control"]||b["button-control"],g?g.call(b,j):l.call(b,"button-control",j)))),e.buffer.push("\n</div>"),k}),Ember.TEMPLATES["components/category-select"]=Ember.Handlebars.template(function(a,b,c,d,e){this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var f,g,h,i,j="",k=c.helperMissing,l=this.escapeExpression;return e.buffer.push("\n"),g={},h={},i={hash:{},contexts:[b],types:["ID"],hashContexts:h,hashTypes:g,data:e},e.buffer.push(l((f=c.titleize||b.titleize,f?f.call(b,"name",i):k.call(b,"titleize","name",i)))),e.buffer.push("\n"),j}),Ember.TEMPLATES["components/date-picker"]=Ember.Handlebars.template(function(a,b,c,d,e){function f(a,b){var d,e,f="";return b.buffer.push("\n      <th>"),d={},e={},b.buffer.push(r(c._triageMustache.call(a,"",{hash:{},contexts:[a],types:["ID"],hashContexts:e,hashTypes:d,data:b}))),b.buffer.push("</th>\n    "),f}function g(a,b){var d,e,f,g="";return b.buffer.push("\n    <tr>\n    "),e={},f={},d=c.each.call(a,"day","in","week",{hash:{},inverse:t.noop,fn:t.program(4,h,b),contexts:[a,a,a],types:["ID","ID","ID"],hashContexts:f,hashTypes:e,data:b}),(d||0===d)&&b.buffer.push(d),b.buffer.push("\n    </tr>\n  "),g}function h(a,b){var d,e,f,g="";return b.buffer.push("\n      "),e={},f={},d=c["if"].call(a,"day",{hash:{},inverse:t.program(8,k,b),fn:t.program(5,i,b),contexts:[a],types:["ID"],hashContexts:f,hashTypes:e,data:b}),(d||0===d)&&b.buffer.push(d),b.buffer.push("\n    "),g}function i(a,b){var d,e,f,g="";return b.buffer.push("\n        <td>"),e={dateBinding:a},f={dateBinding:"ID"},d=c.view.call(a,"view.tile",{hash:{dateBinding:"day"},inverse:t.noop,fn:t.program(6,j,b),contexts:[a],types:["ID"],hashContexts:e,hashTypes:f,data:b}),(d||0===d)&&b.buffer.push(d),b.buffer.push("</td>\n        "),b.buffer.push("\n      "),g}function j(a,b){var d,e,f,g;e={},f={},g={hash:{},contexts:[a,a],types:["ID","ID"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(r((d=c.moment||a.moment,d?d.call(a,"day","view.format",g):s.call(a,"moment","day","view.format",g))))}function k(a,b){b.buffer.push('\n        <td class="invalid-day"></td>\n      ')}this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var l,m,n,o,p,q="",r=this.escapeExpression,s=c.helperMissing,t=this;return e.buffer.push("<header>\n"),e.buffer.push("\n  "),n={range:b,date:b,format:b,shortFormat:b},o={range:"STRING",date:"ID",format:"STRING",shortFormat:"STRING"},p={hash:{range:"month",date:"currentMonth",format:"MMMM",shortFormat:"MMM"},contexts:[],types:[],hashContexts:n,hashTypes:o,data:e},e.buffer.push(r((l=c["range-pager"]||b["range-pager"],l?l.call(b,p):s.call(b,"range-pager",p)))),e.buffer.push('\n</header>\n\n<table class="calendar">\n  <thead>\n    <tr>\n    '),o={},n={},m=c.each.call(b,"dayNames",{hash:{},inverse:t.noop,fn:t.program(1,f,e),contexts:[b],types:["ID"],hashContexts:n,hashTypes:o,data:e}),(m||0===m)&&e.buffer.push(m),e.buffer.push("\n    </tr>\n  </thead>\n\n  <tbody>\n  "),e.buffer.push("\n  "),o={},n={},m=c.each.call(b,"week","in","weeks",{hash:{},inverse:t.noop,fn:t.program(3,g,e),contexts:[b,b,b],types:["ID","ID","ID"],hashContexts:n,hashTypes:o,data:e}),(m||0===m)&&e.buffer.push(m),e.buffer.push("\n  </tbody>\n\n</table>"),q}),Ember.TEMPLATES["components/filter-toggle"]=Ember.Handlebars.template(function(a,b,c,d,e){this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var f,g,h="",i=this.escapeExpression;return e.buffer.push("\n"),f={},g={},e.buffer.push(i(c._triageMustache.call(b,"title",{hash:{},contexts:[b],types:["ID"],hashContexts:g,hashTypes:f,data:e}))),e.buffer.push(' <span class="badge">'),f={},g={},e.buffer.push(i(c._triageMustache.call(b,"filters.categories.length",{hash:{},contexts:[b],types:["ID"],hashContexts:g,hashTypes:f,data:e}))),e.buffer.push("</span>"),h}),Ember.TEMPLATES["components/pager-item"]=Ember.Handlebars.template(function(a,b,c,d,e){function f(a,b){var d,e,f="";return b.buffer.push("\n  "),d={},e={},b.buffer.push(l(c._triageMustache.call(a,"title",{hash:{},contexts:[a],types:["ID"],hashContexts:e,hashTypes:d,data:b}))),b.buffer.push("\n"),f}function g(a,b){var d,e,f,g,h="";return b.buffer.push("\n  "),e={},f={},g={hash:{},contexts:[a,a],types:["ID","ID"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(l((d=c.moment||a.moment,d?d.call(a,"date","format",g):m.call(a,"moment","date","format",g)))),b.buffer.push("\n"),h}this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var h,i,j,k="",l=this.escapeExpression,m=c.helperMissing,n=this;return e.buffer.push("\n"),i={},j={},h=c["if"].call(b,"title",{hash:{},inverse:n.program(3,g,e),fn:n.program(1,f,e),contexts:[b],types:["ID"],hashContexts:j,hashTypes:i,data:e}),(h||0===h)&&e.buffer.push(h),e.buffer.push("\n"),k}),Ember.TEMPLATES["components/range-pager"]=Ember.Handlebars.template(function(a,b,c,d,e){this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var f,g,h,i,j="",k=c.helperMissing,l=this.escapeExpression;return e.buffer.push('<ul class="pager">\n  <li class="previous">\n    '),g={format:b,tagName:b,date:b,action:b},h={format:"ID",tagName:"STRING",date:"ID",action:"STRING"},i={hash:{format:"_format",tagName:"a",date:"previousDate",action:"changeDate"},contexts:[],types:[],hashContexts:g,hashTypes:h,data:e},e.buffer.push(l((f=c["pager-item"]||b["pager-item"],f?f.call(b,i):k.call(b,"pager-item",i)))),e.buffer.push("\n  </li>\n  <li>\n    "),h={},g={},i={hash:{},contexts:[b,b],types:["ID","ID"],hashContexts:g,hashTypes:h,data:e},e.buffer.push(l((f=c.moment||b.moment,f?f.call(b,"date","_format",i):k.call(b,"moment","date","_format",i)))),e.buffer.push('\n  </li>\n  <li class="next">\n    '),g={format:b,tagName:b,date:b,action:b},h={format:"ID",tagName:"STRING",date:"ID",action:"STRING"},i={hash:{format:"_format",tagName:"a",date:"nextDate",action:"changeDate"},contexts:[],types:[],hashContexts:g,hashTypes:h,data:e},e.buffer.push(l((f=c["pager-item"]||b["pager-item"],f?f.call(b,i):k.call(b,"pager-item",i)))),e.buffer.push("\n  </li>\n</ul>"),j}),Ember.TEMPLATES.day=Ember.Handlebars.template(function(a,b,c,d,e){function f(a,b){var d,e,f,g,h="";return b.buffer.push("\n        "),e={content:a,isPromoted:a,currentDay:a,filters:a,action:a},f={content:"ID",isPromoted:"BOOLEAN",currentDay:"ID",filters:"ID",action:"STRING"},g={hash:{content:"event",isPromoted:!0,currentDay:"currentDay",filters:"filters",action:"transitionToEvent"},contexts:[],types:[],hashContexts:e,hashTypes:f,data:b},b.buffer.push(v((d=c["archive-item"]||a["archive-item"],d?d.call(a,g):u.call(a,"archive-item",g)))),b.buffer.push("\n      "),h}function g(a,b){var d,e,f,g,i="";return b.buffer.push("\n        "),e={hash:{},inverse:w.noop,fn:w.program(4,h,b),contexts:[],types:[],hashContexts:g,hashTypes:f,data:b},(d=c["archive-item"])?d=d.call(a,e):(d=a["archive-item"],d=typeof d===x?d.apply(a):d),f={},g={},c["archive-item"]||(d=y.call(a,d,e)),(d||0===d)&&b.buffer.push(d),b.buffer.push("\n      "),i}function h(a,b){b.buffer.push("\n          There are no Featured Events today.\n        ")}function i(a,b){var d,e,f,g,h="";return b.buffer.push("<h2>"),e={},f={},g={hash:{},contexts:[a,a],types:["ID","STRING"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(v((d=c.moment||a.moment,d?d.call(a,"currentDay","MMM D, YYYY",g):u.call(a,"moment","currentDay","MMM D, YYYY",g)))),b.buffer.push("</h2>"),h}function j(a,b){var d,e,f,g="";return b.buffer.push('\n    <div class="page-header">\n      <h2>All Day Events</h2>\n    </div>\n    <div class="row">\n    '),e={},f={},d=c.each.call(a,"event","in","allDayEvents",{hash:{},inverse:w.noop,fn:w.program(9,k,b),contexts:[a,a,a],types:["ID","ID","ID"],hashContexts:f,hashTypes:e,data:b}),(d||0===d)&&b.buffer.push(d),b.buffer.push("\n    </div>\n  "),g}function k(a,b){var d,e,f,g,h="";return b.buffer.push("\n      "),e={content:a,filters:a,action:a},f={content:"ID",filters:"ID",action:"STRING"},g={hash:{content:"event",filters:"filters",action:"transitionToEvent"},contexts:[],types:[],hashContexts:e,hashTypes:f,data:b},b.buffer.push(v((d=c["archive-item"]||a["archive-item"],d?d.call(a,g):u.call(a,"archive-item",g)))),b.buffer.push("\n    "),h}function l(a,b){var d,e,f,g,h="";return b.buffer.push("\n      "),e={content:a,filters:a,classNames:a,action:a},f={content:"ID",filters:"ID",classNames:"STRING",action:"STRING"},g={hash:{content:"event",filters:"filters",classNames:"col-md-6",action:"transitionToEvent"},contexts:[],types:[],hashContexts:e,hashTypes:f,data:b},b.buffer.push(v((d=c["archive-item"]||a["archive-item"],d?d.call(a,g):u.call(a,"archive-item",g)))),b.buffer.push("\n    "),h}function m(a,b){var d,e,f,g,h="";return b.buffer.push("\n      "),e={hash:{},inverse:w.noop,fn:w.program(14,n,b),contexts:[],types:[],hashContexts:g,hashTypes:f,data:b},(d=c["archive-item"])?d=d.call(a,e):(d=a["archive-item"],d=typeof d===x?d.apply(a):d),f={},g={},c["archive-item"]||(d=y.call(a,d,e)),(d||0===d)&&b.buffer.push(d),b.buffer.push("\n    "),h}function n(a,b){var d,e,f,g,h="";return b.buffer.push("\n        Your search for events on "),e={},f={},g={hash:{},contexts:[a],types:["ID"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(v((d=c.date||a.date,d?d.call(a,"currentDay",g):u.call(a,"date","currentDay",g)))),b.buffer.push(" rendered no results.\n      "),h}this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var o,p,q,r,s,t="",u=c.helperMissing,v=this.escapeExpression,w=this,x="function",y=c.blockHelperMissing;return q={},r={},s={hash:{},contexts:[b],types:["STRING"],hashContexts:r,hashTypes:q,data:e},e.buffer.push(v((o=c.partial||b.partial,o?o.call(b,"day-header",s):u.call(b,"partial","day-header",s)))),e.buffer.push('\n<div class="events-body">\n  <div class="row">\n    <div class="col-sm-6 main-controls">\n      '),r={action:b,isOpen:b,filters:b,isMobile:b,title:b,classNames:b},q={action:"STRING",isOpen:"ID",filters:"ID",isMobile:"ID",title:"STRING",classNames:"STRING"},s={hash:{action:"toggleFilterPane",isOpen:"filtersAreOpen",filters:"filters",isMobile:"App.isMobile",title:"Categories",classNames:"btn-lg valpo-sheen-gold"},contexts:[],types:[],hashContexts:r,hashTypes:q,data:e},e.buffer.push(v((o=c["filter-toggle"]||b["filter-toggle"],o?o.call(b,s):u.call(b,"filter-toggle",s)))),e.buffer.push('\n      <button class="btn pull-right btn-lg  valpo-sheen-gold" '),q={},r={},e.buffer.push(v(c.action.call(b,"transitionToDay","today",{hash:{},contexts:[b,b],types:["STRING","ID"],hashContexts:r,hashTypes:q,data:e}))),e.buffer.push('>Today</button>\n      <div class="row">\n        '),r={activeDate:b,action:b,"class":b},q={activeDate:"ID",action:"STRING","class":"STRING"},s={hash:{activeDate:"currentDay",action:"transitionToDay","class":"col-xs-12"},contexts:[],types:[],hashContexts:r,hashTypes:q,data:e},e.buffer.push(v((o=c["date-picker"]||b["date-picker"],o?o.call(b,s):u.call(b,"date-picker",s)))),e.buffer.push('\n      </div>\n    </div>\n    <div class="col-sm-6">\n      <h2>Upcoming Events</h2>\n      <div class="row">\n      '),q={},r={},p=c.each.call(b,"event","in","featuredEvents",{hash:{},inverse:w.program(3,g,e),fn:w.program(1,f,e),contexts:[b,b,b],types:["ID","ID","ID"],hashContexts:r,hashTypes:q,data:e}),(p||0===p)&&e.buffer.push(p),e.buffer.push("\n      </div>\n    </div>\n  </div>\n\n  "),q={},r={},p=c["if"].call(b,"App.isMobile",{hash:{},inverse:w.noop,fn:w.program(6,i,e),contexts:[b],types:["ID"],hashContexts:r,hashTypes:q,data:e}),(p||0===p)&&e.buffer.push(p),e.buffer.push("\n\n  "),q={},r={},p=c["if"].call(b,"allDayEvents",{hash:{},inverse:w.noop,fn:w.program(8,j,e),contexts:[b],types:["ID"],hashContexts:r,hashTypes:q,data:e}),(p||0===p)&&e.buffer.push(p),e.buffer.push('\n\n  <section class="events-list">\n    <header class="page-header">\n      <h2>Events List</h2>\n    </header>\n    <div class="row fader">\n    '),q={},r={},p=c.each.call(b,"event","in","eventsList",{hash:{},inverse:w.program(13,m,e),fn:w.program(11,l,e),contexts:[b,b,b],types:["ID","ID","ID"],hashContexts:r,hashTypes:q,data:e}),(p||0===p)&&e.buffer.push(p),e.buffer.push("\n    </div>\n  </section>\n\n  "),q={},r={},e.buffer.push(v(c._triageMustache.call(b,"outlet",{hash:{},contexts:[b],types:["ID"],hashContexts:r,hashTypes:q,data:e}))),e.buffer.push("\n</div>\n"),t}),Ember.TEMPLATES.event=Ember.Handlebars.template(function(a,b,c,d,e){function f(a,b){var d,e,f,g,h="";return b.buffer.push("\n      "),e={},f={},g={hash:{},contexts:[a],types:["ID"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(B((d=c.range||a.range,d?d.call(a,"range",g):A.call(a,"range","range",g)))),b.buffer.push("\n    "),h}function g(a,b){var d,e,f,g,h="";return b.buffer.push("\n      "),e={},f={},g={hash:{},contexts:[a],types:["ID"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(B((d=c.date||a.date,d?d.call(a,"start",g):A.call(a,"date","start",g)))),b.buffer.push("<br />\n      "),f={showDate:a},e={showDate:"BOOLEAN"},g={hash:{showDate:!1},contexts:[a],types:["ID"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(B((d=c.range||a.range,d?d.call(a,"range",g):A.call(a,"range","range",g)))),b.buffer.push("\n    "),h}function h(a,b){var d,e;d={},e={},b.buffer.push(B(c._triageMustache.call(a,"location",{hash:{},contexts:[a],types:["ID"],hashContexts:e,hashTypes:d,data:b})))}function i(a,b){b.buffer.push("To Be Determined")}function j(a,b){var d,e,f,g;e={},f={},g={hash:{},contexts:[a],types:["ID"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(B((d=c.showdown||a.showdown,d?d.call(a,"description",g):A.call(a,"showdown","description",g))))}function k(a,b){var d,e,f,g="";return b.buffer.push('\n        <h4>Categories</h4>\n        <ul class="list-inline">\n        '),e={},f={},d=c.each.call(a,"categories",{hash:{},inverse:C.noop,fn:C.program(12,l,b),contexts:[a],types:["ID"],hashContexts:f,hashTypes:e,data:b}),(d||0===d)&&b.buffer.push(d),b.buffer.push("\n        </ul>\n      "),g}function l(a,b){var d,e,f,g,h="";return b.buffer.push('\n          <li class="btn btn-link" '),e={},f={},b.buffer.push(B(c.action.call(a,"selectCategory","",{hash:{},contexts:[a,a],types:["STRING","ID"],hashContexts:f,hashTypes:e,data:b}))),b.buffer.push(">"),e={},f={},g={hash:{},contexts:[a],types:["ID"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(B((d=c.titleize||a.titleize,d?d.call(a,"name",g):A.call(a,"titleize","name",g)))),b.buffer.push("</li>\n        "),h}function m(a,b){var d,e,f,g="";return b.buffer.push('\n  <div class="page-header">\n    <h2>\n      '),e={},f={},d=c.unless.call(a,"isCurrentDay",{hash:{},inverse:C.noop,fn:C.program(15,n,b),contexts:[a],types:["ID"],hashContexts:f,hashTypes:e,data:b}),(d||0===d)&&b.buffer.push(d),b.buffer.push('\n      All Day Events\n    </h2>\n  </div>\n  <div class="row">\n  '),e={},f={},d=c.each.call(a,"event","in","day.allDayEvents",{hash:{},inverse:C.noop,fn:C.program(18,p,b),contexts:[a,a,a],types:["ID","ID","ID"],hashContexts:f,hashTypes:e,data:b}),(d||0===d)&&b.buffer.push(d),b.buffer.push("\n  </div>\n"),g}function n(a,b){var d,e,f,g="";return b.buffer.push("\n        "),e={},f={},d=c["with"].call(a,"day.currentDay",{hash:{},inverse:C.noop,fn:C.program(16,o,b),contexts:[a],types:["ID"],hashContexts:f,hashTypes:e,data:b}),(d||0===d)&&b.buffer.push(d),b.buffer.push("\n      "),g}function o(a,b){var d,e,f,g,h="";return b.buffer.push("\n          "),e={},f={},g={hash:{},contexts:[a],types:["STRING"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(B((d=c.partial||a.partial,d?d.call(a,"current-day-format",g):A.call(a,"partial","current-day-format",g)))),b.buffer.push("&nbsp;\n        "),h}function p(a,b){var d,e,f,g,h="";return b.buffer.push("\n    "),e={content:a,filters:a,action:a},f={content:"ID",filters:"ID",action:"STRING"},g={hash:{content:"event",filters:"filters",action:"transitionToEvent"},contexts:[],types:[],hashContexts:e,hashTypes:f,data:b},b.buffer.push(B((d=c["archive-item"]||a["archive-item"],d?d.call(a,g):A.call(a,"archive-item",g)))),b.buffer.push("\n  "),h}function q(a,b){var d,e,f,g="";return b.buffer.push('\n  <header class="page-header">\n    <h2>\n    '),e={},f={},d=c.unless.call(a,"isCurrentDay",{hash:{},inverse:C.noop,fn:C.program(21,r,b),contexts:[a],types:["ID"],hashContexts:f,hashTypes:e,data:b}),(d||0===d)&&b.buffer.push(d),b.buffer.push('\n      Events List\n    </h2>\n  </header>\n  <div class="row fader">\n  '),e={},f={},d=c.each.call(a,"event","in","day.eventsList",{hash:{},inverse:C.noop,fn:C.program(24,t,b),contexts:[a,a,a],types:["ID","ID","ID"],hashContexts:f,hashTypes:e,data:b}),(d||0===d)&&b.buffer.push(d),b.buffer.push("\n  </div>\n"),g}function r(a,b){var d,e,f,g="";return b.buffer.push("\n      "),e={},f={},d=c["with"].call(a,"day.currentDay",{hash:{},inverse:C.noop,fn:C.program(22,s,b),contexts:[a],types:["ID"],hashContexts:f,hashTypes:e,data:b}),(d||0===d)&&b.buffer.push(d),b.buffer.push("\n    "),g}function s(a,b){var d,e,f,g,h="";return b.buffer.push("\n        "),e={},f={},g={hash:{},contexts:[a],types:["STRING"],hashContexts:f,hashTypes:e,data:b},b.buffer.push(B((d=c.partial||a.partial,d?d.call(a,"current-day-format",g):A.call(a,"partial","current-day-format",g)))),b.buffer.push("&nbsp;\n      "),h}function t(a,b){var d,e,f,g,h="";return b.buffer.push("\n    "),e={content:a,filters:a,classNames:a,action:a},f={content:"ID",filters:"ID",classNames:"STRING",action:"STRING"},g={hash:{content:"event",filters:"filters",classNames:"col-md-6",action:"transitionToEvent"},contexts:[],types:[],hashContexts:e,hashTypes:f,data:b},b.buffer.push(B((d=c["archive-item"]||a["archive-item"],d?d.call(a,g):A.call(a,"archive-item",g)))),b.buffer.push("\n  "),h}this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var u,v,w,x,y,z="",A=c.helperMissing,B=this.escapeExpression,C=this;return e.buffer.push("\n"),w={},x={},y={hash:{},contexts:[b],types:["STRING"],hashContexts:x,hashTypes:w,data:e},e.buffer.push(B((u=c.partial||b.partial,u?u.call(b,"day-header",y):A.call(b,"partial","day-header",y)))),e.buffer.push('\n\n<button class="btn btn-primary" '),w={},x={},e.buffer.push(B(c.action.call(b,"loadDay",{hash:{},contexts:[b],types:["STRING"],hashContexts:x,hashTypes:w,data:e}))),e.buffer.push('>\n  <i class="icon-long-arrow-left"></i> Events\n</button>\n\n<div class="media">\n\n  '),e.buffer.push("\n  "),e.buffer.push("\n  <aside "),x={"class":b},w={"class":"STRING"},y={hash:{"class":":pull-left imgUrl::hidden"},contexts:[],types:[],hashContexts:x,hashTypes:w,data:e},e.buffer.push(B((u=c["bind-attr"]||b["bind-attr"],u?u.call(b,y):A.call(b,"bind-attr",y)))),e.buffer.push('>\n    <img class="media-object" '),x={src:b},w={src:"ID"},y={hash:{src:"imgUrl"},contexts:[],types:[],hashContexts:x,hashTypes:w,data:e},e.buffer.push(B((u=c["bind-attr"]||b["bind-attr"],u?u.call(b,y):A.call(b,"bind-attr",y)))),e.buffer.push(' alt="...">\n  </aside>\n\n  <div class="media-body">\n    <h4 class="media-heading">'),w={},x={},y={hash:{},contexts:[b],types:["ID"],hashContexts:x,hashTypes:w,data:e},e.buffer.push(B((u=c.titleize||b.titleize,u?u.call(b,"title",y):A.call(b,"titleize","title",y)))),e.buffer.push("</h4>\n    <p>\n    "),w={},x={},v=c["if"].call(b,"isMultiDay",{hash:{},inverse:C.program(3,g,e),fn:C.program(1,f,e),contexts:[b],types:["ID"],hashContexts:x,hashTypes:w,data:e}),(v||0===v)&&e.buffer.push(v),e.buffer.push("\n    </p>\n    <p><b>Location: </b>"),w={},x={},v=c["if"].call(b,"location",{hash:{},inverse:C.program(7,i,e),fn:C.program(5,h,e),contexts:[b],types:["ID"],hashContexts:x,hashTypes:w,data:e}),(v||0===v)&&e.buffer.push(v),e.buffer.push("</p>\n    "),w={},x={},v=c["if"].call(b,"description",{hash:{},inverse:C.noop,fn:C.program(9,j,e),contexts:[b],types:["ID"],hashContexts:x,hashTypes:w,data:e}),(v||0===v)&&e.buffer.push(v),e.buffer.push("\n    <p "),x={"class":b},w={"class":"STRING"},y={hash:{"class":"url::hidden"},contexts:[],types:[],hashContexts:x,hashTypes:w,data:e},e.buffer.push(B((u=c["bind-attr"]||b["bind-attr"],u?u.call(b,y):A.call(b,"bind-attr",y)))),e.buffer.push("><a "),x={href:b},w={href:"ID"},y={hash:{href:"url"},contexts:[],types:[],hashContexts:x,hashTypes:w,data:e},e.buffer.push(B((u=c["bind-attr"]||b["bind-attr"],u?u.call(b,y):A.call(b,"bind-attr",y)))),e.buffer.push(' target="_blank">More Information &nbsp;&gt;&gt;</a><p>\n    <div class="media-footer">\n      '),w={},x={},v=c["if"].call(b,"filtersHaveCategories",{hash:{},inverse:C.noop,fn:C.program(11,k,e),contexts:[b],types:["ID"],hashContexts:x,hashTypes:w,data:e}),(v||0===v)&&e.buffer.push(v),e.buffer.push("\n    </div>\n  </div>\n</div>\n\n"),w={},x={},v=c["if"].call(b,"day.allDayEvents",{hash:{},inverse:C.noop,fn:C.program(14,m,e),contexts:[b],types:["ID"],hashContexts:x,hashTypes:w,data:e}),(v||0===v)&&e.buffer.push(v),e.buffer.push("\n\n"),w={},x={},v=c["if"].call(b,"day.eventsList",{hash:{},inverse:C.noop,fn:C.program(20,q,e),contexts:[b],types:["ID"],hashContexts:x,hashTypes:w,data:e}),(v||0===v)&&e.buffer.push(v),e.buffer.push("\n\n"),w={},x={},e.buffer.push(B(c._triageMustache.call(b,"outlet",{hash:{},contexts:[b],types:["ID"],hashContexts:x,hashTypes:w,data:e}))),e.buffer.push("\n"),z
-}),Ember.TEMPLATES.filters=Ember.Handlebars.template(function(a,b,c,d,e){this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var f,g,h="",i=this.escapeExpression;return e.buffer.push("\n"),f={},g={},e.buffer.push(i(c._triageMustache.call(b,"outlet",{hash:{},contexts:[b],types:["ID"],hashContexts:g,hashTypes:f,data:e}))),h}),Ember.TEMPLATES.help=Ember.Handlebars.template(function(a,b,c,d,e){this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{};var f,g,h,i,j="",k=c.helperMissing,l=this.escapeExpression;return e.buffer.push('<header class="page-header">\n  '),g={action:b,classNames:b,title:b},h={action:"STRING",classNames:"STRING",title:"STRING"},i={hash:{action:"popAppState",classNames:"btn-primary pull-right",title:"Back"},contexts:[],types:[],hashContexts:g,hashTypes:h,data:e},e.buffer.push(l((f=c["button-control"]||b["button-control"],f?f.call(b,i):k.call(b,"button-control",i)))),e.buffer.push("\n  <h1>Help and Information</h1>\n</header>\n"),h={},g={},i={hash:{},contexts:[b],types:["ID"],hashContexts:g,hashTypes:h,data:e},e.buffer.push(l((f=c.showdown||b.showdown,f?f.call(b,"text",i):k.call(b,"showdown","text",i)))),j}),Ember.TEMPLATES.loading=Ember.Handlebars.template(function(a,b,c,d,e){this.compilerInfo=[4,">= 1.0.0"],c=this.merge(c,Ember.Handlebars.helpers),e=e||{},e.buffer.push('\n<div id="loader">\n  <div class="wrapper">\n    <div class="inner">\n      <span>L</span>\n      <span>o</span>\n      <span>a</span>\n      <span>d</span>\n      <span>i</span>\n      <span>n</span>\n      <span>g</span>\n    </div>\n  </div>\n</div>\n')})}(),function(){Em.Handlebars.registerBoundHelper("moment",function(a,b){return moment(a).format(b)})}(),function(){Em.Handlebars.registerBoundHelper("time",function(a,b){var c,d;return d=moment(a),c=d.clone(),0===c.startOf("day").diff(d)?"Midnight":0===c.hour(12).diff(d)?"Noon":(b="string"===Em.typeOf(b)?b:"h:mm a",d.format(b))})}(),function(){Em.Handlebars.registerBoundHelper("date",function(a){var b;return b=moment(a),b.format("MMMM D, YYYY")})}(),function(){var a;a={groupMeridiems:!0,spaceBeforeMeridiem:!0,showDate:!0,showDayOfWeek:!1,twentyFourHour:!1,implicitMinutes:!0,implicitYear:!0,yearFormat:"YYYY",monthFormat:"MMM",weekdayFormat:"ddd",dayFormat:"DD",meridiemFormat:"a",hourFormat:"h",minuteFormat:"mm",allDay:"all day",explicitAllDay:!1,lastNightEndsAt:0},Em.Handlebars.registerBoundHelper("range",function(b,c,d){var e,f;return null==d&&(d={hash:{}}),$.isPlainObject(c)&&(c.hash?d=c:$.extend(d.hash,c)),f="string"===Em.typeOf(c)?b.simpleFormat(c):(e=$.extend({},a,d.hash),b.format(e)),f=f.replace(/12(:00)?\s?[Aa]\.?[Mm]\.?/g,"Midnight"),f=f.replace(/12(:00)?\s?[Pp]\.?[Mm]\.?/g,"Noon")})}(),function(){var a,b,c,d;c=/\\n|\\r/g,d="\n",a=/(\s+|^)(https?:\/\/[^<\s]*)(.*(?:$|\s+))/g,b='$1<a href="$2">$2</a>$3',Em.Handlebars.registerBoundHelper("showdown",function(e){var f,g;try{return g=e.replace(c,d),g=(new Showdown.converter).makeHtml(g),g=g.replace(a,b),new Em.Handlebars.SafeString(g)}catch(h){return f=h,"Invalid input text"}})}(),function(){var a,b;a=Ember.A(["of","a","the","and","an","or","nor","but","is","if","then","else","when","at","from","by","on","off","for","in","out","over","to","into","with"]),b=function(b){var c;return c=b.split(" "),c=Ember.ArrayPolyfills.map.call(c,function(b,c){return 0!==c&&a.contains(b)?b:Ember.String.capitalize(b)}),c.join(" ")},Ember.Handlebars.registerBoundHelper("titleize",b)}(),function(){var a;window.App=Em.Application.create({rootElement:"#VUCalendar",isReady:!1,isMobile:!1}),(a="function"==typeof window.matchMedia?window.matchMedia("(max-width: 979px)"):void 0)&&(App.set("isMobile",a.matches),a.addListener(function(a){return App.set("isMobile",a.matches)})),App.ready=function(){return App.set("isReady",!0)}}(),function(){moment.lang("en",{meridiem:function(a,b,c){return 12>a?c?"a.m.":"A.M.":a>=12?c?"p.m.":"P.M.":void 0},monthsShort:["Jan.","Feb.","March","April","May","June","July","Aug.","Sept.","Oct.","Nov.","Dec."]})}(),function(){var a,b,c,d,e,f,g;g=Ember.EnumerableUtils,b=function(a,b){return a===b},e=function(a){return Ember.ArrayProxy.detectInstance(a)?a.toArray():a},g.common=a=function(a,b,c){var d,f,h,i,j,k,l,m;if(!(c instanceof Function))return g.intersection(a,b);for(a=e(a),b=e(b),d=!1,i=[],j=0,l=a.length;l>j;j++){for(f=a[j],k=0,m=b.length;m>k&&(h=b[k],!(d=c(f,h,a,b)));k++);d&&i.push(f)}return i},g.hasCommon=d=function(){return a.apply(null,arguments).length>0},g.uncommon=f=function(a,c,d){var f,g,h,i,j,k,l,m;for(d instanceof Function||(d=b),f=!1,i=[],a=e(a),c=e(c),j=0,l=c.length;l>j;j++){for(h=c[j],k=0,m=a.length;m>k&&(g=a[k],!(f=d(g,h,a,c)));k++);f||i.push(h)}return i},g.extend=c=function(a){return a.concat(f.apply(null,arguments))}}(),function(){App.ButtonControlComponent=Em.Component.extend({tagName:"button",classNames:["btn"],click:function(){return this.sendAction("action",this)}})}(),function(){App.FilterToggleComponent=App.ButtonControlComponent.extend({classNames:["filter-toggle"],classNameBindings:["isOpen:active"],title:"Filters",isOpen:Em.required(Boolean),isMobile:Em.required(Boolean),click:function(){return this.toggleProperty("isOpen")}})}(),function(){App.CategoryDisplayComponent=Em.Component.extend({category:Em.required("Category"),nameBinding:"category.name",classNames:["category-display"],classNameBindings:["isActive:text-warning:text-muted"],isActive:Em.computed("category","activeCategories.[]",function(){var a,b,c;return c=this.getProperties("activeCategories","category"),a=c.activeCategories,b=c.category,a.contains(b)})})}(),function(){App.CategorySelectComponent=Em.Component.extend({tagName:"div",name:Em.required(String),category:Em.required("Category"),activeCategories:Em.required("Category Array"),classNames:["category-select"],classNameBindings:["active"],active:Em.computed("activeCategories.length",function(){var a;return!!(null!=(a=this.get("activeCategories"))?a.contains(this.get("category")):void 0)}),addCategory:function(){var a;return null!=(a=this.get("activeCategories"))?a.addObject(this.get("category")):void 0},removeCategory:function(){return this.get("activeCategories").removeObject(this.get("category"))},click:function(a){return a.preventDefault(),this.get("active")?this.removeCategory():this.addCategory()}})}(),function(){App.CategorySelectWrapperComponent=Em.Component.extend({categories:Em.required(Array),activeCategories:Em.required(Array),displayList:Em.computed("activeCategories",function(){}),click:function(){return this.send("updateCategories")},actions:{clearCategories:function(){var a;return a=this.get("activeCategories"),a.clear(),this.send("updateCategories")},updateCategories:function(){var a;return a=this.get("activeCategories"),this.sendAction("action",a)}}})}(),function(){App.RangePagerComponent=Em.Component.extend({range:Em.required(String),isMobileBinding:"App.isMobile",format:"MMMM",shortFormat:Em.computed.defaultTo("format"),_format:Em.computed("isMobile",function(){return this.get("isMobile")?this.get("shortFormat"):this.get("format")}),today:moment(),isToday:Em.computed("date",function(){return this.get("today").date()===this.get("date").date()}),date:Em.computed(function(a,b){return null!=b?moment(b):void 0}),nextDate:Em.computed("date",function(){var a,b;return a=this.get("date"),b=this.get("range"),a.clone().add(b,1)}),previousDate:Em.computed("date",function(){var a,b;return a=this.get("date"),b=this.get("range"),a.clone().subtract(b,1)}),actions:{changeDate:function(a){return this.set("date",a)}}})}(),function(){App.DatePickerComponent=Em.Component.extend({classNames:["date-picker"],tile:Em.View.extend(Em.ViewTargetActionSupport,{classNames:["calendar-tile"],classNameBindings:["isActive:active","isToday"],todayBinding:"parentView.today",activeDateBinding:"parentView.activeDate",formatBinding:"parentView.tileFormat",date:Em.required("moment"),isToday:Em.computed("today","date",function(){var a,b;return b=this.get("today"),a=this.get("date"),a.isSame(b,"day")}),isActive:Em.computed("activeDate","date",function(){var a,b;return a=this.get("activeDate"),b=this.get("date"),b.isSame(a,"day")}),action:"selectDate",actionContext:Em.computed.alias("date"),click:function(){return this.triggerAction()}}),today:moment(),currentMonth:Em.computed("activeDate",function(a,b){return b?b:this.get("activeDate")}),activeDate:null,monthFormat:"MMMM YYYY",dayFormat:"ddd",tileFormat:"DD",currentMonthName:Em.computed("currentMonth","monthFormat",function(){var a,b;return a=this.get("currentMonth"),b=this.get("monthFormat"),a.format(b)}),dayNames:Em.computed("dayFormat",function(){var a,b,c,d,e,f;for(a=Em.A(),b=this.get("dayFormat"),f=this.get("today").clone().startOf("week"),e=f.twix(f.clone().endOf("week")),c=e.iterate("days");c.hasNext();)d=c.next(),a.pushObject(d.format(b));return a}),range:Em.computed("currentMonth",function(){var a,b,c;return c=this.get("currentMonth"),a=c.clone().startOf("month"),b=c.clone().endOf("month"),a.twix(b,!0)}),weeks:Em.computed("range",function(){var a,b,c,d,e,f,g,h;for(h=Em.A(),d=this.get("range"),f=d.iterate("weeks");f.hasNext();){for(c=f.next(),g=c.twix(c.clone().endOf("week")),a=g.iterate("days"),e=Em.A();a.hasNext();)b=a.next(),e.pushObject(d.contains(b)?b:null);h.pushObject(e)}return h}),actions:{selectDate:function(a){return this.set("activeDate",a),this.sendAction("action",a)},changeMonth:function(a){return this.set("currentMonth",a)}}})}(),function(){App.ArchiveItemComponent=Em.Component.extend({tagName:"div",classNames:["col-xs-12","col-inline","layout-block"],content:Em.required("App.Event"),currentDay:Em.required("moment"),filters:Em.required("App.Filters"),formatOptions:Em.computed("content","currentDay","isPromoted",function(){var a,b,c,d,e,f,g,h,i;return h=this.getProperties("currentDay","content","isPromoted"),b=h.currentDay,a=h.content,e=h.isPromoted,i=a.getProperties("range","featuredRange","isMultiDay"),f=i.range,c=i.featuredRange,d=i.isMultiDay,g={},e&&c||d?g.showDayOfWeek=!0:g.showDate=!1,g}),click:function(){var a;return a=this.get("content"),this.sendAction("action",a)},_activeHandler:function(){return this.toggleProperty("isActive")}.on("mouseEnter","mouseLeave"),animate:!0,isActive:!1,popOut:Em.computed.and("isActive","animate")})}(),function(){App.PagerItemComponent=Em.Component.extend({classNames:["pager-item"],format:"ddd, MMM Do",title:null,date:Em.computed(function(a,b){return null!=b?moment(b):void 0}),click:function(a){var b;return a.preventDefault(),b=this.get("date"),this.sendAction("action",b)}})}(),function(){App.ApplicationAdapter=DS.RESTAdapter.extend({host:"https://api.valpo.edu",namespace:"eventPool2"})}(),function(){App.Store=DS.Store.extend({adapter:App.ApplicationAdapter})}(),function(){App.Category=DS.Model.extend({name:DS.attr("string")})}(),function(){App.ApplicationController=Em.Controller.extend({needs:["filters"],filtersBinding:"controllers.filters",activeCategoriesBinding:"filters.categories",defaultResource:"day",filtersAreOpen:!1,lastResource:null,currentResource:null,lastPath:null,_routeChangeObserver:Em.beforeObserver(function(a,b){return this.set("lastResource",this.get(b))},"currentResource"),_pathChangeObserver:Em.beforeObserver(function(a,b){return this.set("lastPath",this.get(b))},"currentPath")})}(),function(){App.ApplicationView=Em.View.extend({_removeLoader:function(){return $("#loader").remove()}.on("willInsertElement"),isMobileBinding:"App.isMobile",classNames:["st-container"],classNameBindings:["isMobile:is-mobile:not-mobile","transitionEffect","isOpen:st-menu-open"],transitionEffect:Em.computed("isMobile",function(){var a;return a=this.get("isMobile"),a?"st-effect-4":"st-effect-1"}),isOpen:!1,isOpenBinding:"controller.filtersAreOpen",actions:{closeMenu:function(){var a;return a=this.get("isMobile"),a?void 0:this.set("isOpen",!1)}}})}(),function(){Em.Route.reopen({enter:function(){var a;return a=this.get("routeName"),/^\w+$/.test(a)&&"loading"!==a&&"application"!==a?this.controllerFor("application").set("currentResource",a):void 0},metaForType:function(a){var b,c;return c=this.get("store"),b=c.modelFor(a),c.typeMapFor(b).metadata}}),App.ApplicationRoute=Em.Route.extend({model:function(){var a;return a=this.get("store"),a.find("category")},setupController:function(a,b){return a.set("allCategories",b)},actions:{transitionToEvent:function(a){return this.transitionTo("event",a)},loadState:function(a,b){return null==b&&(b=this.modelFor(a)),null!=b?this.transitionTo(a,b):this.transitionTo(a)},popAppState:function(){var a;return a=this.get("controller.lastResource"),this.send("loadState",a)},updateCategories:function(){return this.send("loadState","day")}}}),App.IndexRoute=Em.Route.extend({redirect:function(){return this.transitionTo("day")}})}(),function(){App.LoadingRoute=Em.Route.extend({actions:{loading:function(){return 0}}})}(),function(){App.Filter=DS.Model.extend({categories:DS.hasMany("category")})}(),function(){App.FiltersController=Em.ObjectController.extend()}(),function(){App.FiltersView=Em.View.extend()}(),function(){App.FiltersRoute=Em.Route.extend({model:function(a){var b,c,d,e;return(d=this.get("currentModel"))?d:(e=this.get("store"),b=a.categories,c="all"===b||void 0===b?[]:a.categories.split(","),e.push("filter",{id:1,categories:c}))},serialize:function(a){var b,c;return c={},b=Em.get(a,"categories").mapBy("id"),c.categories=0===b.length?"all":(b.sort(function(a,b){return parseInt(a)>parseInt(b)}),b.join(",")),c}})}(),function(){App.Event=DS.Model.extend({start:DS.attr("date"),end:DS.attr("date"),featuredStart:DS.attr("date"),featuredEnd:DS.attr("date"),isAllDay:DS.attr("boolean"),title:DS.attr("string"),location:DS.attr("string"),description:DS.attr("string"),url:DS.attr("string"),categories:DS.hasMany("category"),range:Em.computed("start","end","isAllDay",function(){var a,b,c,d;return c=this.get("isAllDay"),b="MM/DD/YYYY",c?(d=moment(this.get("start",b)),a=moment(this.get("end",b))):(d=moment(this.get("start")),a=moment(this.get("end"))),d.twix(a,c)}),featuredRange:Em.computed("isFeatured","featuredStart","featuredEnd",function(){var a,b,c,d;return this.get("isFeatured")?(b="MM/DD/YYYY",d=moment(this.get("featuredStart",b)),a=moment(this.get("featuredEnd",b)),c=d.twix(a,!0),c.isValid()?c:!1):!1}),isMultiDay:Em.computed("range",function(){var a;return a=this.get("range"),!a.isSame("day")}),isFeatured:Em.computed("categories.@each",function(){var a;return a=this.get("categories"),a.anyBy("name","featured")})})}(),function(){App.DayController=Em.ArrayController.extend({needs:["application","filters"],filtersBinding:"controllers.filters",filtersAreOpenBinding:"controllers.application.filtersAreOpen",sortProperties:["start"],sortAscending:!0,sortFunction:function(a,b){return+a-+b},featuredEvents:Em.computed.filterBy("arrangedContent","isFeatured",!0),filteredEvents:Em.computed("arrangedContent.@each","filters.categories.@each",function(){var a,b,c,d,e,f,g;return b=this.get("arrangedContent"),e=this.get("filters"),0===Em.get(b,"length")?b:(a=e.get("categories"),f=0===Em.get(a,"length"),c=moment(this.get("currentDay")).clone().startOf("day"),d=c.twix(c.clone().endOf("day")),g=Em.A(),b.forEach(function(b){var e,h,i,j,k,l,m,n;return n=b.getProperties("isAllDay","categories","featuredRange","range","start","isMultiDay"),j=n.isAllDay,e=n.categories,h=n.featuredRange,l=n.range,m=n.start,k=n.isMultiDay,!h||d.contains(m)&&(!k||l.contains(c))?(i=f||Em.EnumerableUtils.hasCommon(e,a,function(a,b){return Em.get(a,"id")===Em.get(b,"id")}),i?g.addObject(b):void 0):void 0}),g)}),eventsList:Em.computed.filterBy("filteredEvents","isAllDay",!1),allDayEvents:Em.computed.filterBy("filteredEvents","isAllDay",!0)})}(),function(){App.DayView=Em.View.extend()}(),function(){App.DayRoute=Em.Route.extend({format:"MM-DD-YYYY",today:moment().startOf("day"),beforeModel:function(){},model:function(a){var b;return null==a.day&&(a.day="today"),b=this.getRange("today"===a.day?new Date:a.day),this.loadDay(b)},serialize:function(){var a,b,c,d,e;return b=this.get("format"),d={},c=this.metaForType("event"),e=this.get("today"),a=moment(c.start),d.day=0===a.diff(e,"day")?"today":a.format(b),d},setupController:function(a,b){var c;return c=this.metaForType("event"),a.setProperties({model:b,today:this.get("today"),currentDay:moment(c.start)})},getRange:function(a){var b,c;return b=this.get("format"),c="string"==typeof a?moment(a,b):moment(a),c.clone().startOf("day").twix(c.endOf("day"))},loadDay:function(a){var b,c,d,e;return d=this.metaForType("event"),b=this.get("currentModel"),a.contains(d.start)&&a.contains(d.end)&&b,c={start:a.start.unix(),end:a.end.unix()},e=this.get("store"),e.findQuery("event",c)},actions:{transitionToDay:function(a){var b,c;return b=this.getRange(a),c=this.loadDay(b),this.transitionTo("day",c)}}})}(),function(){App.EventController=Em.ObjectController.extend({needs:["day","filters"],dayBinding:"controllers.day",filtersBinding:"controllers.filters",filtersHaveCategories:Em.computed("filters.categories.[]",function(){var a;return a=this.get("filters.categories"),void 0!==a}),currentDayBinding:"start",isCurrentDay:Em.computed("currentDay","day.currentDay",function(){var a,b,c;return b=this.get("currentDay"),a=this.get("day.currentDay"),c=moment(a).twix(b),c.isValid()&&c.isSame("day")}),actions:{selectCategory:function(a){var b,c,d;return d=this.get("filters"),b=d.get("categories"),void 0!==b&&b.clear().addObject(a),c=this.get("currentDay"),this.send("loadDay",c)},loadDay:function(a){var b,c,d;return c=this.get("isCurrentDay"),b=this.container.lookup("route:day"),null==a&&(a=this.get("day.currentDay")||this.get("currentDay")),d=void 0,c||(d=b.loadDay(b.getRange(a))),this.send("loadState","day",d)}}})}(),function(){App.EventView=Em.View.extend()}(),function(){App.EventRoute=Em.Route.extend({afterModel:function(){return $(".pane-body").scrollTop(0)}})}(),function(){App.HelpRoute=Em.Route.extend({textPath:"HelpText.md",model:function(){var a,b,c,d,e=this;return(a=this.get("currentModel"))?a:(c={text:""},b=$.Deferred(),d=$.ajax(this.get("textPath")).then(function(a){return c.text=a,b.resolveWith(e,[c])}),b.promise())}})}(),function(){App.Router.map(function(){return this.resource("filters",{path:":categories"},function(){return this.resource("day",{path:"day/:day"},function(){})}),this.resource("event",{path:"event/:event_id"},function(){}),this.route("help")})}();
+(function() {
+
+Ember.TEMPLATES["_all-day-list"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts;
+  data.buffer.push("\n  <div class=\"page-header\">\n    <h2>All Day Events</h2>\n  </div>\n  <div class=\"row\">\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "event", "in", "allDayEvents", {hash:{},inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n  </div>\n");
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n    ");
+  hashContexts = {'content': depth0,'filters': depth0,'action': depth0};
+  hashTypes = {'content': "ID",'filters': "ID",'action': "STRING"};
+  options = {hash:{
+    'content': ("event"),
+    'filters': ("filters"),
+    'action': ("transitionToEvent")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['archive-item'] || depth0['archive-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "archive-item", options))));
+  data.buffer.push("\n  ");
+  return buffer;
+  }
+
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "allDayEvents", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["_current-day-format"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0,depth0],types:["ID","STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "", "MMM D, YYYY", options) : helperMissing.call(depth0, "moment", "", "MMM D, YYYY", options))));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0,depth0],types:["ID","STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "", "MMMM D, YYYY", options) : helperMissing.call(depth0, "moment", "", "MMMM D, YYYY", options))));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "App.isMobile", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["_day-header"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, stack2, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("<i class=\"icon-question\"></i>");
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.partial || depth0.partial),stack1 ? stack1.call(depth0, "current-day-format", options) : helperMissing.call(depth0, "partial", "current-day-format", options))));
+  data.buffer.push("\n  ");
+  return buffer;
+  }
+
+  data.buffer.push("\n<header class=\"page-header\">\n  <span class=\"pull-right h1\">\n    <small class=\"beta\">BETA</small>\n    ");
+  data.buffer.push("\n    ");
+  hashContexts = {'tagName': depth0,'classNames': depth0};
+  hashTypes = {'tagName': "STRING",'classNames': "STRING"};
+  options = {hash:{
+    'tagName': ("button"),
+    'classNames': ("btn btn-primary")
+  },inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  stack2 = ((stack1 = helpers['link-to'] || depth0['link-to']),stack1 ? stack1.call(depth0, "help", options) : helperMissing.call(depth0, "link-to", "help", options));
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n  </span>\n  <h1>\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers['with'].call(depth0, "currentDay", {hash:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n  </h1>\n</header>\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["application"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("\n");
+  data.buffer.push("\n<aside ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  options = {hash:{
+    'class': (":st-menu view.transitionEffect")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || depth0['bind-attr']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(" ");
+  hashContexts = {'target': depth0,'on': depth0};
+  hashTypes = {'target': "ID",'on': "STRING"};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "closeMenu", {hash:{
+    'target': ("view"),
+    'on': ("mouseLeave")
+  },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n  <h2>Categories</h2>\n  ");
+  hashContexts = {'action': depth0,'categories': depth0,'activeCategories': depth0};
+  hashTypes = {'action': "STRING",'categories': "ID",'activeCategories': "ID"};
+  options = {hash:{
+    'action': ("updateCategories"),
+    'categories': ("allCategories"),
+    'activeCategories': ("activeCategories")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['category-select-wrapper'] || depth0['category-select-wrapper']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "category-select-wrapper", options))));
+  data.buffer.push("\n</aside>\n\n");
+  data.buffer.push("\n<div class=\"st-pusher\">\n  <section class=\"st-content\">\n    <div class=\"pane-body app-body\">\n\n    ");
+  data.buffer.push("\n\n      <a class=\"logo valpo-sheen-brown\" href=\"http://www.valpo.edu/\">\n        <img src=\"http://www.valpo.edu/wp-content/themes/valpo/img/valpo_prestige_logo.png\" alt=\"Valparaiso University logo\" class=\"img\">\n      </a>\n\n      ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n    </div>\n  </section>\n</div>\n</section>\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/archive-item"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, stack2, hashContexts, hashTypes, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+
+function program1(depth0,data) {
+  
+  var hashTypes, hashContexts;
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "yield", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1, stack2, hashTypes, hashContexts, options;
+  data.buffer.push("\n\n  <strong>");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.titleize || depth0.titleize),stack1 ? stack1.call(depth0, "content.title", options) : helperMissing.call(depth0, "titleize", "content.title", options))));
+  data.buffer.push("</strong>\n  <div class=\"row\">\n    <div class=\"col-sm-5\">\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.range || depth0.range),stack1 ? stack1.call(depth0, "content.range", "formatOptions", options) : helperMissing.call(depth0, "range", "content.range", "formatOptions", options))));
+  data.buffer.push("\n    </div>\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers['if'].call(depth0, "content.location", {hash:{},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n  </div>\n  <div class=\"row\">\n    <div class=\"col-xs-12\">\n      <ul class=\"list-inline list-categories\">\n      ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers.each.call(depth0, "category", "in", "content.categories", {hash:{},inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n      </ul>\n    </div>\n  </div>\n\n  ");
+  return buffer;
+  }
+function program4(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n      <div class=\"col-sm-7\"><strong>Location: </strong>");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "content.location", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</div>\n    ");
+  return buffer;
+  }
+
+function program6(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n        <li>\n          ");
+  hashContexts = {'tagName': depth0,'category': depth0,'activeCategories': depth0};
+  hashTypes = {'tagName': "STRING",'category': "ID",'activeCategories': "ID"};
+  options = {hash:{
+    'tagName': ("em"),
+    'category': ("category"),
+    'activeCategories': ("filters.categories")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['category-display'] || depth0['category-display']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "category-display", options))));
+  data.buffer.push("\n        </li>\n      ");
+  return buffer;
+  }
+
+  data.buffer.push("\n<div ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  options = {hash:{
+    'class': (":archive-item popOut content.isFeatured isActive:active animate:fade animate:in")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || depth0['bind-attr']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(">\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers['if'].call(depth0, "template", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n</div>\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/button-control"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "yield", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "title", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "template", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  else { data.buffer.push(''); }
+  
+});
+
+Ember.TEMPLATES["components/category-display"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.titleize || depth0.titleize),stack1 ? stack1.call(depth0, "name", options) : helperMissing.call(depth0, "titleize", "name", options))));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "template", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/category-select-wrapper"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n  <li>\n    ");
+  hashContexts = {'activeCategories': depth0,'category': depth0,'name': depth0};
+  hashTypes = {'activeCategories': "ID",'category': "ID",'name': "ID"};
+  options = {hash:{
+    'activeCategories': ("activeCategories"),
+    'category': ("category"),
+    'name': ("category.name")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['category-select'] || depth0['category-select']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "category-select", options))));
+  data.buffer.push("\n  </li>\n");
+  return buffer;
+  }
+
+  data.buffer.push("\n<ul class=\"unstyled layout-block\">\n");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "category", "in", "categories", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n</ul>\n<div class=\"col-xs-12\">\n  ");
+  hashContexts = {'classNames': depth0,'action': depth0,'title': depth0};
+  hashTypes = {'classNames': "STRING",'action': "STRING",'title': "STRING"};
+  options = {hash:{
+    'classNames': ("category-clear btn btn-lg valpo-sheen-gold layout-block"),
+    'action': ("clearCategories"),
+    'title': ("Clear")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['button-control'] || depth0['button-control']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "button-control", options))));
+  data.buffer.push("\n</div>");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/category-select"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.titleize || depth0.titleize),stack1 ? stack1.call(depth0, "name", options) : helperMissing.call(depth0, "titleize", "name", options))));
+  data.buffer.push("\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/date-picker"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, stack2, hashContexts, hashTypes, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n      <th>");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</th>\n    ");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts;
+  data.buffer.push("\n    <tr>\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "day", "in", "week", {hash:{},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    </tr>\n  ");
+  return buffer;
+  }
+function program4(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts;
+  data.buffer.push("\n      ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "day", {hash:{},inverse:self.program(8, program8, data),fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    ");
+  return buffer;
+  }
+function program5(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes;
+  data.buffer.push("\n        <td>");
+  hashContexts = {'dateBinding': depth0};
+  hashTypes = {'dateBinding': "ID"};
+  stack1 = helpers.view.call(depth0, "view.tile", {hash:{
+    'dateBinding': ("day")
+  },inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</td>\n        ");
+  data.buffer.push("\n      ");
+  return buffer;
+  }
+function program6(depth0,data) {
+  
+  var stack1, hashTypes, hashContexts, options;
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "day", "view.format", options) : helperMissing.call(depth0, "moment", "day", "view.format", options))));
+  }
+
+function program8(depth0,data) {
+  
+  
+  data.buffer.push("\n        <td class=\"invalid-day\"></td>\n      ");
+  }
+
+  data.buffer.push("<header>\n");
+  data.buffer.push("\n  ");
+  hashContexts = {'range': depth0,'date': depth0,'format': depth0,'shortFormat': depth0};
+  hashTypes = {'range': "STRING",'date': "ID",'format': "STRING",'shortFormat': "STRING"};
+  options = {hash:{
+    'range': ("month"),
+    'date': ("currentMonth"),
+    'format': ("MMMM"),
+    'shortFormat': ("MMM")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['range-pager'] || depth0['range-pager']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "range-pager", options))));
+  data.buffer.push("\n</header>\n\n<table class=\"calendar\">\n  <thead>\n    <tr>\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers.each.call(depth0, "dayNames", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n    </tr>\n  </thead>\n\n  <tbody>\n  ");
+  data.buffer.push("\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers.each.call(depth0, "week", "in", "weeks", {hash:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n  </tbody>\n\n</table>");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/filter-toggle"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "title", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(" <span class=\"badge\">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "filters.categories.length", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</span>");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/pager-item"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', hashTypes, hashContexts;
+  data.buffer.push("\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "title", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "date", "format", options) : helperMissing.call(depth0, "moment", "date", "format", options))));
+  data.buffer.push("\n");
+  return buffer;
+  }
+
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "title", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/range-pager"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("<ul class=\"pager\">\n  <li class=\"previous\">\n    ");
+  hashContexts = {'format': depth0,'tagName': depth0,'date': depth0,'action': depth0};
+  hashTypes = {'format': "ID",'tagName': "STRING",'date': "ID",'action': "STRING"};
+  options = {hash:{
+    'format': ("_format"),
+    'tagName': ("a"),
+    'date': ("previousDate"),
+    'action': ("changeDate")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options))));
+  data.buffer.push("\n  </li>\n  <li>\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0,depth0],types:["ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "date", "_format", options) : helperMissing.call(depth0, "moment", "date", "_format", options))));
+  data.buffer.push("\n  </li>\n  <li class=\"next\">\n    ");
+  hashContexts = {'format': depth0,'tagName': depth0,'date': depth0,'action': depth0};
+  hashTypes = {'format': "ID",'tagName': "STRING",'date': "ID",'action': "STRING"};
+  options = {hash:{
+    'format': ("_format"),
+    'tagName': ("a"),
+    'date': ("nextDate"),
+    'action': ("changeDate")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['pager-item'] || depth0['pager-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "pager-item", options))));
+  data.buffer.push("\n  </li>\n</ul>");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["day"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, stack2, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this, functionType="function", blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n        ");
+  hashContexts = {'content': depth0,'isPromoted': depth0,'currentDay': depth0,'filters': depth0,'action': depth0};
+  hashTypes = {'content': "ID",'isPromoted': "BOOLEAN",'currentDay': "ID",'filters': "ID",'action': "STRING"};
+  options = {hash:{
+    'content': ("event"),
+    'isPromoted': (true),
+    'currentDay': ("currentDay"),
+    'filters': ("filters"),
+    'action': ("transitionToEvent")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['archive-item'] || depth0['archive-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "archive-item", options))));
+  data.buffer.push("\n      ");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1, options, hashTypes, hashContexts;
+  data.buffer.push("\n        ");
+  options = {hash:{},inverse:self.noop,fn:self.program(4, program4, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  if (stack1 = helpers['archive-item']) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0['archive-item']; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  hashTypes = {};
+  hashContexts = {};
+  if (!helpers['archive-item']) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n      ");
+  return buffer;
+  }
+function program4(depth0,data) {
+  
+  
+  data.buffer.push("\n          There are no Featured Events today.\n        ");
+  }
+
+function program6(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("<h2>");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0,depth0],types:["ID","STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.moment || depth0.moment),stack1 ? stack1.call(depth0, "currentDay", "MMM D, YYYY", options) : helperMissing.call(depth0, "moment", "currentDay", "MMM D, YYYY", options))));
+  data.buffer.push("</h2>");
+  return buffer;
+  }
+
+function program8(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts;
+  data.buffer.push("\n    <div class=\"page-header\">\n      <h2>All Day Events</h2>\n    </div>\n    <div class=\"row\">\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "event", "in", "allDayEvents", {hash:{},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    </div>\n  ");
+  return buffer;
+  }
+function program9(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n      ");
+  hashContexts = {'content': depth0,'filters': depth0,'action': depth0};
+  hashTypes = {'content': "ID",'filters': "ID",'action': "STRING"};
+  options = {hash:{
+    'content': ("event"),
+    'filters': ("filters"),
+    'action': ("transitionToEvent")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['archive-item'] || depth0['archive-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "archive-item", options))));
+  data.buffer.push("\n    ");
+  return buffer;
+  }
+
+function program11(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n      ");
+  hashContexts = {'content': depth0,'filters': depth0,'classNames': depth0,'action': depth0};
+  hashTypes = {'content': "ID",'filters': "ID",'classNames': "STRING",'action': "STRING"};
+  options = {hash:{
+    'content': ("event"),
+    'filters': ("filters"),
+    'classNames': ("col-md-6"),
+    'action': ("transitionToEvent")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['archive-item'] || depth0['archive-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "archive-item", options))));
+  data.buffer.push("\n    ");
+  return buffer;
+  }
+
+function program13(depth0,data) {
+  
+  var buffer = '', stack1, options, hashTypes, hashContexts;
+  data.buffer.push("\n      ");
+  options = {hash:{},inverse:self.noop,fn:self.program(14, program14, data),contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  if (stack1 = helpers['archive-item']) { stack1 = stack1.call(depth0, options); }
+  else { stack1 = depth0['archive-item']; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  hashTypes = {};
+  hashContexts = {};
+  if (!helpers['archive-item']) { stack1 = blockHelperMissing.call(depth0, stack1, options); }
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    ");
+  return buffer;
+  }
+function program14(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n        Your search for events on ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.date || depth0.date),stack1 ? stack1.call(depth0, "currentDay", options) : helperMissing.call(depth0, "date", "currentDay", options))));
+  data.buffer.push(" rendered no results.\n      ");
+  return buffer;
+  }
+
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.partial || depth0.partial),stack1 ? stack1.call(depth0, "day-header", options) : helperMissing.call(depth0, "partial", "day-header", options))));
+  data.buffer.push("\n<div class=\"events-body\">\n  <div class=\"row\">\n    <div class=\"col-sm-6 main-controls\">\n      ");
+  hashContexts = {'action': depth0,'isOpen': depth0,'filters': depth0,'isMobile': depth0,'title': depth0,'classNames': depth0};
+  hashTypes = {'action': "STRING",'isOpen': "ID",'filters': "ID",'isMobile': "ID",'title': "STRING",'classNames': "STRING"};
+  options = {hash:{
+    'action': ("toggleFilterPane"),
+    'isOpen': ("filtersAreOpen"),
+    'filters': ("filters"),
+    'isMobile': ("App.isMobile"),
+    'title': ("Categories"),
+    'classNames': ("btn-lg valpo-sheen-gold")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['filter-toggle'] || depth0['filter-toggle']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "filter-toggle", options))));
+  data.buffer.push("\n      <button class=\"btn pull-right btn-lg  valpo-sheen-gold\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "transitionToDay", "today", {hash:{},contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">Today</button>\n      <div class=\"row\">\n        ");
+  hashContexts = {'activeDate': depth0,'action': depth0,'class': depth0};
+  hashTypes = {'activeDate': "ID",'action': "STRING",'class': "STRING"};
+  options = {hash:{
+    'activeDate': ("currentDay"),
+    'action': ("transitionToDay"),
+    'class': ("col-xs-12")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['date-picker'] || depth0['date-picker']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "date-picker", options))));
+  data.buffer.push("\n      </div>\n    </div>\n    <div class=\"col-sm-6\">\n      <h2>Upcoming Events</h2>\n      <div class=\"row\">\n      ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers.each.call(depth0, "event", "in", "featuredEvents", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n      </div>\n    </div>\n  </div>\n\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers['if'].call(depth0, "App.isMobile", {hash:{},inverse:self.noop,fn:self.program(6, program6, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers['if'].call(depth0, "allDayEvents", {hash:{},inverse:self.noop,fn:self.program(8, program8, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n\n  <section class=\"events-list\">\n    <header class=\"page-header\">\n      <h2>Events List</h2>\n    </header>\n    <div class=\"row fader\">\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers.each.call(depth0, "event", "in", "eventsList", {hash:{},inverse:self.program(13, program13, data),fn:self.program(11, program11, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n    </div>\n  </section>\n\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n</div>\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["event"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, stack2, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n        ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.range || depth0.range),stack1 ? stack1.call(depth0, "range", options) : helperMissing.call(depth0, "range", "range", options))));
+  data.buffer.push("\n      ");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n        ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.date || depth0.date),stack1 ? stack1.call(depth0, "start", options) : helperMissing.call(depth0, "date", "start", options))));
+  data.buffer.push("<br />\n        ");
+  hashContexts = {'showDate': depth0};
+  hashTypes = {'showDate': "BOOLEAN"};
+  options = {hash:{
+    'showDate': (false)
+  },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.range || depth0.range),stack1 ? stack1.call(depth0, "range", options) : helperMissing.call(depth0, "range", "range", options))));
+  data.buffer.push("\n      ");
+  return buffer;
+  }
+
+function program5(depth0,data) {
+  
+  var hashTypes, hashContexts;
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "location", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  }
+
+function program7(depth0,data) {
+  
+  
+  data.buffer.push("To Be Determined");
+  }
+
+function program9(depth0,data) {
+  
+  var stack1, hashTypes, hashContexts, options;
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.showdown || depth0.showdown),stack1 ? stack1.call(depth0, "description", options) : helperMissing.call(depth0, "showdown", "description", options))));
+  }
+
+function program11(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts;
+  data.buffer.push("\n        <h4>Categories</h4>\n        <ul class=\"list-inline\">\n        ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "categories", {hash:{},inverse:self.noop,fn:self.program(12, program12, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n        </ul>\n      ");
+  return buffer;
+  }
+function program12(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n          <li class=\"btn btn-link\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "selectCategory", "", {hash:{},contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.titleize || depth0.titleize),stack1 ? stack1.call(depth0, "name", options) : helperMissing.call(depth0, "titleize", "name", options))));
+  data.buffer.push("</li>\n        ");
+  return buffer;
+  }
+
+function program14(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts;
+  data.buffer.push("\n  <div class=\"page-header\">\n    <h2>\n      ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.unless.call(depth0, "isCurrentDay", {hash:{},inverse:self.noop,fn:self.program(15, program15, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n      All Day Events\n    </h2>\n  </div>\n  <div class=\"row\">\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "event", "in", "day.allDayEvents", {hash:{},inverse:self.noop,fn:self.program(18, program18, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n  </div>\n");
+  return buffer;
+  }
+function program15(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts;
+  data.buffer.push("\n        ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['with'].call(depth0, "day.currentDay", {hash:{},inverse:self.noop,fn:self.program(16, program16, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n      ");
+  return buffer;
+  }
+function program16(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n          ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.partial || depth0.partial),stack1 ? stack1.call(depth0, "current-day-format", options) : helperMissing.call(depth0, "partial", "current-day-format", options))));
+  data.buffer.push("&nbsp;\n        ");
+  return buffer;
+  }
+
+function program18(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n    ");
+  hashContexts = {'content': depth0,'filters': depth0,'action': depth0};
+  hashTypes = {'content': "ID",'filters': "ID",'action': "STRING"};
+  options = {hash:{
+    'content': ("event"),
+    'filters': ("filters"),
+    'action': ("transitionToEvent")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['archive-item'] || depth0['archive-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "archive-item", options))));
+  data.buffer.push("\n  ");
+  return buffer;
+  }
+
+function program20(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts;
+  data.buffer.push("\n  <header class=\"page-header\">\n    <h2>\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.unless.call(depth0, "isCurrentDay", {hash:{},inverse:self.noop,fn:self.program(21, program21, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n      Events List\n    </h2>\n  </header>\n  <div class=\"row fader\">\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "event", "in", "day.eventsList", {hash:{},inverse:self.noop,fn:self.program(24, program24, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n  </div>\n");
+  return buffer;
+  }
+function program21(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts;
+  data.buffer.push("\n      ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['with'].call(depth0, "day.currentDay", {hash:{},inverse:self.noop,fn:self.program(22, program22, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    ");
+  return buffer;
+  }
+function program22(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n        ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.partial || depth0.partial),stack1 ? stack1.call(depth0, "current-day-format", options) : helperMissing.call(depth0, "partial", "current-day-format", options))));
+  data.buffer.push("&nbsp;\n      ");
+  return buffer;
+  }
+
+function program24(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n    ");
+  hashContexts = {'content': depth0,'filters': depth0,'classNames': depth0,'action': depth0};
+  hashTypes = {'content': "ID",'filters': "ID",'classNames': "STRING",'action': "STRING"};
+  options = {hash:{
+    'content': ("event"),
+    'filters': ("filters"),
+    'classNames': ("col-md-6"),
+    'action': ("transitionToEvent")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['archive-item'] || depth0['archive-item']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "archive-item", options))));
+  data.buffer.push("\n  ");
+  return buffer;
+  }
+
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.partial || depth0.partial),stack1 ? stack1.call(depth0, "day-header", options) : helperMissing.call(depth0, "partial", "day-header", options))));
+  data.buffer.push("\n\n<button class=\"btn btn-primary\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "loadDay", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n  <i class=\"icon-long-arrow-left\"></i> Events\n</button>\n\n<div class=\"media\">\n\n  ");
+  data.buffer.push("\n  ");
+  data.buffer.push("\n  <aside ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  options = {hash:{
+    'class': (":pull-left imgUrl::hidden")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || depth0['bind-attr']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(">\n    <img class=\"media-object\" ");
+  hashContexts = {'src': depth0};
+  hashTypes = {'src': "ID"};
+  options = {hash:{
+    'src': ("imgUrl")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || depth0['bind-attr']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(" alt=\"...\">\n  </aside>\n\n  <div class=\"media-body\">\n    <h4 class=\"media-heading\">");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.titleize || depth0.titleize),stack1 ? stack1.call(depth0, "title", options) : helperMissing.call(depth0, "titleize", "title", options))));
+  data.buffer.push("</h4>\n    <p>\n      <span class=\"btn-link\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "loadDay", "start", {hash:{},contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n      ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers['if'].call(depth0, "isMultiDay", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n      </span>\n    </p>\n    <p><b>Location: </b>");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers['if'].call(depth0, "location", {hash:{},inverse:self.program(7, program7, data),fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("</p>\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers['if'].call(depth0, "description", {hash:{},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n    <p ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  options = {hash:{
+    'class': ("url::hidden")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || depth0['bind-attr']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push("><a ");
+  hashContexts = {'href': depth0};
+  hashTypes = {'href': "ID"};
+  options = {hash:{
+    'href': ("url")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || depth0['bind-attr']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(" target=\"_blank\">More Information &nbsp;&gt;&gt;</a><p>\n    <div class=\"media-footer\">\n      ");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers['if'].call(depth0, "filtersHaveCategories", {hash:{},inverse:self.noop,fn:self.program(11, program11, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n    </div>\n  </div>\n</div>\n\n");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers['if'].call(depth0, "day.allDayEvents", {hash:{},inverse:self.noop,fn:self.program(14, program14, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n\n");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers['if'].call(depth0, "day.eventsList", {hash:{},inverse:self.noop,fn:self.program(20, program20, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n\n");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["filters"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["help"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("<header class=\"page-header\">\n  ");
+  hashContexts = {'action': depth0,'classNames': depth0,'title': depth0};
+  hashTypes = {'action': "STRING",'classNames': "STRING",'title': "STRING"};
+  options = {hash:{
+    'action': ("popAppState"),
+    'classNames': ("btn-primary pull-right"),
+    'title': ("Back")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['button-control'] || depth0['button-control']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "button-control", options))));
+  data.buffer.push("\n  <h1>Help and Information</h1>\n</header>\n");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.showdown || depth0.showdown),stack1 ? stack1.call(depth0, "text", options) : helperMissing.call(depth0, "showdown", "text", options))));
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["loading"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  
+
+
+  data.buffer.push("\n<div id=\"loader\">\n  <div class=\"wrapper\">\n    <div class=\"inner\">\n      <span>L</span>\n      <span>o</span>\n      <span>a</span>\n      <span>d</span>\n      <span>i</span>\n      <span>n</span>\n      <span>g</span>\n    </div>\n  </div>\n</div>\n");
+  
+});
+
+})();
+
+(function() {
+
+Em.Handlebars.registerBoundHelper('moment', function(date, format) {
+  return moment(date).format(format);
+});
+
+
+})();
+
+(function() {
+
+Em.Handlebars.registerBoundHelper('time', function(date, format) {
+  var clone, time;
+  time = moment(date);
+  clone = time.clone();
+  if (clone.startOf('day').diff(time) === 0) {
+    return 'Midnight';
+  } else if (clone.hour(12).diff(time) === 0) {
+    return 'Noon';
+  } else {
+    format = Em.typeOf(format) === 'string' ? format : 'h:mm a';
+    return time.format(format);
+  }
+});
+
+
+})();
+
+(function() {
+
+Em.Handlebars.registerBoundHelper('date', function(date) {
+  var time;
+  time = moment(date);
+  return time.format('MMMM D, YYYY');
+});
+
+
+})();
+
+(function() {
+
+var rangeDefaults;
+
+rangeDefaults = {
+  groupMeridiems: true,
+  spaceBeforeMeridiem: true,
+  showDate: true,
+  showDayOfWeek: false,
+  twentyFourHour: false,
+  implicitMinutes: true,
+  implicitYear: true,
+  yearFormat: "YYYY",
+  monthFormat: "MMM",
+  weekdayFormat: "ddd",
+  dayFormat: "DD",
+  meridiemFormat: "a",
+  hourFormat: "h",
+  minuteFormat: "mm",
+  allDay: "all day",
+  explicitAllDay: false,
+  lastNightEndsAt: 0
+};
+
+Em.Handlebars.registerBoundHelper('range', function(range, format, options) {
+  var args, result;
+  if (options == null) {
+    options = {
+      hash: {}
+    };
+  }
+  if ($.isPlainObject(format)) {
+    if (format.hash) {
+      options = format;
+    } else {
+      $.extend(options.hash, format);
+    }
+  }
+  result = Em.typeOf(format) === 'string' ? range.simpleFormat(format) : (args = $.extend({}, rangeDefaults, options.hash), range.format(args));
+  result = result.replace(/12(:00)?\s?[Aa]\.?[Mm]\.?/g, 'Midnight');
+  result = result.replace(/12(:00)?\s?[Pp]\.?[Mm]\.?/g, 'Noon');
+  return result;
+});
+
+
+})();
+
+(function() {
+
+var linkRegex, linkRplStr, nlRegex, nlRplStr;
+
+nlRegex = /\\n|\\r/g;
+
+nlRplStr = "\n";
+
+linkRegex = /(\s+|^)(https?:\/\/[^<\s]*)(.*(?:$|\s+))/g;
+
+linkRplStr = "$1<a href=\"$2\">$2</a>$3";
+
+Em.Handlebars.registerBoundHelper('showdown', function(text) {
+  var e, result;
+  try {
+    result = text.replace(nlRegex, nlRplStr);
+    result = (new Showdown.converter()).makeHtml(result);
+    result = result.replace(linkRegex, linkRplStr);
+    return new Em.Handlebars.SafeString(result);
+  } catch (_error) {
+    e = _error;
+    console.log('Something went horribly wrong with the Showdown plugin in the showdown Handlebars helper.');
+    return 'Invalid input text';
+  }
+});
+
+
+})();
+
+(function() {
+
+var shortWords, titleize;
+
+shortWords = Ember.A(['of', 'a', 'the', 'and', 'an', 'or', 'nor', 'but', 'is', 'if', 'then', 'else', 'when', 'at', 'from', 'by', 'on', 'off', 'for', 'in', 'out', 'over', 'to', 'into', 'with']);
+
+titleize = function(str) {
+  var strArray;
+  strArray = str.split(' ');
+  strArray = Ember.ArrayPolyfills.map.call(strArray, function(slug, index) {
+    if (index === 0 || !shortWords.contains(slug)) {
+      return Ember.String.capitalize(slug);
+    } else {
+      return slug;
+    }
+  });
+  return strArray.join(' ');
+};
+
+Ember.Handlebars.registerBoundHelper('titleize', titleize);
+
+
+})();
+
+(function() {
+
+var mobileQuery;
+
+window.App = Em.Application.create({
+  rootElement: '#VUCalendar',
+  isReady: false,
+  isMobile: false
+});
+
+if ((mobileQuery = typeof window.matchMedia === "function" ? window.matchMedia('(max-width: 979px)') : void 0)) {
+  App.set('isMobile', mobileQuery.matches);
+  mobileQuery.addListener(function(queryList) {
+    return App.set('isMobile', queryList.matches);
+  });
+}
+
+App.ready = function() {
+  return App.set('isReady', true);
+};
+
+
+})();
+
+(function() {
+
+moment.lang('en', {
+  meridiem: function(hour, minute, isLowercase) {
+    if (hour < 12) {
+      if (isLowercase) {
+        return 'a.m.';
+      } else {
+        return 'A.M.';
+      }
+    } else if (hour >= 12) {
+      if (isLowercase) {
+        return 'p.m.';
+      } else {
+        return 'P.M.';
+      }
+    }
+  },
+  monthsShort: ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."]
+});
+
+
+})();
+
+(function() {
+
+var common, defaultFn, extend, hasCommon, toArray, uncommon, utils;
+
+utils = Ember.EnumerableUtils;
+
+defaultFn = function(a, b) {
+  return a === b;
+};
+
+toArray = function(array) {
+  if (Ember.ArrayProxy.detectInstance(array)) {
+    return array.toArray();
+  }
+  return array;
+};
+
+utils.common = common = function(array1, array2, fn) {
+  var brk, el1, el2, result, _i, _j, _len, _len1;
+  if (!(fn instanceof Function)) {
+    return utils.intersection(array1, array2);
+  }
+  array1 = toArray(array1);
+  array2 = toArray(array2);
+  brk = false;
+  result = [];
+  for (_i = 0, _len = array1.length; _i < _len; _i++) {
+    el1 = array1[_i];
+    for (_j = 0, _len1 = array2.length; _j < _len1; _j++) {
+      el2 = array2[_j];
+      brk = fn(el1, el2, array1, array2);
+      if (brk) {
+        break;
+      }
+    }
+    if (brk) {
+      result.push(el1);
+    }
+  }
+  return result;
+};
+
+utils.hasCommon = hasCommon = function() {
+  return common.apply(null, arguments).length > 0;
+};
+
+utils.uncommon = uncommon = function(array1, array2, fn) {
+  var brk, el1, el2, result, _i, _j, _len, _len1;
+  if (!(fn instanceof Function)) {
+    fn = defaultFn;
+  }
+  brk = false;
+  result = [];
+  array1 = toArray(array1);
+  array2 = toArray(array2);
+  for (_i = 0, _len = array2.length; _i < _len; _i++) {
+    el2 = array2[_i];
+    for (_j = 0, _len1 = array1.length; _j < _len1; _j++) {
+      el1 = array1[_j];
+      brk = fn(el1, el2, array1, array2);
+      if (brk) {
+        break;
+      }
+    }
+    if (!brk) {
+      result.push(el2);
+    }
+  }
+  return result;
+};
+
+utils.extend = extend = function(array) {
+  return array.concat(uncommon.apply(null, arguments));
+};
+
+
+})();
+
+(function() {
+
+App.ButtonControlComponent = Em.Component.extend({
+  tagName: 'button',
+  classNames: ['btn'],
+  click: function() {
+    return this.sendAction('action', this);
+  }
+});
+
+
+})();
+
+(function() {
+
+App.FilterToggleComponent = App.ButtonControlComponent.extend({
+  classNames: ['filter-toggle'],
+  classNameBindings: ['isOpen:active'],
+  title: 'Filters',
+  isOpen: Em.required(Boolean),
+  isMobile: Em.required(Boolean),
+  click: function() {
+    return this.toggleProperty('isOpen');
+  }
+});
+
+
+})();
+
+(function() {
+
+App.CategoryDisplayComponent = Em.Component.extend({
+  category: Em.required('Category'),
+  nameBinding: 'category.name',
+  classNames: ['category-display'],
+  classNameBindings: ['isActive:text-warning:text-muted'],
+  isActive: Em.computed('category', 'activeCategories.[]', function() {
+    var activeCategories, category, _ref;
+    _ref = this.getProperties('activeCategories', 'category'), activeCategories = _ref.activeCategories, category = _ref.category;
+    return activeCategories.contains(category);
+  })
+});
+
+
+})();
+
+(function() {
+
+App.CategorySelectComponent = Em.Component.extend({
+  tagName: 'div',
+  name: Em.required(String),
+  category: Em.required('Category'),
+  activeCategories: Em.required('Category Array'),
+  classNames: ['category-select'],
+  classNameBindings: ['active'],
+  active: Em.computed('activeCategories.length', function() {
+    var _ref;
+    return !!((_ref = this.get('activeCategories')) != null ? _ref.contains(this.get('category')) : void 0);
+  }),
+  addCategory: function() {
+    var _ref;
+    return (_ref = this.get('activeCategories')) != null ? _ref.addObject(this.get('category')) : void 0;
+  },
+  removeCategory: function() {
+    return this.get('activeCategories').removeObject(this.get('category'));
+  },
+  click: function(event) {
+    event.preventDefault();
+    if (this.get('active')) {
+      return this.removeCategory();
+    } else {
+      return this.addCategory();
+    }
+  }
+});
+
+
+})();
+
+(function() {
+
+App.CategorySelectWrapperComponent = Em.Component.extend({
+  categories: Em.required(Array),
+  activeCategories: Em.required(Array),
+  displayList: Em.computed('activeCategories', function() {}),
+  click: function() {
+    return this.send('updateCategories');
+  },
+  actions: {
+    clearCategories: function() {
+      var activeCategories;
+      activeCategories = this.get('activeCategories');
+      activeCategories.clear();
+      return this.send('updateCategories');
+    },
+    updateCategories: function() {
+      var activeCategories;
+      activeCategories = this.get('activeCategories');
+      return this.sendAction('action', activeCategories);
+    }
+  }
+});
+
+
+})();
+
+(function() {
+
+App.RangePagerComponent = Em.Component.extend({
+  range: Em.required(String),
+  isMobileBinding: 'App.isMobile',
+  format: 'MMMM',
+  shortFormat: Em.computed.defaultTo('format'),
+  _format: Em.computed('isMobile', function() {
+    if (this.get('isMobile')) {
+      return this.get('shortFormat');
+    } else {
+      return this.get('format');
+    }
+  }),
+  today: moment(),
+  isToday: Em.computed('date', function() {
+    return this.get('today').date() === this.get('date').date();
+  }),
+  date: Em.computed(function(key, value) {
+    if (value != null) {
+      return moment(value);
+    } else {
+      return void 0;
+    }
+  }),
+  nextDate: Em.computed('date', function() {
+    var date, range;
+    date = this.get('date');
+    range = this.get('range');
+    return date.clone().add(range, 1);
+  }),
+  previousDate: Em.computed('date', function() {
+    var date, range;
+    date = this.get('date');
+    range = this.get('range');
+    return date.clone().subtract(range, 1);
+  }),
+  actions: {
+    changeDate: function(date) {
+      return this.set('date', date);
+    }
+  }
+});
+
+
+})();
+
+(function() {
+
+App.DatePickerComponent = Em.Component.extend({
+  classNames: ['date-picker'],
+  tile: Em.View.extend(Em.ViewTargetActionSupport, {
+    classNames: ['calendar-tile'],
+    classNameBindings: ['isActive:active', 'isToday'],
+    todayBinding: 'parentView.today',
+    activeDateBinding: 'parentView.activeDate',
+    formatBinding: 'parentView.tileFormat',
+    date: Em.required('moment'),
+    isToday: Em.computed('today', 'date', function() {
+      var date, today;
+      today = this.get('today');
+      date = this.get('date');
+      return date.isSame(today, 'day');
+    }),
+    isActive: Em.computed('activeDate', 'date', function() {
+      var activeDate, date;
+      activeDate = this.get('activeDate');
+      date = this.get('date');
+      return date.isSame(activeDate, 'day');
+    }),
+    action: 'selectDate',
+    actionContext: Em.computed.alias('date'),
+    click: function() {
+      return this.triggerAction();
+    }
+  }),
+  today: moment(),
+  currentMonth: Em.computed('activeDate', function(key, value) {
+    if (value) {
+      return value;
+    } else {
+      return this.get('activeDate');
+    }
+  }),
+  activeDate: null,
+  monthFormat: 'MMMM YYYY',
+  dayFormat: 'ddd',
+  tileFormat: 'DD',
+  currentMonthName: Em.computed('currentMonth', 'monthFormat', function() {
+    var currentMonth, format;
+    currentMonth = this.get('currentMonth');
+    format = this.get('monthFormat');
+    return currentMonth.format(format);
+  }),
+  dayNames: Em.computed('dayFormat', function() {
+    var days, format, iter, next, range, week;
+    days = Em.A();
+    format = this.get('dayFormat');
+    week = this.get('today').clone().startOf('week');
+    range = week.twix(week.clone().endOf('week'));
+    iter = range.iterate('days');
+    while (iter.hasNext()) {
+      next = iter.next();
+      days.pushObject(next.format(format));
+    }
+    return days;
+  }),
+  range: Em.computed('currentMonth', function() {
+    var firstDay, lastDay, moment;
+    moment = this.get('currentMonth');
+    firstDay = moment.clone().startOf("month");
+    lastDay = moment.clone().endOf("month");
+    return firstDay.twix(lastDay, true);
+  }),
+  weeks: Em.computed('range', function() {
+    var dayIter, nextDay, nextWeek, range, weekArray, weekIter, weekRange, weeks;
+    weeks = Em.A();
+    range = this.get('range');
+    weekIter = range.iterate('weeks');
+    while (weekIter.hasNext()) {
+      nextWeek = weekIter.next();
+      weekRange = nextWeek.twix(nextWeek.clone().endOf('week'));
+      dayIter = weekRange.iterate('days');
+      weekArray = Em.A();
+      while (dayIter.hasNext()) {
+        nextDay = dayIter.next();
+        weekArray.pushObject(range.contains(nextDay) ? nextDay : null);
+      }
+      weeks.pushObject(weekArray);
+    }
+    return weeks;
+  }),
+  actions: {
+    selectDate: function(day) {
+      this.set('activeDate', day);
+      return this.sendAction('action', day);
+    },
+    changeMonth: function(newMonth) {
+      return this.set('currentMonth', newMonth);
+    }
+  }
+});
+
+
+})();
+
+(function() {
+
+App.ArchiveItemComponent = Em.Component.extend({
+  tagName: 'div',
+  classNames: ['col-xs-12', 'col-inline', 'layout-block'],
+  content: Em.required('App.Event'),
+  currentDay: Em.required('moment'),
+  filters: Em.required('App.Filters'),
+  formatOptions: Em.computed('content', 'currentDay', 'isPromoted', function() {
+    var content, currentDay, featuredRange, isMultiDay, isPromoted, range, ret, _ref, _ref1;
+    _ref = this.getProperties('currentDay', 'content', 'isPromoted'), currentDay = _ref.currentDay, content = _ref.content, isPromoted = _ref.isPromoted;
+    _ref1 = content.getProperties('range', 'featuredRange', 'isMultiDay'), range = _ref1.range, featuredRange = _ref1.featuredRange, isMultiDay = _ref1.isMultiDay;
+    ret = {};
+    if ((isPromoted && featuredRange) || isMultiDay) {
+      ret.showDayOfWeek = true;
+    } else {
+      ret.showDate = false;
+    }
+    return ret;
+  }),
+  click: function() {
+    var model;
+    model = this.get('content');
+    return this.sendAction('action', model);
+  },
+  _activeHandler: (function(event) {
+    return this.toggleProperty('isActive');
+  }).on('mouseEnter', 'mouseLeave'),
+  animate: true,
+  isActive: false,
+  popOut: Em.computed.and('isActive', 'animate')
+});
+
+
+})();
+
+(function() {
+
+App.PagerItemComponent = Em.Component.extend({
+  classNames: ['pager-item'],
+  format: 'ddd, MMM Do',
+  title: null,
+  date: Em.computed(function(key, value) {
+    if (value != null) {
+      return moment(value);
+    } else {
+      return void 0;
+    }
+  }),
+  click: function(event) {
+    var date;
+    event.preventDefault();
+    date = this.get('date');
+    return this.sendAction('action', date);
+  }
+});
+
+
+})();
+
+(function() {
+
+App.ApplicationAdapter = DS.RESTAdapter.extend({
+  host: 'https://api.valpo.edu',
+  namespace: 'eventPool2'
+});
+
+
+})();
+
+(function() {
+
+App.Store = DS.Store.extend({
+  adapter: App.ApplicationAdapter
+});
+
+
+})();
+
+(function() {
+
+App.Category = DS.Model.extend({
+  name: DS.attr('string')
+});
+
+
+})();
+
+(function() {
+
+App.ApplicationController = Em.Controller.extend({
+  needs: ['filters'],
+  filtersBinding: 'controllers.filters',
+  activeCategoriesBinding: 'filters.categories',
+  defaultResource: 'day',
+  filtersAreOpen: false,
+  lastResource: null,
+  currentResource: null,
+  lastPath: null,
+  _routeChangeObserver: Em.beforeObserver(function(controller, property) {
+    return this.set('lastResource', this.get(property));
+  }, 'currentResource'),
+  _pathChangeObserver: Em.beforeObserver(function(controller, property) {
+    return this.set('lastPath', this.get(property));
+  }, 'currentPath')
+});
+
+
+})();
+
+(function() {
+
+App.ApplicationView = Em.View.extend({
+  _removeLoader: (function() {
+    return $('#loader').remove();
+  }).on('willInsertElement'),
+  isMobileBinding: 'App.isMobile',
+  classNames: ['st-container'],
+  classNameBindings: ['isMobile:is-mobile:not-mobile', 'transitionEffect', 'isOpen:st-menu-open'],
+  transitionEffect: Em.computed('isMobile', function() {
+    var isMobile;
+    isMobile = this.get('isMobile');
+    if (isMobile) {
+      return 'st-effect-4';
+    } else {
+      return 'st-effect-1';
+    }
+  }),
+  isOpen: false,
+  isOpenBinding: 'controller.filtersAreOpen',
+  actions: {
+    closeMenu: function() {
+      var isMobile;
+      isMobile = this.get('isMobile');
+      if (!isMobile) {
+        return this.set('isOpen', false);
+      }
+    }
+  }
+});
+
+
+})();
+
+(function() {
+
+Em.Route.reopen({
+  enter: function() {
+    var routeName;
+    routeName = this.get('routeName');
+    if (/^\w+$/.test(routeName) && routeName !== "loading" && routeName !== 'application') {
+      return this.controllerFor('application').set('currentResource', routeName);
+    }
+  },
+  metaForType: function(type) {
+    var model, store;
+    store = this.get('store');
+    model = store.modelFor(type);
+    return store.typeMapFor(model).metadata;
+  }
+});
+
+App.ApplicationRoute = Em.Route.extend({
+  model: function() {
+    var store;
+    store = this.get('store');
+    return store.find('category');
+  },
+  setupController: function(controller, categories) {
+    return controller.set('allCategories', categories);
+  },
+  actions: {
+    transitionToEvent: function(model) {
+      return this.transitionTo('event', model);
+    },
+    loadState: function(path, model) {
+      if (model == null) {
+        model = this.modelFor(path);
+      }
+      if (model != null) {
+        return this.transitionTo(path, model);
+      } else {
+        return this.transitionTo(path);
+      }
+    },
+    popAppState: function() {
+      var path;
+      path = this.get('controller.lastResource');
+      return this.send('loadState', path);
+    },
+    updateCategories: function(activeCategories) {
+      return this.send('loadState', 'day');
+    }
+  }
+});
+
+App.IndexRoute = Em.Route.extend({
+  redirect: function() {
+    return this.transitionTo('day');
+  }
+});
+
+
+})();
+
+(function() {
+
+App.LoadingRoute = Em.Route.extend({
+  actions: {
+    loading: function() {
+      return console.log('in Loading route');
+    }
+  }
+});
+
+
+})();
+
+(function() {
+
+App.Filter = DS.Model.extend({
+  categories: DS.hasMany('category')
+});
+
+
+})();
+
+(function() {
+
+App.FiltersController = Em.ObjectController.extend();
+
+
+})();
+
+(function() {
+
+App.FiltersView = Em.View.extend();
+
+
+})();
+
+(function() {
+
+App.FiltersRoute = Em.Route.extend({
+  model: function(params) {
+    var c, categories, currentModel, store;
+    currentModel = this.get('currentModel');
+    if (currentModel) {
+      return currentModel;
+    }
+    store = this.get('store');
+    c = params.categories;
+    categories = c === 'all' || c === void 0 ? [] : params.categories.split(',');
+    return store.push('filter', {
+      'id': 1,
+      'categories': categories
+    });
+  },
+  serialize: function(model, params) {
+    var catArray, ret;
+    ret = {};
+    catArray = Em.get(model, 'categories').mapBy('id');
+    ret['categories'] = catArray.length === 0 ? 'all' : (catArray.sort(function(a, b) {
+      return parseInt(a) > parseInt(b);
+    }), catArray.join(','));
+    return ret;
+  }
+});
+
+
+})();
+
+(function() {
+
+App.Event = DS.Model.extend({
+  start: DS.attr('date'),
+  end: DS.attr('date'),
+  featuredStart: DS.attr('date'),
+  featuredEnd: DS.attr('date'),
+  isAllDay: DS.attr('boolean'),
+  title: DS.attr('string'),
+  location: DS.attr('string'),
+  description: DS.attr('string'),
+  url: DS.attr('string'),
+  categories: DS.hasMany('category'),
+  range: Em.computed('start', 'end', 'isAllDay', function() {
+    var end, format, isAllDay, start;
+    isAllDay = this.get('isAllDay');
+    format = 'MM/DD/YYYY';
+    if (isAllDay) {
+      start = moment(this.get('start', format));
+      end = moment(this.get('end', format));
+    } else {
+      start = moment(this.get('start'));
+      end = moment(this.get('end'));
+    }
+    return start.twix(end, isAllDay);
+  }),
+  featuredRange: Em.computed('isFeatured', 'featuredStart', 'featuredEnd', function() {
+    var end, format, range, start;
+    if (!this.get('isFeatured')) {
+      return false;
+    }
+    format = 'MM/DD/YYYY';
+    start = moment(this.get('featuredStart', format));
+    end = moment(this.get('featuredEnd', format));
+    range = start.twix(end, true);
+    if (range.isValid()) {
+      return range;
+    } else {
+      return false;
+    }
+  }),
+  isMultiDay: Em.computed('range', function() {
+    var range;
+    range = this.get('range');
+    return !range.isSame('day');
+  }),
+  isFeatured: Em.computed('categories.@each', function() {
+    var categories;
+    categories = this.get('categories');
+    return categories.anyBy('name', 'featured');
+  })
+});
+
+
+})();
+
+(function() {
+
+App.DayController = Em.ArrayController.extend({
+  needs: ['application', 'filters'],
+  filtersBinding: 'controllers.filters',
+  filtersAreOpenBinding: 'controllers.application.filtersAreOpen',
+  sortProperties: ['start'],
+  sortAscending: true,
+  sortFunction: function(a, b) {
+    return +a - +b;
+  },
+  featuredEvents: Em.computed.filterBy('arrangedContent', 'isFeatured', true),
+  filteredEvents: Em.computed('arrangedContent.@each', 'filters.categories.@each', function() {
+    var categoryCache, content, currentDay, currentRange, filters, hasAllCategories, ret,
+      _this = this;
+    content = this.get('arrangedContent');
+    filters = this.get('filters');
+    if (Em.get(content, 'length') === 0) {
+      return content;
+    }
+    categoryCache = filters.get('categories');
+    hasAllCategories = Em.get(categoryCache, 'length') === 0;
+    currentDay = moment(this.get('currentDay')).clone().startOf('day');
+    currentRange = currentDay.twix(currentDay.clone().endOf('day'));
+    ret = Em.A();
+    content.forEach(function(event) {
+      var categories, featuredRange, hasCategories, isAllDay, isMultiDay, range, start, _ref;
+      _ref = event.getProperties('isAllDay', 'categories', 'featuredRange', 'range', 'start', 'isMultiDay'), isAllDay = _ref.isAllDay, categories = _ref.categories, featuredRange = _ref.featuredRange, range = _ref.range, start = _ref.start, isMultiDay = _ref.isMultiDay;
+      if (!!featuredRange && (!currentRange.contains(start) || (isMultiDay && !range.contains(currentDay)))) {
+        return;
+      }
+      hasCategories = hasAllCategories || Em.EnumerableUtils.hasCommon(categories, categoryCache, function(cat1, cat2) {
+        return Em.get(cat1, 'id') === Em.get(cat2, 'id');
+      });
+      if (hasCategories) {
+        return ret.addObject(event);
+      }
+    });
+    return ret;
+  }),
+  eventsList: Em.computed.filterBy('filteredEvents', 'isAllDay', false),
+  allDayEvents: Em.computed.filterBy('filteredEvents', 'isAllDay', true)
+});
+
+
+})();
+
+(function() {
+
+App.DayView = Em.View.extend();
+
+
+})();
+
+(function() {
+
+App.DayRoute = Em.Route.extend({
+  format: 'MM-DD-YYYY',
+  today: moment().startOf('day'),
+  beforeModel: function(transition) {},
+  model: function(params) {
+    var day;
+    if (params.day == null) {
+      params.day = 'today';
+    }
+    day = this.getRange(params.day === 'today' ? new Date() : params.day);
+    return this.loadDay(day);
+  },
+  serialize: function(model, params) {
+    var currentDay, format, meta, ret, today;
+    format = this.get('format');
+    ret = {};
+    meta = this.metaForType('event');
+    today = this.get('today');
+    currentDay = moment(meta.start);
+    ret['day'] = currentDay.diff(today, 'day') === 0 ? 'today' : currentDay.format(format);
+    return ret;
+  },
+  setupController: function(controller, model) {
+    var meta;
+    meta = this.metaForType('event');
+    return controller.setProperties({
+      model: model,
+      today: this.get('today'),
+      currentDay: moment(meta.start)
+    });
+  },
+  getRange: function(input) {
+    var format, m;
+    format = this.get('format');
+    m = typeof input === 'string' ? moment(input, format) : moment(input);
+    return m.clone().startOf('day').twix(m.endOf('day'));
+  },
+  loadDay: function(range) {
+    var currentModel, fetchRange, meta, store;
+    meta = this.metaForType('event');
+    currentModel = this.get('currentModel');
+    if (range.contains(meta.start) && range.contains(meta.end) && currentModel) {
+      currentModel;
+    }
+    fetchRange = {
+      start: range.start.unix(),
+      end: range.end.unix()
+    };
+    store = this.get('store');
+    return store.findQuery('event', fetchRange);
+  },
+  actions: {
+    transitionToDay: function(input) {
+      var day, model;
+      day = this.getRange(input);
+      model = this.loadDay(day);
+      return this.transitionTo('day', model);
+    }
+  }
+});
+
+
+})();
+
+(function() {
+
+App.EventController = Em.ObjectController.extend({
+  needs: ['day', 'filters'],
+  dayBinding: 'controllers.day',
+  filtersBinding: 'controllers.filters',
+  filtersHaveCategories: Em.computed('filters.categories.[]', function() {
+    var categories;
+    categories = this.get('filters.categories');
+    return categories !== void 0;
+  }),
+  currentDayBinding: 'start',
+  isCurrentDay: Em.computed('currentDay', 'day.currentDay', function() {
+    var dCurrentDay, eCurrentDay, range;
+    eCurrentDay = this.get('currentDay');
+    dCurrentDay = this.get('day.currentDay');
+    range = moment(dCurrentDay).twix(eCurrentDay);
+    return range.isValid() && range.isSame('day');
+  }),
+  actions: {
+    selectCategory: function(category) {
+      var categories, currentDay, filters;
+      filters = this.get('filters');
+      categories = filters.get('categories');
+      if (categories !== void 0) {
+        categories.clear().addObject(category);
+      }
+      currentDay = this.get('currentDay');
+      return this.send('loadDay', currentDay);
+    },
+    loadDay: function(currentDay) {
+      var dayRouter, isCurrentDay, model;
+      isCurrentDay = this.get('isCurrentDay');
+      dayRouter = this.container.lookup('route:day');
+      if (currentDay == null) {
+        currentDay = this.get('day.currentDay') || this.get('currentDay');
+      }
+      model = void 0;
+      if (!isCurrentDay) {
+        model = dayRouter.loadDay(dayRouter.getRange(currentDay));
+      }
+      return this.send('loadState', 'day', model);
+    }
+  }
+});
+
+
+})();
+
+(function() {
+
+App.EventView = Em.View.extend();
+
+
+})();
+
+(function() {
+
+App.EventRoute = Em.Route.extend({
+  afterModel: function() {
+    return $('.pane-body').scrollTop(0);
+  }
+});
+
+
+})();
+
+(function() {
+
+App.HelpRoute = Em.Route.extend({
+  textPath: 'HelpText.md',
+  model: function() {
+    var currentModel, deferred, model, promise,
+      _this = this;
+    currentModel = this.get('currentModel');
+    if (currentModel) {
+      return currentModel;
+    }
+    model = {
+      text: ''
+    };
+    deferred = $.Deferred();
+    promise = $.ajax(this.get('textPath')).then(function(text) {
+      model.text = text;
+      return deferred.resolveWith(_this, [model]);
+    });
+    return deferred.promise();
+  }
+});
+
+
+})();
+
+(function() {
+
+App.Router.map(function() {
+  this.resource('filters', {
+    path: ':categories'
+  }, function() {
+    return this.resource('day', {
+      path: 'day/:day'
+    }, function() {});
+  });
+  this.resource('event', {
+    path: 'event/:event_id'
+  }, function() {});
+  return this.route('help');
+});
+
+
+})();
