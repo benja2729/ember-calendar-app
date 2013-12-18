@@ -1,6 +1,4 @@
 
-require 'components/PagerItemComponent'
-
 App.RangePagerComponent = Em.Component.extend
   range: Em.required String
   isMobileBinding: 'App.isMobile'

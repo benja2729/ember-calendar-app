@@ -6,6 +6,7 @@ App.ArchiveItemComponent = Em.Component.extend
   # classNameBindings: ['isFeatured']
   content: Em.required 'App.Event'
   currentDay: Em.required 'moment'
+  filters: Em.required 'App.Filters'
 
   formatOptions: Em.computed 'content', 'currentDay', 'isPromoted', ->
     {

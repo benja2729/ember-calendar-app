@@ -49,11 +49,11 @@ App.DayRoute = Em.Route.extend
       range.contains(meta.end) and
       currentModel then currentModel
 
-    range =
+    fetchRange =
       start: range.start.unix()
       end: range.end.unix()
     store = @get 'store'
-    store.findQuery 'event', range
+    store.findQuery 'event', fetchRange
 
   actions:
     transitionToDay: (input) ->

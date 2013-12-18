@@ -12,7 +12,7 @@
       <h2>Upcoming Events</h2>
       <div class="row">
       {{#each event in featuredEvents}}
-        {{archive-item content=event isPromoted=true currentDay=currentDay action="transitionToEvent"}}
+        {{archive-item content=event isPromoted=true currentDay=currentDay filters=filters action="transitionToEvent"}}
       {{else}}
         {{#archive-item}}
           There are no Featured Events today.
@@ -29,8 +29,8 @@
       <h2>All Day Events</h2>
     </div>
     <div class="row">
-    {{#each allDayEvents}}
-      {{archive-item content=this action="transitionToEvent"}}
+    {{#each event in allDayEvents}}
+      {{archive-item content=event filters=filters action="transitionToEvent"}}
     {{/each}}
     </div>
   {{/if}}
@@ -40,8 +40,8 @@
       <h2>Events List</h2>
     </header>
     <div class="row fader">
-    {{#each eventsList}}
-      {{archive-item content=this classNames="col-md-6" action="transitionToEvent"}}
+    {{#each event in eventsList}}
+      {{archive-item content=event filters=filters classNames="col-md-6" action="transitionToEvent"}}
     {{else}}
       {{#archive-item}}
         Your search for events on {{date currentDay}} rendered no results.

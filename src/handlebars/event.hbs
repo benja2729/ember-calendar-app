@@ -26,8 +26,36 @@
     <p><b>Location: </b>{{#if location}}{{location}}{{else}}To Be Determined{{/if}}</p>
     {{#if description}}{{showdown description}}{{/if}}
     <p {{bind-attr class="url::hidden"}}><a {{bind-attr href=url}} target="_blank">More Information &nbsp;&gt;&gt;</a><p>
+    <div class="media-footer">
+      {{#if filtersHaveCategories}}
+        <h4>Categories</h4>
+        <ul class="list-inline">
+        {{#each categories}}
+          <li class="btn btn-link" {{action "selectCategory" this}}>{{titleize name}}</li>
+        {{/each}}
+        </ul>
+      {{/if}}
+    </div>
   </div>
 </div>
+
+{{#if day.allDayEvents}}
+  <div class="page-header">
+    <h2>
+      {{#unless isCurrentDay}}
+        {{#with day.currentDay}}
+          {{partial "current-day-format"}}&nbsp;
+        {{/with}}
+      {{/unless}}
+      All Day Events
+    </h2>
+  </div>
+  <div class="row">
+  {{#each event in day.allDayEvents}}
+    {{archive-item content=event filters=filters action="transitionToEvent"}}
+  {{/each}}
+  </div>
+{{/if}}
 
 {{#if day.eventsList}}
   <header class="page-header">
@@ -41,8 +69,8 @@
     </h2>
   </header>
   <div class="row fader">
-  {{#each day.eventsList}}
-    {{archive-item content=this classNames="col-md-6" action="transitionToEvent"}}
+  {{#each event in day.eventsList}}
+    {{archive-item content=event filters=filters classNames="col-md-6" action="transitionToEvent"}}
   {{/each}}
   </div>
 {{/if}}

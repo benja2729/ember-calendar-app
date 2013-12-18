@@ -1,0 +1,11 @@
+
+{{#if allDayEvents}}
+  <div class="page-header">
+    <h2>All Day Events</h2>
+  </div>
+  <div class="row">
+  {{#each event in allDayEvents}}
+    {{archive-item content=event filters=filters action="transitionToEvent"}}
+  {{/each}}
+  </div>
+{{/if}}

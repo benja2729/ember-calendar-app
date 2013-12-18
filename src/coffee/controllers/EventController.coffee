@@ -3,6 +3,9 @@ App.EventController = Em.ObjectController.extend
   needs: ['day', 'filters']
   dayBinding: 'controllers.day'
   filtersBinding: 'controllers.filters'
+  filtersHaveCategories: Em.computed 'filters.categories.[]', ->
+    categories = @get 'filters.categories'
+    categories isnt undefined
   currentDayBinding: 'start'
   isCurrentDay: Em.computed 'currentDay', 'day.currentDay', ->
     eCurrentDay = @get 'currentDay'
@@ -10,12 +13,19 @@ App.EventController = Em.ObjectController.extend
     range = moment(dCurrentDay).twix eCurrentDay
     range.isValid() and range.isSame('day')
   actions:
-    loadDay: ->
+    selectCategory: (category) ->
+      filters = @get 'filters'
+      categories = filters.get 'categories'
+      if categories isnt undefined
+        categories.clear().addObject category
+      currentDay = @get 'currentDay'
+      @send 'loadDay', currentDay
+    loadDay: (currentDay) ->
       isCurrentDay = @get 'isCurrentDay'
-      dayRouter = @get('day.target.router').getHandler('day')
-      currentDay = @get('day.currentDay') or @get('currentDay')
+      dayRouter = @container.lookup 'route:day'
+      currentDay ?= @get('day.currentDay') or @get('currentDay')
 
+      model = undefined
       if not isCurrentDay
         model = dayRouter.loadDay(dayRouter.getRange currentDay)
-        @send 'loadState', 'day', model
-      else @send 'loadState', 'day'
+      @send 'loadState', 'day', model

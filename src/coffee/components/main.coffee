@@ -1,7 +1,11 @@
 
 # require 'components/ModalWindowComponent'
 require 'components/FilterToggleComponent'
+require 'components/CategoryDisplayComponent'
+require 'components/CategorySelectComponent'
 require 'components/CategorySelectWrapperComponent'
 require 'components/DatePickerComponent'
-require 'components/ArchiveListComponent'
+require 'components/ArchiveItemComponent'
+# require 'components/ArchiveListComponent'
+require 'components/PagerItemComponent'
 require 'components/RangePagerComponent'

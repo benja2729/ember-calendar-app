@@ -6,7 +6,6 @@ App.CategorySelectComponent = Em.Component.extend
   activeCategories: Em.required 'Category Array'
   classNames: ['category-select']
   classNameBindings: ['active']
-  # active: Em.computed 'activeCategories.length', -> !!(@get('activeCategories')?.contains @get('category.id'))
   active: Em.computed 'activeCategories.length', -> !!(@get('activeCategories')?.contains @get('category'))
 
   # addCategory: -> @get('activeCategories')?.addObject @get('category.id')

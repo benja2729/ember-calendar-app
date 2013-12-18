@@ -1,6 +1,4 @@
 
-require 'components/ArchiveItemComponent'
-
 App.ArchiveListComponent = Em.Component.extend
   classNames: ['archive-list row']
   classNameBindings: ['animate:fader']

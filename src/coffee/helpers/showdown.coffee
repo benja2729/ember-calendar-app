@@ -19,9 +19,9 @@ Em.Handlebars.registerBoundHelper 'showdown', (text) ->
   try
     result = text.replace nlRegex, nlRplStr
     result = (new Showdown.converter()).makeHtml result
-    result.replace linkRegex, ->
-      console.log arguments
-      ""
+    # result.replace linkRegex, ->
+    #   console.log arguments
+    #   ""
     result = result.replace linkRegex, linkRplStr
     new Em.Handlebars.SafeString result
     

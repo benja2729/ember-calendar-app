@@ -11,6 +11,17 @@
       <div class="col-sm-7"><strong>Location: </strong>{{content.location}}</div>
     {{/if}}
   </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-inline list-categories">
+      {{#each category in content.categories}}
+        <li>
+          {{category-display tagName="em" category=category activeCategories=filters.categories}}
+        </li>
+      {{/each}}
+      </ul>
+    </div>
+  </div>
 
   {{/if}}
 </div>
