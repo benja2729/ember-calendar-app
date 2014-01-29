@@ -1,9 +1,5 @@
 
 App.ApplicationView = Em.View.extend
-  _removeLoader: ( ->
-    $('#loader').remove()
-  ).on 'willInsertElement'
-  
   isMobileBinding: 'App.isMobile'
   classNames: ['st-container']
   classNameBindings: ['isMobile:is-mobile:not-mobile', 'transitionEffect', 'isOpen:st-menu-open'] #['row-fluid', 'pane', 'app-container']
@@ -12,16 +8,25 @@ App.ApplicationView = Em.View.extend
     if isMobile then 'st-effect-4'
     else 'st-effect-1'
 
+  _setMenu: ( ->
+    @set 'menu', $('.st-menu')
+  ).on 'didInsertElement'
   isOpen: false
   isOpenBinding: 'controller.filtersAreOpen'
-  # isOpen: false
-  # _defaultOpen: ( ->
-  #   @set 'isOpen', not @get('isMobile')
-  #   Em.run.later( =>
-  #     term = @get('isOpen')
-  #     if term then @set('isOpen', false)
-  #   , 2500)
-  # ).on 'init'
+  filtersOpening: false
+  filtersOpeningBinding: 'controller.filtersOpening'
+
+  click: (e) ->
+    {
+      isMobile
+      menu
+      isOpen
+      filtersOpening
+    } = @getProperties 'isMobile', 'menu', 'isOpen', 'filtersOpening'
+    inMenu =  menu.has(e.target).length > 0
+    if isMobile and isOpen and not filtersOpening and not inMenu
+      e.preventDefault()
+      @set 'isOpen', false
 
   actions:
     # openMenu: ->

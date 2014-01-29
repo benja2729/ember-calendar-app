@@ -1,0 +1,20 @@
+<header class="page-header">
+  {{#link-to 'month' 'current' classNames="btn valpo-sheen-gold pull-right" tagName="button"}}This Month{{/link-to}}
+  <span class="h1">
+  {{#if App.isMobile}}
+    {{moment currentMonth "MMM, YYYY"}}
+  {{else}}
+    {{moment currentMonth "MMMM, YYYY"}}
+  {{/if}}
+  </span>
+</header>
+
+{{#link-to 'month' lastMonthFormat classNames="btn valpo-sheen-gold layout-block" tagName="button"}}&lt;&lt; {{moment lastMonth route.format}}{{/link-to}}
+{{#link-to 'month' nextMonthFormat classNames="btn valpo-sheen-gold pull-right layout-block" tagName="button"}}{{moment nextMonth route.format}} &gt;&gt;{{/link-to}}
+
+{{!--
+{{range-pager range="month" date=currentMonth format="MMMM" shortFormat="MMM" changeDate="transitionToMonth"}}
+--}}
+  {{partial "calendar-month"}}
+
+{{outlet}}

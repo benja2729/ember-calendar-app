@@ -9,9 +9,27 @@
 @import "tympanus/main.less";
 @import "components/main.less";
 
+.truncate-text {
+  .text-overflow();
+}
+
 body, .st-content {
   background-color: #faf7f2;
 }
+
+body {
+  position: relative;
+  z-index: -1;
+}
+
+.beta {
+  margin-right: @grid-gutter-width /2;
+}
+
+// .page-header {
+//   margin-top: 0;
+//   padding-top: 40px;
+// }
 
 .btn:focus {
   outline: none;
@@ -48,13 +66,20 @@ body, .st-content {
  * 
  * Should probably add this to vu-utilities.less
  */
+/**
+ * Looking to phase this class out since it hinders the use of
+ * the global header and footer
+ */
+// .container {
+//   position: static;
+// }
 .pane, .pane-body {
   display: block;
-  overflow-y: auto;
-  overflow-y: overlay;
-  position: absolute;
-  top: 0;
-  bottom: 0;
+  // overflow-y: auto;
+  // overflow-y: overlay;
+  // position: absolute;
+  // top: 0;
+  // bottom: 0;
   height: auto;
 }
 
@@ -153,9 +178,15 @@ body, .st-content {
   right: 0;
 
   /* Needs to be behind .app-container */
+  position: relative;
   z-index: -101;
   overflow: hidden;
   padding: 0;
+
+  .navbar-main {
+    background-color: transparent;
+    border: none;
+  }
 
   .page-header {
     border-color: @valpo-brown;

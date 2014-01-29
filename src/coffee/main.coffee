@@ -8,6 +8,8 @@ require 'Application'
   
 # App components
 require 'utils/main'
+require 'mixins/main'
+require 'EmberOverride'
 require 'components/main'
 # require 'LOLAdapter'
 require 'Store'

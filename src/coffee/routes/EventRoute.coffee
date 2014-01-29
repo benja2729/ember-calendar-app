@@ -5,4 +5,9 @@ require 'views/EventView'
 
 App.EventRoute = Em.Route.extend
   afterModel: ->
-    $('.pane-body').scrollTop(0)
+    # App.scrollTo '.page-header'
+    App.scrollTo 'top'
+
+  setupController: (controller, model) ->
+    @controllerFor('application').set 'currentDay', moment(model.get 'start')
+    controller.set 'model', model

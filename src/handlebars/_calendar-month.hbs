@@ -1,0 +1,23 @@
+{{! To be used by anything implementing App.CalendarMonthMiin}}
+
+<table class="calendar table table-bordered">
+  <thead>
+    <tr>
+    {{#each dayNames}}
+      <th class="calendar-month-heading">{{this}}</th>
+    {{/each}}
+    </tr>
+  </thead>
+  
+  <tbody>
+    {{#each week in weeks}}
+      <tr>
+
+      {{#each day in week}}
+        {{calendar-tile date=day.date data=day.data filters=filters today=today}}
+      {{/each}}
+
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

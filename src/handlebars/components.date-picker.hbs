@@ -7,31 +7,4 @@
   {{range-pager range="month" date=currentMonth format="MMMM" shortFormat="MMM"}}
 </header>
 
-<table class="calendar">
-  <thead>
-    <tr>
-    {{#each dayNames}}
-      <th>{{this}}</th>
-    {{/each}}
-    </tr>
-  </thead>
-
-  <tbody>
-  {{! some entries may be null so we must account for them }}
-  {{#each week in weeks}}
-    <tr>
-    {{#each day in week}}
-      {{#if day}}
-        <td>{{#view view.tile dateBinding=day}}{{moment day view.format}}{{/view}}</td>
-        {{!--
-        {{pager-item format="DD" tagName="td" date=day action="selectDate"}}
-        --}}
-      {{else}}
-        <td class="invalid-day"></td>
-      {{/if}}
-    {{/each}}
-    </tr>
-  {{/each}}
-  </tbody>
-
-</table>
+{{partial "calendar-month"}}

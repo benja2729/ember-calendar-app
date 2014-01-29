@@ -1,5 +1,6 @@
 
 # require 'components/ModalWindowComponent'
+require 'components/ButtonControlComponent'
 require 'components/FilterToggleComponent'
 require 'components/CategoryDisplayComponent'
 require 'components/CategorySelectComponent'
@@ -9,3 +10,5 @@ require 'components/ArchiveItemComponent'
 # require 'components/ArchiveListComponent'
 require 'components/PagerItemComponent'
 require 'components/RangePagerComponent'
+require 'components/CalendarTileComponent'
+require 'components/GcalButtonComponent'

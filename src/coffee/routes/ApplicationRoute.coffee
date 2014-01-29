@@ -3,20 +3,18 @@ require 'models/Category'
 require 'controllers/ApplicationController'
 require 'views/ApplicationView'
 
-Em.Route.reopen
-  enter: ->
-    # To add 'popAppState' funcitonality
-    routeName = @get 'routeName'
-    if /^\w+$/.test(routeName) and routeName isnt "loading" and routeName isnt 'application'
-      @controllerFor('application').set 'currentResource', routeName
-  metaForType: (type) ->
-    store = @get 'store'
-    model = store.modelFor(type)
-    store.typeMapFor(model).metadata
-
-
 App.ApplicationRoute = Em.Route.extend
   model: ->
+
+    # Manually generate the Filters controller.
+    # Why? Because f##k you
+    filtersRoute = @container.lookup 'route:filters'
+    filtersModel = filtersRoute.model filters: 'all'
+    filtersController = filtersRoute.generateController 'filters', filtersModel
+    filtersRoute.controller = filtersController
+    filtersRoute.setupController filtersController, filtersModel
+    @container.register 'route:filters', filtersRoute
+
     # The ApplicationRoute is the top-most route in the route hierarchy,
     # and its model hook gets called once when the app starts up.
     
@@ -86,18 +84,25 @@ App.ApplicationRoute = Em.Route.extend
       path = @get 'controller.lastResource'
       @send 'loadState', path
 
+    toggleFilterPane: (isOpen) ->
+      controller = @controllerFor 'application'
+      if isOpen? then controller.set 'filtersAreOpen', isOpen
+      else controller.toggleProperty 'filtersAreOpen'
+      controller.set 'filtersOpening', true
+      $('.st-menu').one $.support.transition.end, ->
+        controller.set 'filtersOpening', false
+
     updateCategories: (activeCategories) ->
-      # destinationRoute = @controllerFor('application').get 'currentResource'
-      # destinationModel = @modelFor destinationRoute
+      resource = @get 'controller.currentResource'
+      resource = 'day' if resource is undefined or resource is 'event'
 
-      # model = @modelFor 'filters'
-      # model = App.Filter.create() if model is undefined
-      # model.set 'categories', activeCategories
+      resourceRoute = @container.lookup "route:#{resource}"
+      resourceModel = resourceRoute.get 'currentModel'
 
-      # console.log 'updateCategories', activeCategories
-
-      # @transitionTo 'filters.' + destinationRoute , model, destinationModel
-      @send 'loadState', 'day'
+      # Similate the filters model
+      filters = Em.Object.create
+        categories: activeCategories
+      @transitionTo resource, filters, resourceModel
 
 App.IndexRoute = Em.Route.extend
   redirect: -> @transitionTo 'day'

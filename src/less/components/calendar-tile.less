@@ -1,0 +1,67 @@
+
+.calendar-tile {
+  color: @valpo-gold;
+  border: 1px solid transparent;
+
+  .month-view & {
+    height: 160px;
+
+    @media(max-width: @screen-md) {
+      height: 80px;
+    }
+  }
+
+  .table tbody>tr> & {
+    padding: 0;
+  }
+
+  .has-events {
+    text-align: center;
+  }
+}
+
+.calendar-tile-link {
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 1em;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+&.valid-day {
+  cursor: pointer;
+
+  &:hover {
+    background-color: white;
+  }
+}
+
+.calendar-month-heading {
+  text-align: center;
+}
+
+.calendar-tile-title, .calendar-month-heading {
+  font-family: @headings-font-family;
+  font-weight: @headings-font-weight;
+  line-height: @headings-line-height;
+  color: @valpo-brown;
+
+  .month-view & {
+    font-size: floor(@font-size-base * 1.5);
+  }
+}
+
+.calendar-tile-list {
+  margin-top: 1em;
+  color: @valpo-gold;
+
+  .divider {
+    height: 1px;
+    margin: 0.3em 0;
+    overflow: hidden;
+    background-color: @table-border-color;
+  }
+}

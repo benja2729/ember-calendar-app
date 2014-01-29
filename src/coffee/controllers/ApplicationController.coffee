@@ -1,5 +1,13 @@
 
-App.ApplicationController = Em.Controller.extend
+appHeaderPath = (slug) ->
+  Em.computed 'currentDay', (key, value) ->
+    if value? then value
+    else
+      format = @container.lookup("route:#{slug}").get('format')
+      currentDay = @get('currentDay')
+      moment(currentDay).format format
+
+App.ApplicationController = Em.Controller.extend App.DataUtilMixin,
   needs: ['filters']
   filtersBinding: 'controllers.filters'
   # allCategories: Em.A()
@@ -10,6 +18,8 @@ App.ApplicationController = Em.Controller.extend
   lastResource: null
   currentResource: null
   lastPath: null
+  dayPath: appHeaderPath 'day'
+  monthPath: appHeaderPath 'month'
 
   _routeChangeObserver: Em.beforeObserver( (controller, property) ->
     @set 'lastResource', @get(property)

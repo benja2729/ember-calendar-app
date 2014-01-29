@@ -1,16 +1,19 @@
 
-require 'components/ButtonControlComponent'
+# require 'components/ButtonControlComponent'
 
-App.FilterToggleComponent = App.ButtonControlComponent.extend
+# App.FilterToggleComponent = App.ButtonControlComponent.extend
+App.FilterToggleComponent = Em.Component.extend
   classNames: ['filter-toggle']
   classNameBindings: ['isOpen:active']
   title: 'Filters'
   isOpen: Em.required Boolean
-  # _isOpenObserver: Em.observer 'isOpen', ->
-  #   console.log @get('isOpen')
-  #   @sendAction 'action', @get('isOpen')
-  isMobile: Em.required Boolean
-  click: -> @toggleProperty 'isOpen'
+  _isOpenObserver: ( ->
+    @sendAction 'action', @get('isOpen')
+  ).observes 'isOpen'
+  isMobileBinding: 'App.isMobile'
+  click: (e) ->
+    e.preventDefault()
+    @toggleProperty 'isOpen'
   # mouseEnter: ->
   #   isMobile = @get 'isMobile'
   #   if not isMobile then @set 'isOpen', true

@@ -1,0 +1,28 @@
+
+<nav id="navigation" role="navigation" class="navbar navbar-static-top navbar-main">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {{filter-toggle action="toggleFilterPane" filters=filters title="Categories" classNames="navbar-brand"}}
+    </div>
+
+    <div class="navbar-collapse collapse">
+      
+      <ul class="nav navbar-nav">
+        <li>{{#link-to 'day' filters dayPath}}Day View{{/link-to}}</li>
+        <li>{{#linkTo 'month' filters monthPath}}Month View{{/linkTo}}</li>
+      </ul>
+
+      <div class="pull-right">
+        <p class="beta navbar-text text-muted">BETA</p>
+        {{!-- Uses Font-awesome 3.2.1 not the latest 4.0 --}}
+        {{#link-to "help" classNames="btn btn-primary navbar-btn"}}<i class="fa fa-question"></i>{{/link-to}}
+      </div>
+
+    </div>
+
+</nav>

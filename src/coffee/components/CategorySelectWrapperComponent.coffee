@@ -2,15 +2,13 @@
 App.CategorySelectWrapperComponent = Em.Component.extend
   categories: Em.required Array
   activeCategories: Em.required Array
-  displayList: Em.computed 'activeCategories', ->
-    # TODO: create a sorted list for categories
-  click: -> @send 'updateCategories'
+  _activeCategoriesObserver: ( ->
+    @send 'updateCategories'
+  ).observes 'activeCategories.length'
 
   actions:
     clearCategories: ->
-      activeCategories = @get 'activeCategories'
-      activeCategories.clear()
-      @send 'updateCategories'
+      @get('activeCategories')?.clear()
     updateCategories: ->
       activeCategories = @get 'activeCategories'
       @sendAction 'action', activeCategories

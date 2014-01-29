@@ -1,9 +1,14 @@
-{{partial "day-header"}}
+<header class="page-header">
+  {{#link-to 'day' 'today' classNames="btn pull-right valpo-sheen-gold" tagName="button"}}Today{{/link-to}}
+  <span class="h1">
+  {{#with currentDay}}
+    {{partial "current-day-format"}}
+  {{/with}}
+  </span>
+</header>
 <div class="events-body">
   <div class="row">
     <div class="col-sm-6 main-controls">
-      {{filter-toggle action="toggleFilterPane" isOpen=filtersAreOpen filters=filters isMobile=App.isMobile title="Categories" classNames="btn-lg valpo-sheen-gold"}}
-      <button class="btn pull-right btn-lg  valpo-sheen-gold" {{action "transitionToDay" today}}>Today</button>
       <div class="row">
         {{date-picker activeDate=currentDay action="transitionToDay" class="col-xs-12"}}
       </div>

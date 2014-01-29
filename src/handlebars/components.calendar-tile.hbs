@@ -1,0 +1,28 @@
+
+{{#if isValid}}
+  {{#link-to 'day' datePath classNames="calendar-tile-link" classNameBindings="isToday" tagName="div"}}
+
+    <div class="calendar-tile-title">{{moment date format}}</div>
+
+    {{#if data}}
+      <ul class="calendar-tile-list list-unstyled">
+        {{#unless App.isMobile}}
+          {{#each event in events}}
+            <li class="truncate-text">{{event.title}}</li>
+          {{/each}}
+          {{#if isAboveLimit}}
+            <li class="divider">&nbsp;</li>
+            <li>{{moreText}}</li>
+          {{/if}}
+        {{else}}
+          {{#if hasEvents}}
+            <li class="has-events"><i class="fa fa-circle"></i></li>
+          {{/if}}
+        {{/unless}}
+      </ul>
+    {{/if}}
+
+  {{/link-to}}
+{{else}}
+  &nbsp;
+{{/if}}

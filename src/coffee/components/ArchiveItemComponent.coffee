@@ -17,13 +17,14 @@ App.ArchiveItemComponent = Em.Component.extend
 
     {
       range
+      isFeatured
       featuredRange
       isMultiDay
-    } = content.getProperties 'range', 'featuredRange', 'isMultiDay'
+    } = content.getProperties 'range', 'isFeatured', 'featuredRange', 'isMultiDay'
     ret = {}
 
     # Simulate formatting options for the range helper
-    if (isPromoted and featuredRange) or isMultiDay then ret.showDayOfWeek = true
+    if (isPromoted and (isFeatured or featuredRange)) or isMultiDay then ret.showDayOfWeek = true
     else ret.showDate = false
     ret
 
