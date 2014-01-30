@@ -216,10 +216,10 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push(" ");
   hashContexts = {'target': depth0,'on': depth0};
   hashTypes = {'target': "ID",'on': "STRING"};
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "closeMenu", {hash:{
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "closeMenu", "st-menu", {hash:{
     'target': ("view"),
     'on': ("mouseLeave")
-  },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  },contexts:[depth0,depth0],types:["STRING","STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push(">\n  <h2>Categories</h2>\n  ");
   hashContexts = {'action': depth0,'categories': depth0,'activeCategories': depth0};
   hashTypes = {'action': "STRING",'categories': "ID",'activeCategories': "ID"};
@@ -239,7 +239,20 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n    </div>\n  </section>\n</div>\n</section>\n");
+  data.buffer.push("\n      <div ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  options = {hash:{
+    'class': (":st-pusher-skin filtersAreOpen:visible:hidden")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || depth0['bind-attr']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
+  data.buffer.push(" ");
+  hashContexts = {'target': depth0};
+  hashTypes = {'target': "STRING"};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "closeMenu", "st-pusher-skin", {hash:{
+    'target': ("view")
+  },contexts:[depth0,depth0],types:["STRING","STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("></div>\n    </div>\n  </section>\n</div>\n</section>\n");
   return buffer;
   
 });
@@ -1236,19 +1249,11 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 Ember.TEMPLATES["help"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("<header class=\"page-header\">\n  ");
-  hashContexts = {'action': depth0,'classNames': depth0,'title': depth0};
-  hashTypes = {'action': "STRING",'classNames': "STRING",'title': "STRING"};
-  options = {hash:{
-    'action': ("popAppState"),
-    'classNames': ("btn-primary pull-right"),
-    'title': ("Back")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers['button-control'] || depth0['button-control']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "button-control", options))));
-  data.buffer.push("\n  <span class=\"h1\">Help and Information</span>\n</header>\n");
+  data.buffer.push("<header class=\"page-header\">\n");
+  data.buffer.push("\n  <h1>Help and Information</h1>\n</header>\n");
   hashTypes = {};
   hashContexts = {};
   options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
@@ -2339,21 +2344,14 @@ App.ApplicationView = Em.View.extend({
   isOpenBinding: 'controller.filtersAreOpen',
   filtersOpening: false,
   filtersOpeningBinding: 'controller.filtersOpening',
-  click: function(e) {
-    var filtersOpening, inMenu, isMobile, isOpen, menu, _ref;
-    _ref = this.getProperties('isMobile', 'menu', 'isOpen', 'filtersOpening'), isMobile = _ref.isMobile, menu = _ref.menu, isOpen = _ref.isOpen, filtersOpening = _ref.filtersOpening;
-    inMenu = menu.has(e.target).length > 0;
-    if (isMobile && isOpen && !filtersOpening && !inMenu) {
-      e.preventDefault();
-      return this.set('isOpen', false);
-    }
-  },
   actions: {
-    closeMenu: function() {
-      var isMobile;
-      isMobile = this.get('isMobile');
-      if (!isMobile) {
-        return this.set('isOpen', false);
+    closeMenu: function(type) {
+      var filtersOpening, isMobile, isOpen, _ref;
+      _ref = this.getProperties('isMobile', 'isOpen', 'filtersOpening'), isMobile = _ref.isMobile, isOpen = _ref.isOpen, filtersOpening = _ref.filtersOpening;
+      if (isOpen && !filtersOpening) {
+        if ((isMobile && type === "st-pusher-skin") || (!isMobile && type === "st-menu")) {
+          return this.set('isOpen', false);
+        }
       }
     }
   }

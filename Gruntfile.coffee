@@ -29,6 +29,7 @@ module.exports = (grunt) ->
     neuter: config 'neuter'
     coffee: config 'coffee'
     uglify: config 'uglify'
+    clean: config 'clean'
     emberTemplates: config 'emberTemplates'
 
 
@@ -52,4 +53,5 @@ module.exports = (grunt) ->
     #'jshint:all'   # Some errors are incompatible with compiled CoffeeScript
     'strip:production'
     'uglify:production'
+    'clean:production'
   ]

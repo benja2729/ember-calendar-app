@@ -2,7 +2,7 @@
 {{!-- outlet "filterPane"}}
 <aside class="pane side-pane filter-pane">
 --}}
-<aside {{bind-attr class=":st-menu view.transitionEffect"}} {{action "closeMenu" target=view on="mouseLeave"}}>
+<aside {{bind-attr class=":st-menu view.transitionEffect"}} {{action "closeMenu" "st-menu" target=view on="mouseLeave"}}>
   <h2>Categories</h2>
   {{category-select-wrapper action="updateCategories" categories=allCategories activeCategories=activeCategories}}
 </aside>
@@ -15,6 +15,7 @@
       {{partial "app-header"}}
 
       {{outlet}}
+      <div {{bind-attr class=":st-pusher-skin filtersAreOpen:visible:hidden"}} {{action "closeMenu" "st-pusher-skin" target="view"}}></div>
     </div>
   </section>
 </div>

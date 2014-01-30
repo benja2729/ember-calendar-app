@@ -16,21 +16,14 @@ App.ApplicationView = Em.View.extend
   filtersOpening: false
   filtersOpeningBinding: 'controller.filtersOpening'
 
-  click: (e) ->
-    {
-      isMobile
-      menu
-      isOpen
-      filtersOpening
-    } = @getProperties 'isMobile', 'menu', 'isOpen', 'filtersOpening'
-    inMenu =  menu.has(e.target).length > 0
-    if isMobile and isOpen and not filtersOpening and not inMenu
-      e.preventDefault()
-      @set 'isOpen', false
-
   actions:
-    # openMenu: ->
-    #   isMobile = 
-    closeMenu: ->
-      isMobile = @get 'isMobile'
-      if not isMobile then @set 'isOpen', false
+    closeMenu: (type) ->
+      {
+        isMobile
+        isOpen
+        filtersOpening
+      } = @getProperties 'isMobile', 'isOpen', 'filtersOpening'
+      if isOpen and not filtersOpening
+        if (isMobile and type is "st-pusher-skin") or
+        (not isMobile and type is "st-menu")
+          @set 'isOpen', false
