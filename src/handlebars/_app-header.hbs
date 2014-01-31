@@ -19,6 +19,7 @@
 
       <div class="pull-right">
         <p class="beta navbar-text text-muted">BETA</p>
+        {{ical-button events=iCalEventsCache classNames="btn-primary navbar-btn"}}
         {{!-- Uses Font-awesome 3.2.1 not the latest 4.0 --}}
         {{#link-to "help" classNames="btn btn-primary navbar-btn"}}<i class="fa fa-question"></i>{{/link-to}}
       </div>

@@ -88,6 +88,14 @@ function program5(depth0,data) {
   stack2 = ((stack1 = helpers.linkTo || depth0.linkTo),stack1 ? stack1.call(depth0, "month", "filters", "monthPath", options) : helperMissing.call(depth0, "linkTo", "month", "filters", "monthPath", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("</li>\n      </ul>\n\n      <div class=\"pull-right\">\n        <p class=\"beta navbar-text text-muted\">BETA</p>\n        ");
+  hashContexts = {'events': depth0,'classNames': depth0};
+  hashTypes = {'events': "ID",'classNames': "STRING"};
+  options = {hash:{
+    'events': ("iCalEventsCache"),
+    'classNames': ("btn-primary navbar-btn")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['ical-button'] || depth0['ical-button']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "ical-button", options))));
+  data.buffer.push("\n        ");
   data.buffer.push("\n        ");
   hashContexts = {'classNames': depth0};
   hashTypes = {'classNames': "STRING"};
@@ -648,6 +656,20 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers['bind-attr'] || depth0['bind-attr']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "bind-attr", options))));
   data.buffer.push(" border=\"0\"></a>\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["components/ical-button"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("\n");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "title", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   return buffer;
   
 });
@@ -1545,7 +1567,8 @@ App.reopen({
   },
   today: Em.computed(function() {
     return moment();
-  }).volatile()
+  }).volatile(),
+  useExclusiveSearch: false
 });
 
 App.ready = function() {
@@ -1653,6 +1676,106 @@ utils.uncommon = uncommon = function(array1, array2, fn) {
 utils.extend = extend = function(array) {
   return array.concat(uncommon.apply(null, arguments));
 };
+
+
+})();
+
+(function() {
+
+var VEvent, iCalMixin, sanitize, utcTime;
+
+sanitize = function(key) {
+  var slug;
+  slug = "content." + key;
+  return Em.computed(slug, function() {
+    var value;
+    value = this.get(slug);
+    return value.replace(/\n/g, '\\n');
+  });
+};
+
+utcTime = function(key) {
+  return Em.computed('range', function() {
+    var format, isAllDay, range, _ref;
+    _ref = this.getProperties('range', 'format', 'isAllDay'), range = _ref.range, format = _ref.format, isAllDay = _ref.isAllDay;
+    if (isAllDay) {
+      format = format.replace(/T.*$/, '');
+    }
+    return range[key].clone().utc().format(format);
+  });
+};
+
+iCalMixin = Em.Mixin.create({
+  todayBinding: 'App.today',
+  format: 'YYYYMMDDTHHmmss[Z]',
+  now: Em.computed('today', function() {
+    return this.get('today').format(this.get('format'));
+  }),
+  template: Em.required(String),
+  toString: function() {
+    return this.get('template');
+  }
+});
+
+VEvent = Em.ObjectProxy.extend(iCalMixin, {
+  content: Em.required(),
+  title: sanitize('title'),
+  description: sanitize('description'),
+  location: sanitize('location'),
+  dtStampBinding: 'now',
+  dtStart: utcTime('start'),
+  dtEnd: utcTime('end'),
+  template: Em.computed(function() {
+    var description, dtEnd, dtStamp, dtStart, id, location, title, _ref;
+    _ref = this.getProperties('id', 'title', 'description', 'location', 'dtStamp', 'dtStart', 'dtEnd'), id = _ref.id, title = _ref.title, description = _ref.description, location = _ref.location, dtStamp = _ref.dtStamp, dtStart = _ref.dtStart, dtEnd = _ref.dtEnd;
+    return "BEGIN:VEVENT\nUID:" + id + "\nDTSTAMP:" + dtStamp + "\nDTSTART:" + dtStart + "\nDTEND:" + dtEnd + "\nSUMMARY:" + title + "\nDESCRIPTIONS:" + description + "\nLOCATION:" + location + "\nEND:VEVENT\n";
+  })
+});
+
+App.iCalObject = Em.Object.extend(iCalMixin, {
+  events: Em.required(Array),
+  version: '2.0',
+  mimeType: 'text/calendar;charset=utf8',
+  toBlob: function() {
+    var e, template, type;
+    template = this.get('template');
+    type = this.get('mimeType');
+    try {
+      return new Blob([template], {
+        type: type
+      });
+    } catch (_error) {
+      e = _error;
+      Em.Logger.error(e.stack);
+      return alert('It looks like your browser doesn\'t support that feature');
+    }
+  },
+  vEvents: Em.computed('events', function() {
+    var events;
+    events = this.get('events');
+    return events.map(function(event) {
+      return VEvent.create({
+        content: event
+      });
+    });
+  }),
+  renderedEvents: Em.computed('vEvents', function() {
+    var output, vEvents;
+    vEvents = this.get('vEvents');
+    output = vEvents.map(function(vEvent) {
+      return vEvent.toString();
+    });
+    return output.join('');
+  }),
+  prodId: Em.computed(function() {
+    return window.location.hash;
+  }),
+  template: Em.computed('renderedEvents', function() {
+    var prodId, renderedEvents, version, _ref;
+    _ref = this.getProperties('version', 'prodId', 'renderedEvents'), version = _ref.version, prodId = _ref.prodId, renderedEvents = _ref.renderedEvents;
+    return "BEGIN:VCALENDAR\nVERSION:" + version + "\nPRODID:-//" + prodId + "//NONSGML v1.0//EN\n" + renderedEvents + "\nEND:VCALENDAR";
+  })
+});
 
 
 })();
@@ -1782,11 +1905,14 @@ App.EventsFilterMixin = Em.Mixin.create({
     return event;
   },
   featuredEvents: Em.computed.filterBy('arrangedContent', 'isFeatured', true),
-  filteredEvents: Em.computed('arrangedContent.@each', 'filters.categories.@each', function() {
-    var categoryCache, content, filters, hasAllCategories, ret,
+  useExclusiveSearch: false,
+  useExclusiveSearchBinding: 'App.useExclusiveSearch',
+  filteredEvents: Em.computed('arrangedContent.@each', 'filters.categories.@each', 'useExclusivSearch', function() {
+    var categoryCache, content, filters, hasAllCategories, ret, useExclusiveSearch,
       _this = this;
     content = this.get('arrangedContent');
     filters = this.get('filters');
+    useExclusiveSearch = this.get('useExclusiveSearch');
     categoryCache = filters.get('categories');
     hasAllCategories = Em.get(categoryCache, 'length') === 0;
     if (Em.get(content, 'length') === 0) {
@@ -1794,11 +1920,13 @@ App.EventsFilterMixin = Em.Mixin.create({
     }
     ret = Em.A();
     content.forEach(function(event) {
-      var categories, filterMatch, hasCategories;
+      var categories, commonCategories, filterMatch, hasCategories;
       categories = event.get('categories');
-      hasCategories = hasAllCategories || Em.EnumerableUtils.hasCommon(categories, categoryCache, function(cat1, cat2) {
+      hasCategories = hasAllCategories || (useExclusiveSearch ? (commonCategories = Em.EnumerableUtils.common(categories, categoryCache, function(cat1, cat2) {
         return Em.get(cat1, 'id') === Em.get(cat2, 'id');
-      });
+      }), commonCategories.get('length') === categoryCache.get('length')) : Em.EnumerableUtils.hasCommon(categories, categoryCache, function(cat1, cat2) {
+        return Em.get(cat1, 'id') === Em.get(cat2, 'id');
+      }));
       filterMatch = hasCategories;
       event = _this.eventFilterMatch(event, filterMatch, content, filters);
       if (filterMatch && (event != null)) {
@@ -2257,6 +2385,70 @@ App.GcalButtonComponent = Em.Component.extend({
 
 (function() {
 
+App.IcalButtonComponent = Em.Component.extend({
+  events: Em.required(Array),
+  tagName: 'button',
+  classNames: ['ical-button', 'btn'],
+  classNameBindings: ['isSupported::disabled'],
+  isSupported: Em.computed(function() {
+    var e;
+    try {
+      new Blob();
+      return true;
+    } catch (_error) {
+      e = _error;
+      return false;
+    }
+  }),
+  title: Em.computed('isSupported', function(key, value) {
+    var isSupported;
+    isSupported = this.get('isSupported');
+    if (isSupported) {
+      if (value != null) {
+        return value;
+      } else {
+        return 'Download iCal';
+      }
+    } else {
+      return 'Not Supported';
+    }
+  }),
+  fileName: Em.computed(function(key, value) {
+    var serializedUrl;
+    if (value != null) {
+      return value;
+    } else {
+      serializedUrl = window.location.hash.replace(/^#\//, '').replace(/[\/,]+/g, '.');
+      return "" + serializedUrl + ".ics";
+    }
+  }),
+  iCalObject: Em.computed('events', function() {
+    var events;
+    events = this.get('events');
+    return App.iCalObject.create({
+      events: events
+    });
+  }),
+  click: function() {
+    if (this.get('isSupported')) {
+      return this.send('saveAs');
+    }
+  },
+  actions: {
+    saveAs: function() {
+      var blob, fileName, iCalObject, _ref;
+      _ref = this.getProperties('iCalObject', 'fileName'), iCalObject = _ref.iCalObject, fileName = _ref.fileName;
+      blob = iCalObject.toBlob();
+      return saveAs(blob, fileName);
+    }
+  }
+});
+
+
+})();
+
+(function() {
+
 App.ApplicationAdapter = DS.RESTAdapter.extend({
   host: 'https://api.valpo.edu',
   namespace: 'eventPool2'
@@ -2311,6 +2503,16 @@ App.ApplicationController = Em.Controller.extend(App.DataUtilMixin, {
   lastPath: null,
   dayPath: appHeaderPath('day'),
   monthPath: appHeaderPath('month'),
+  iCalEventsCache: Em.computed(function() {
+    var controller, currentResource;
+    currentResource = this.get('currentResource');
+    controller = this.controllerFor(currentResource);
+    if (currentResource === 'event') {
+      return [controller.get('content')];
+    } else {
+      return controller.get('filteredEvents');
+    }
+  }),
   _routeChangeObserver: Em.beforeObserver(function(controller, property) {
     return this.set('lastResource', this.get(property));
   }, 'currentResource'),
@@ -2527,7 +2729,8 @@ App.Event = DS.Model.extend({
       start = moment(this.get('start'));
       end = moment(this.get('end'));
     }
-    return start.twix(end, isAllDay);
+    debugger;
+    return start.twix(end);
   }),
   featuredRange: Em.computed('isFeatured', 'featuredStart', 'featuredEnd', function() {
     var end, format, range, start;

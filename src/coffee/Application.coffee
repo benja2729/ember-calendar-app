@@ -22,4 +22,7 @@ App.reopen
     this
   today: Em.computed( -> moment()).volatile()
 
+  # If toggled, reload state to apply the new search
+  useExclusiveSearch: false
+
 App.ready = -> App.set 'isReady', true

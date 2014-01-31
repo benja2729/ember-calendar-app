@@ -16,6 +16,8 @@ App.GcalButtonComponent = Em.Component.extend
   textBinding: 'event.title'
   dates: Em.computed 'event.start', 'event.end', 'event.isAllDay', ->
     format = "YYYYMMDDTHHmmss[Z]"
+    # allDay events are prone to be a day off
+    # might have to do with twix or utc or how it's formatted
     isAllDay = @get 'event.isAllDay'
     format = format.replace(/T.*$/, '') if isAllDay
     start = moment.utc(@get 'event.start').format(format)

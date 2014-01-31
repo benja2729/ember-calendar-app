@@ -21,9 +21,13 @@ App.EventsFilterMixin = Em.Mixin.create
   eventFilterMatch: (event, match, list, filters) -> event
 
   featuredEvents: Em.computed.filterBy 'arrangedContent', 'isFeatured', true
-  filteredEvents: Em.computed 'arrangedContent.@each', 'filters.categories.@each', ->
+
+  useExclusiveSearch: false
+  useExclusiveSearchBinding: 'App.useExclusiveSearch'
+  filteredEvents: Em.computed 'arrangedContent.@each', 'filters.categories.@each', 'useExclusivSearch', ->
     content = @get 'arrangedContent'
     filters = @get 'filters'
+    useExclusiveSearch = @get 'useExclusiveSearch'
     categoryCache = filters.get 'categories'
     hasAllCategories = Em.get(categoryCache, 'length') is 0
 
@@ -33,8 +37,18 @@ App.EventsFilterMixin = Em.Mixin.create
     content.forEach (event) =>
       categories = event.get 'categories'
 
-      hasCategories = hasAllCategories or Em.EnumerableUtils.hasCommon categories, categoryCache, (cat1, cat2) ->
-        Em.get(cat1, 'id') is Em.get(cat2, 'id')
+      hasCategories = hasAllCategories or if useExclusiveSearch
+        # Exclusive search
+        # more categories means more specific
+        commonCategories = Em.EnumerableUtils.common categories, categoryCache, (cat1, cat2) ->
+          Em.get(cat1, 'id') is Em.get(cat2, 'id')
+        commonCategories.get('length') is categoryCache.get('length')
+      else
+
+        # Inclusive search
+        # more categories means more events
+        Em.EnumerableUtils.hasCommon categories, categoryCache, (cat1, cat2) ->
+          Em.get(cat1, 'id') is Em.get(cat2, 'id')
 
       filterMatch = hasCategories     # and hasTags and hasWhatever...
 

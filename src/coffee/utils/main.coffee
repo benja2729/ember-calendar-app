@@ -1,6 +1,7 @@
 
 require 'utils/moment-format'
 require 'utils/EmberEnumExtend'
+require 'utils/iCalObject'
 
 # require 'utils/VU'
 

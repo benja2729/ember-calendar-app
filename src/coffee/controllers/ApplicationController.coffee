@@ -20,6 +20,11 @@ App.ApplicationController = Em.Controller.extend App.DataUtilMixin,
   lastPath: null
   dayPath: appHeaderPath 'day'
   monthPath: appHeaderPath 'month'
+  iCalEventsCache: Em.computed ->
+    currentResource = @get 'currentResource'
+    controller = @controllerFor currentResource
+    if currentResource is 'event' then [controller.get 'content']
+    else controller.get 'filteredEvents'
 
   _routeChangeObserver: Em.beforeObserver( (controller, property) ->
     @set 'lastResource', @get(property)
