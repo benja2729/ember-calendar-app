@@ -20,12 +20,7 @@ App.Event = DS.Model.extend
     else
       start = moment(@get 'start')
       end = moment(@get 'end')
-
-    # # The isAllDay parameter may cause incomplete date ranges
-    # # since it accounts for complete days
-    # start.twix end, isAllDay
-    debugger
-    start.twix end
+    start.twix end, isAllDay
 
   featuredRange: Em.computed 'isFeatured', 'featuredStart', 'featuredEnd', ->
     if not @get('isFeatured') then return false

@@ -19,7 +19,6 @@ App.FiltersRoute = Em.Route.extend
       store.push 'filter',
         'id': 1
         'categories': categories
-      store.find('filter', 1)
 
     # deferred = $.Deferred()
     # store = @get('store')
