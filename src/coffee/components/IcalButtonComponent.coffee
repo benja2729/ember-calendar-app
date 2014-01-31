@@ -24,6 +24,7 @@ App.IcalButtonComponent = Em.Component.extend
     else
       serializedUrl = window.location.hash.replace(/^#\//, '').replace(/[\/,]+/g, '.')
       "#{serializedUrl}.ics"
+  .volatile()
   iCalObject: Em.computed 'events', ->
     events = @get 'events'
     App.iCalObject.create {events}

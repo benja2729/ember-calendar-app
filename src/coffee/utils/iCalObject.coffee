@@ -76,7 +76,7 @@ App.iCalObject = Em.Object.extend iCalMixin,
     vEvents = @get 'vEvents'
     output = vEvents.map (vEvent) -> vEvent.toString()
     output.join('')
-  prodId: Em.computed -> window.location.hash
+  prodId: 'VUEventsCalendar'
   template: Em.computed 'renderedEvents', ->
     {
       version

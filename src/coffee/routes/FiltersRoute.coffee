@@ -5,16 +5,21 @@ require 'views/FiltersView'
 
 App.FiltersRoute = Em.Route.extend
   model: (params) ->
-    currentModel = @get('currentModel')
-    if currentModel then return currentModel
-    
-    store = @get 'store'
     c = params.categories
-
     categories = if c is 'all' or c is undefined then [] else params.categories.split(',')
-    store.push 'filter',
-      'id': 1
-      'categories': categories
+
+    store = @get 'store'
+    console.log store.find('filter', 1)
+    currentModel = @get('currentModel')
+    if currentModel
+      console.log 'hasCurrentModel'
+      currentModel.set 'categories', store.findByIds('category', categories)
+    else
+      console.log 'doesnt hasCurrentModel'
+      store.push 'filter',
+        'id': 1
+        'categories': categories
+      store.find('filter', 1)
 
     # deferred = $.Deferred()
     # store = @get('store')

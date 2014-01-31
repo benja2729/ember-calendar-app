@@ -1767,9 +1767,7 @@ App.iCalObject = Em.Object.extend(iCalMixin, {
     });
     return output.join('');
   }),
-  prodId: Em.computed(function() {
-    return window.location.hash;
-  }),
+  prodId: 'VUEventsCalendar',
   template: Em.computed('renderedEvents', function() {
     var prodId, renderedEvents, version, _ref;
     _ref = this.getProperties('version', 'prodId', 'renderedEvents'), version = _ref.version, prodId = _ref.prodId, renderedEvents = _ref.renderedEvents;
@@ -2421,7 +2419,7 @@ App.IcalButtonComponent = Em.Component.extend({
       serializedUrl = window.location.hash.replace(/^#\//, '').replace(/[\/,]+/g, '.');
       return "" + serializedUrl + ".ics";
     }
-  }),
+  }).volatile(),
   iCalObject: Em.computed('events', function() {
     var events;
     events = this.get('events');
@@ -2503,7 +2501,7 @@ App.ApplicationController = Em.Controller.extend(App.DataUtilMixin, {
   lastPath: null,
   dayPath: appHeaderPath('day'),
   monthPath: appHeaderPath('month'),
-  iCalEventsCache: Em.computed(function() {
+  iCalEventsCache: Em.computed('currentResource', function() {
     var controller, currentResource;
     currentResource = this.get('currentResource');
     controller = this.controllerFor(currentResource);
@@ -2679,17 +2677,22 @@ App.FiltersView = Em.View.extend();
 App.FiltersRoute = Em.Route.extend({
   model: function(params) {
     var c, categories, currentModel, store;
-    currentModel = this.get('currentModel');
-    if (currentModel) {
-      return currentModel;
-    }
-    store = this.get('store');
     c = params.categories;
     categories = c === 'all' || c === void 0 ? [] : params.categories.split(',');
-    return store.push('filter', {
-      'id': 1,
-      'categories': categories
-    });
+    store = this.get('store');
+    console.log(store.find('filter', 1));
+    currentModel = this.get('currentModel');
+    if (currentModel) {
+      console.log('hasCurrentModel');
+      return currentModel.set('categories', store.findByIds('category', categories));
+    } else {
+      console.log('doesnt hasCurrentModel');
+      store.push('filter', {
+        'id': 1,
+        'categories': categories
+      });
+      return store.find('filter', 1);
+    }
   },
   serialize: function(model, params) {
     var catArray, ret;
