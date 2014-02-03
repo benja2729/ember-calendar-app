@@ -35,7 +35,7 @@ DTSTAMP:#{dtStamp}
 DTSTART:#{dtStart}
 DTEND:#{dtEnd}
 SUMMARY:#{title}
-DESCRIPTIONS:#{description}
+DESCRIPTION:#{description}
 LOCATION:#{location}
 END:VEVENT
 

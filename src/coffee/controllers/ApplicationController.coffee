@@ -25,7 +25,6 @@ App.ApplicationController = Em.Controller.extend App.DataUtilMixin,
     controller = @get 'currentController'
     result = controller.get 'filteredEvents'
     result = if result is undefined and App.Event.detectInstance(content = controller.get 'content') then Em.A [content] else result
-    console.log if Em.Array.detect(result) then result.get('length') else null
     result or Em.A()
 
   _routeChangeObserver: Em.beforeObserver( (controller, property) ->
