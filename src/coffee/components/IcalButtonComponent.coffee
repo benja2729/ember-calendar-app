@@ -6,19 +6,21 @@ App.IcalButtonComponent = Em.Component.extend
   events: Em.required Array
   tagName: 'button'
   classNames: ['ical-button', 'btn']
-  classNameBindings: ['isSupported::disabled']
+  classNameBindings: ['enabled::disabled']
+  enabled: Em.computed.and 'isSupported', 'hasEvents'
   isSupported: Em.computed ->
     try
       new Blob()
       return true
     catch e
       return false
+  hasEvents: Em.computed.notEmpty 'events.[]'
   title: Em.computed 'isSupported', (key, value) ->
     isSupported = @get 'isSupported'
     if isSupported
       if value? then value
       else 'Download iCal'
-    else 'Not Supported'
+    else 'iCal Not Supported'
   fileName: Em.computed (key, value) ->
     if value? then value
     else
@@ -28,7 +30,7 @@ App.IcalButtonComponent = Em.Component.extend
   iCalObject: Em.computed 'events', ->
     events = @get 'events'
     App.iCalObject.create {events}
-  click: -> @send 'saveAs' if @get 'isSupported'
+  click: -> @send 'saveAs' if @get 'enabled'
   actions:
     saveAs: ->
       {iCalObject, fileName} = @getProperties 'iCalObject', 'fileName'

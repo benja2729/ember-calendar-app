@@ -9,7 +9,6 @@ App.FiltersRoute = Em.Route.extend
     categories = if c is 'all' or c is undefined then [] else params.categories.split(',')
 
     store = @get 'store'
-    console.log store.find('filter', 1)
     currentModel = @get('currentModel')
     if currentModel
       console.log 'hasCurrentModel'

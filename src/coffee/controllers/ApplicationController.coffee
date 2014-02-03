@@ -20,11 +20,13 @@ App.ApplicationController = Em.Controller.extend App.DataUtilMixin,
   lastPath: null
   dayPath: appHeaderPath 'day'
   monthPath: appHeaderPath 'month'
-  iCalEventsCache: Em.computed 'currentResource', ->
-    currentResource = @get 'currentResource'
-    controller = @controllerFor currentResource
-    if currentResource is 'event' then [controller.get 'content']
-    else controller.get 'filteredEvents'
+  currentController: Em.computed 'currentResource', -> @controllerFor @get('currentResource')
+  iCalEventsCache: Em.computed 'currentController.content', 'filters.categories', ->
+    controller = @get 'currentController'
+    result = controller.get 'filteredEvents'
+    result = if result is undefined and App.Event.detectInstance(content = controller.get 'content') then Em.A [content] else result
+    console.log if Em.Array.detect(result) then result.get('length') else null
+    result or Em.A()
 
   _routeChangeObserver: Em.beforeObserver( (controller, property) ->
     @set 'lastResource', @get(property)
